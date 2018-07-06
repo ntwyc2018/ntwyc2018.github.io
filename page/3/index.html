@@ -452,10 +452,10 @@
 
 
   
-    <article id="post-PHP漏洞总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/PHP漏洞总结/" class="article-date">
+      <a  href="/2018/07/06/sql/" class="article-date">
       <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -470,7 +470,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a>
+      <a  class="article-title" href="/2018/07/06/sql/">sql</a>
     </h1>
   
 
@@ -481,8 +481,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="PHP函数漏洞总结"><a href="#PHP函数漏洞总结" class="headerlink" title="PHP函数漏洞总结"></a>PHP函数漏洞总结</h1><p>参考链接:<br><br><a href="https://blog.csdn.net/qq_31481187/article/details/60968595" target="_blank" rel="noopener">PHP函数漏洞总结</a></p>
-<h2 id="0x01-php-md5-函数漏洞"><a href="#0x01-php-md5-函数漏洞" class="headerlink" title="0x01 php md5()函数漏洞"></a>0x01 php md5()函数漏洞</h2><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3>
+              <h2 id="0x01-sql基础语句"><a href="#0x01-sql基础语句" class="headerlink" title="0x01 sql基础语句"></a>0x01 sql基础语句</h2><h3 id="爆字段长度"><a href="#爆字段长度" class="headerlink" title="爆字段长度"></a>爆字段长度</h3><p>Order by num </p>
+<h3 id="匹配字段-爆字段位置"><a href="#匹配字段-爆字段位置" class="headerlink" title="匹配字段/爆字段位置"></a>匹配字段/爆字段位置</h3><p>and 1=1 union select 1,2,3,4,5……</p>
+<h3 id="爆所有数据名"><a href="#爆所有数据名" class="headerlink" title="爆所有数据名"></a>爆所有数据名</h3>
           
       
     </div>
@@ -494,7 +495,70 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/PHP漏洞总结/#more">查看更多 >></a>
+          <a   href="/2018/07/06/sql/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/PHP中SESSION反序列化机制/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -558,69 +622,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/PHP文件包含漏洞/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
-<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/PHP反序列化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -707,10 +708,10 @@
 
 
   
-    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
+      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
       <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -725,7 +726,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
+      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
     </h1>
   
 
@@ -736,8 +737,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
-<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
+              <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()<br>
           
       
     </div>
@@ -749,7 +750,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/PHP中SESSION反序列化机制/#more">查看更多 >></a>
+          <a   href="/2018/07/06/PHP反序列化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
