@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/07/06/%E5%9F%BA%E4%BA%8E%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E7%9A%84SQL/</loc>
+    <lastmod>2018-07-06T09:54:54.226Z</lastmod>
+    <data>
+        <display>
+        <title>基于布尔盲注的学习笔记</title>
+        <pubTime>2018-07-06T05:24:35.632Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/07/06/xxe%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
     <lastmod>2018-06-13T11:59:35.444Z</lastmod>
     <data>
@@ -130,21 +145,6 @@
         <display>
         <title>2018 ISCC web</title>
         <pubTime>2018-07-06T05:24:35.523Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/06/%E5%9F%BA%E4%BA%8E%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E7%9A%84SQL/</loc>
-    <lastmod>2018-05-22T05:42:20.861Z</lastmod>
-    <data>
-        <display>
-        <title>基于布尔盲注的学习笔记</title>
-        <pubTime>2018-07-06T05:24:35.632Z</pubTime>
         
          
            

