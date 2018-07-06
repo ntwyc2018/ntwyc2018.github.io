@@ -9,18 +9,18 @@
   
   <title>PHP伪协议 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多123456789101112file:// — 访问本地文件系统http:// — 访问 HTTP(s) 网址ftp:// — 访问 FTP(s) URLsphp:// — 访问各个输入/输出流（I/O streams）zlib:// — 压缩流data:// — 数据（RFC">
+  <meta name="description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP伪协议">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/php伪协议/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多123456789101112file:// — 访问本地文件系统http:// — 访问 HTTP(s) 网址ftp:// — 访问 FTP(s) URLsphp:// — 访问各个输入/输出流（I/O streams）zlib:// — 压缩流data:// — 数据（RFC">
+<meta property="og:description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/RK%29_%29K9Z4T3%7B$V%5B%7B%5B@~9N62.png">
-<meta property="og:updated_time" content="2018-03-31T03:15:57.868Z">
+<meta property="og:updated_time" content="2018-07-06T10:42:10.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP伪协议">
-<meta name="twitter:description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多123456789101112file:// — 访问本地文件系统http:// — 访问 HTTP(s) 网址ftp:// — 访问 FTP(s) URLsphp:// — 访问各个输入/输出流（I/O streams）zlib:// — 压缩流data:// — 数据（RFC">
+<meta name="twitter:description" content="打CTF的时候多次遇到PHP伪协议题,这里做个深究.php伪协议，事实上是其支持的协议与封装协议支持的伪协议有下面这么多">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/RK%29_%29K9Z4T3%7B$V%5B%7B%5B@~9N62.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -298,7 +298,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">file:// — 访问本地文件系统</span><br><span class="line">http:// — 访问 HTTP(s) 网址</span><br><span class="line">ftp:// — 访问 FTP(s) URLs</span><br><span class="line">php:// — 访问各个输入/输出流（I/O streams）</span><br><span class="line">zlib:// — 压缩流</span><br><span class="line">data:// — 数据（RFC 2397）</span><br><span class="line">glob:// — 查找匹配的文件路径模式</span><br><span class="line">phar:// — PHP 归档</span><br><span class="line">ssh2:// — Secure Shell 2</span><br><span class="line">rar:// — RAR</span><br><span class="line">ogg:// — 音频流</span><br><span class="line">expect:// — 处理交互式的流</span><br></pre></td></tr></table></figure></p>
+        <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">file:// — 访问本地文件系统</span><br><span class="line">http:// — 访问 HTTP(s) 网址</span><br><span class="line">ftp:// — 访问 FTP(s) URLs</span><br><span class="line">php:// — 访问各个输入/输出流（I/O streams）</span><br><span class="line">zlib:// — 压缩流</span><br><span class="line">data:// — 数据（RFC 2397）</span><br><span class="line">glob:// — 查找匹配的文件路径模式</span><br><span class="line">phar:// — PHP 归档</span><br><span class="line">ssh2:// — Secure Shell 2</span><br><span class="line">rar:// — RAR</span><br><span class="line">ogg:// — 音频流</span><br><span class="line">expect:// — 处理交互式的流</span><br></pre></td></tr></table></figure></p>
 <p>这里主要研究PHP://</p>
 <h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP://"></a>PHP://</h2><p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</p>
 <h2 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h2><p>php://input代表可以访问请求的原始数据，简单来说POST请求的情况下，php://input可以获取到post的数据。</p>
@@ -325,7 +325,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/php伪协议/">PHP伪协议</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年03月31日 - 11时15分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时42分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/php伪协议/" title="PHP伪协议">http://yoursite.com/2018/07/06/php伪协议/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/php伪协议/　　作者: Mr1.Grim" title=""></span>

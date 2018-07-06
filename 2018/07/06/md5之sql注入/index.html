@@ -9,17 +9,17 @@
   
   <title>MD5加密下的SQL注入 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入 md5()函数md5(string, raw) 12345raw 可选，默认为false true:返回16字符2进制格式f">
+  <meta name="description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MD5加密下的SQL注入">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/md5之sql注入/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入 md5()函数md5(string, raw) 12345raw 可选，默认为false true:返回16字符2进制格式f">
+<meta property="og:description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-22T12:19:19.103Z">
+<meta property="og:updated_time" content="2018-07-06T10:41:24.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MD5加密下的SQL注入">
-<meta name="twitter:description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入 md5()函数md5(string, raw) 12345raw 可选，默认为false true:返回16字符2进制格式f">
+<meta name="twitter:description" content="今天刷题的时候看到了mysql的一条语句为: (涨新姿势了) 1select * from `admin` where password=&amp;apos;&amp;quot;.md5($pass,true).&amp;quot;&amp;apos;&amp;quot; 百度后才知道是一种md5加密的sql注入">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -298,7 +298,7 @@
           
         <p>今天刷题的时候看到了mysql的一条语句为: (涨新姿势了)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from `admin` where password=&apos;&quot;.md5($pass,true).&quot;&apos;&quot;</span><br></pre></td></tr></table></figure>
-<p>百度后才知道是一种md5加密的sql注入</p>
+<p>百度后才知道是一种md5加密的sql注入<br><a id="more"></a></p>
 <h2 id="md5-函数"><a href="#md5-函数" class="headerlink" title="md5()函数"></a>md5()函数</h2><p>md5(string, raw)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">raw 可选，默认为false </span><br><span class="line"></span><br><span class="line">true:返回16字符2进制格式</span><br><span class="line"></span><br><span class="line">false:返回32字符16进制格式</span><br></pre></td></tr></table></figure>
 <h3 id="MD5加密后的SQL注入"><a href="#MD5加密后的SQL注入" class="headerlink" title="MD5加密后的SQL注入"></a>MD5加密后的SQL注入</h3><p>md5加密后组成查询语句的时候这个hex会被转成字符串，如果转换之后的字符串包含’or’<xxx>，就会和原查询语句一起组成</xxx></p>
@@ -318,7 +318,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年05月22日 - 20时19分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时41分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/md5之sql注入/" title="MD5加密下的SQL注入">http://yoursite.com/2018/07/06/md5之sql注入/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/md5之sql注入/　　作者: Mr1.Grim" title=""></span>

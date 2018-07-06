@@ -9,20 +9,20 @@
   
   <title>PHP之SESSION反序列化机制 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php 在php语法如下:1ini_set(&amp;apos;session.serialize_handler">
+  <meta name="description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP之SESSION反序列化机制">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/PHP中SESSION反序列化机制/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php 在php语法如下:1ini_set(&amp;apos;session.serialize_handler">
+<meta property="og:description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/KE%25~M1ME~CU%281$~HX_G2%29HA.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/XTM%25ICEV1TL4W2P1_3I%7D_9O.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/$PFB$5$SPEMDJM_%7D1~@%25K3Y.png">
-<meta property="og:updated_time" content="2018-06-02T08:26:09.290Z">
+<meta property="og:updated_time" content="2018-07-06T10:42:35.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP之SESSION反序列化机制">
-<meta name="twitter:description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php 在php语法如下:1ini_set(&amp;apos;session.serialize_handler">
+<meta name="twitter:description" content="参考链接:https://blog.spoock.com/2016/10/16/php-serialize-problem/ 0x01 原理php.ini中有个配置项如下:1session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/KE%25~M1ME~CU%281$~HX_G2%29HA.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -302,6 +302,7 @@
           
         <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
 <h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>在php语法如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;xxxxx&apos;);</span><br></pre></td></tr></table></figure></p>
 <p>这里的xxxxx有三种不同的引擎,不同的引擎所对应的session的存储方式不相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php_binary: 键名的长度对应的ASCII字符 + 键名 + 经过serialize()函数序列化处理的值</span><br><span class="line"></span><br><span class="line">php: 键名+竖线+经过serialize()函数序列处理的值</span><br><span class="line"></span><br><span class="line">php_serialize(php&gt;5.5.4):经过serialize()函数序列化处理的值</span><br></pre></td></tr></table></figure></p>
 <h2 id="0x02-简单用法"><a href="#0x02-简单用法" class="headerlink" title="0x02 简单用法"></a>0x02 简单用法</h2><p>test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class syclover&#123;</span><br><span class="line">        var $func=&quot;&quot;;</span><br><span class="line">        function __construct() &#123;</span><br><span class="line">            $this-&gt;func = &quot;phpinfo()&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        function __wakeup()&#123;</span><br><span class="line">            eval($this-&gt;func);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize($_GET[&apos;a&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
@@ -354,7 +355,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年06月02日 - 16时26分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时42分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/PHP中SESSION反序列化机制/" title="PHP之SESSION反序列化机制">http://yoursite.com/2018/07/06/PHP中SESSION反序列化机制/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/PHP中SESSION反序列化机制/　　作者: Mr1.Grim" title=""></span>

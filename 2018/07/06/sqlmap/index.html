@@ -9,22 +9,22 @@
   
   <title>sqlmap基础用法 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection） 这是个典型的post注入，这里抓包一下 然后把抓到的内容全部复制在txt文本中.(这里我保存在自己的D">
+  <meta name="description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqlmap基础用法">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/sqlmap/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection） 这是个典型的post注入，这里抓包一下 然后把抓到的内容全部复制在txt文本中.(这里我保存在自己的D">
+<meta property="og:description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/YSRK2B0%289Q4R%29D%5B6G%606JYHL.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/$PFB$5$SPEMDJM_%7D1~@%25K3Y.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/0%5B%7DY4ULHORM%7B9$D%7DK1Q%5BTZ4.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%28XAC%7DV%5BS8@NOMSFAP%282%259OA.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/H6DV~%28%25M@TLRN$08%604R7FV1.png">
-<meta property="og:updated_time" content="2018-05-07T04:35:29.797Z">
+<meta property="og:updated_time" content="2018-07-06T10:43:30.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlmap基础用法">
-<meta name="twitter:description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection） 这是个典型的post注入，这里抓包一下 然后把抓到的内容全部复制在txt文本中.(这里我保存在自己的D">
+<meta name="twitter:description" content="参考链接:https://blog.csdn.net/qq_38412357/article/details/79559039 sqlmap入门(post)不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/YSRK2B0%289Q4R%29D%5B6G%606JYHL.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -303,8 +303,7 @@
       
           
         <p>参考链接:<a href="https://blog.csdn.net/qq_38412357/article/details/79559039" target="_blank" rel="noopener">https://blog.csdn.net/qq_38412357/article/details/79559039</a></p>
-<h2 id="sqlmap入门-post"><a href="#sqlmap入门-post" class="headerlink" title="sqlmap入门(post)"></a>sqlmap入门(post)</h2><p>不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）</p>
-<p>这是个典型的post注入，这里抓包一下<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/YSRK2B0%289Q4R%29D%5B6G%606JYHL.png" alt="image"></p>
+<h2 id="sqlmap入门-post"><a href="#sqlmap入门-post" class="headerlink" title="sqlmap入门(post)"></a>sqlmap入门(post)</h2><p>不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）<br><a id="more"></a><br>这是个典型的post注入，这里抓包一下<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/YSRK2B0%289Q4R%29D%5B6G%606JYHL.png" alt="image"></p>
 <p>然后把抓到的内容全部复制在txt文本中.(这里我保存在自己的D盘下的2.txt里)</p>
 <p>然后打开sqlmap,输入如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -r &quot;D:\2.txt&quot; -p id --dbs</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://p1vrkwaxt.bkt.clouddn.com/$PFB$5$SPEMDJM_%7D1~@%25K3Y.png" alt="image"></p>
@@ -331,7 +330,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/sqlmap/">sqlmap基础用法</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年05月07日 - 12时35分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时43分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/sqlmap/" title="sqlmap基础用法">http://yoursite.com/2018/07/06/sqlmap/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/sqlmap/　　作者: Mr1.Grim" title=""></span>

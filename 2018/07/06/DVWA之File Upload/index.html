@@ -9,22 +9,22 @@
   
   <title>DVWA之File Upload | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文件上传漏洞文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。 文件上传漏洞本身就是一个危害巨大的漏洞，WebShell更是将这种漏洞的利用无限扩大。大多数的上传漏洞被利用后攻击者都会留下WebShell以方便后续进入系统。">
+  <meta name="description" content="文件上传漏洞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVWA之File Upload">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/DVWA之File Upload/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="文件上传漏洞文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。 文件上传漏洞本身就是一个危害巨大的漏洞，WebShell更是将这种漏洞的利用无限扩大。大多数的上传漏洞被利用后攻击者都会留下WebShell以方便后续进入系统。">
+<meta property="og:description" content="文件上传漏洞">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/N%7D%29D$PPC9ITMJ4B5IXU%5D%5BZJ.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/CUO1FG8$UTQM6%259E@TTH%7D3Q.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/VHEN%28T3%29%5D9FNKAXO5F1X%25ZA.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/R%7DT63%5B%5B4XMK%7DI_U~ME340%25G.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/NBW7EINLW8U@%7B%60%5B_JV_W6%7DD.png">
-<meta property="og:updated_time" content="2018-04-30T10:00:35.564Z">
+<meta property="og:updated_time" content="2018-07-06T10:39:23.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA之File Upload">
-<meta name="twitter:description" content="文件上传漏洞文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。 文件上传漏洞本身就是一个危害巨大的漏洞，WebShell更是将这种漏洞的利用无限扩大。大多数的上传漏洞被利用后攻击者都会留下WebShell以方便后续进入系统。">
+<meta name="twitter:description" content="文件上传漏洞">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/N%7D%29D$PPC9ITMJ4B5IXU%5D%5BZJ.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -302,7 +302,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><p>文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。</p>
+        <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><a id="more"></a>
+<p>文件上传漏洞是指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，部分文件上传漏洞的利用技术门槛非常的低，对于攻击者来说很容易实施。</p>
 <p>文件上传漏洞本身就是一个危害巨大的漏洞，WebShell更是将这种漏洞的利用无限扩大。大多数的上传漏洞被利用后攻击者都会留下WebShell以方便后续进入系统。攻击者在受影响系统放置或者插入WebShell后，可通过该WebShell更轻松，更隐蔽的在服务中为所欲为。</p>
 <p>这里需要特别说明的是上传漏洞的利用经常会使用WebShell，而WebShell的植入远不止文件上传这一种方式。</p>
 <h2 id="LOW"><a href="#LOW" class="headerlink" title="LOW"></a>LOW</h2><p>服务端核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Upload&apos; ] ) ) &#123; </span><br><span class="line">    // Where are we going to be writing to? </span><br><span class="line">    $target_path  = DVWA_WEB_PAGE_TO_ROOT . &quot;hackable/uploads/&quot;; </span><br><span class="line">    $target_path .= basename( $_FILES[ &apos;uploaded&apos; ][ &apos;name&apos; ] ); </span><br><span class="line"></span><br><span class="line">    // Can we move the file to the upload folder? </span><br><span class="line">    if( !move_uploaded_file( $_FILES[ &apos;uploaded&apos; ][ &apos;tmp_name&apos; ], $target_path ) ) &#123; </span><br><span class="line">        // No </span><br><span class="line">        echo &apos;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&apos;; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Yes! </span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$target_path&#125; succesfully uploaded!&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
@@ -367,7 +368,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年04月30日 - 18时00分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时39分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/DVWA之File Upload/" title="DVWA之File Upload">http://yoursite.com/2018/07/06/DVWA之File Upload/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/DVWA之File Upload/　　作者: Mr1.Grim" title=""></span>

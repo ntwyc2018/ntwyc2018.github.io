@@ -9,17 +9,17 @@
   
   <title>MySql模糊查询 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);1SELECT * FROM [user] WHERE u_name LIKE &amp;apos;%三%&amp;apos; 将会把u_name为“张三”，“张猫三”、“三脚猫”，“唐三藏”等等有“三”的记录">
+  <meta name="description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql模糊查询">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/sqlmohu/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);1SELECT * FROM [user] WHERE u_name LIKE &amp;apos;%三%&amp;apos; 将会把u_name为“张三”，“张猫三”、“三脚猫”，“唐三藏”等等有“三”的记录">
+<meta property="og:description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-14T05:25:26.165Z">
+<meta property="og:updated_time" content="2018-07-06T10:43:36.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql模糊查询">
-<meta name="twitter:description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);1SELECT * FROM [user] WHERE u_name LIKE &amp;apos;%三%&amp;apos; 将会把u_name为“张三”，“张猫三”、“三脚猫”，“唐三藏”等等有“三”的记录">
+<meta name="twitter:description" content="MySql模糊查询的五种用法Mysql模糊查询用法之一    ‘%’%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -296,7 +296,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="MySql模糊查询的五种用法"><a href="#MySql模糊查询的五种用法" class="headerlink" title="MySql模糊查询的五种用法"></a>MySql模糊查询的五种用法</h2><h3 id="Mysql模糊查询用法之一-‘-’"><a href="#Mysql模糊查询用法之一-‘-’" class="headerlink" title="Mysql模糊查询用法之一    ‘%’"></a>Mysql模糊查询用法之一    ‘%’</h3><p>%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%&apos;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="MySql模糊查询的五种用法"><a href="#MySql模糊查询的五种用法" class="headerlink" title="MySql模糊查询的五种用法"></a>MySql模糊查询的五种用法</h2><h3 id="Mysql模糊查询用法之一-‘-’"><a href="#Mysql模糊查询用法之一-‘-’" class="headerlink" title="Mysql模糊查询用法之一    ‘%’"></a>Mysql模糊查询用法之一    ‘%’</h3><p>%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%&apos;</span><br></pre></td></tr></table></figure></p>
 <p>将会把u_name为“张三”，“张猫三”、“三脚猫”，“唐三藏”等等有“三”的记录全找出来。<br>需要找出u_name中既有“三”又有“猫”的记录，请使用and条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%&apos; AND u_name LIKE &apos;%猫%&apos;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%猫%&apos;</span><br></pre></td></tr></table></figure>
 <p>虽然能搜索出“三脚猫”，但不能搜索出符合条件的“张猫三”。</p>
@@ -325,7 +325,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/sqlmohu/">MySql模糊查询</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年03月14日 - 13时25分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时43分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/sqlmohu/" title="MySql模糊查询">http://yoursite.com/2018/07/06/sqlmohu/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/sqlmohu/　　作者: Mr1.Grim" title=""></span>

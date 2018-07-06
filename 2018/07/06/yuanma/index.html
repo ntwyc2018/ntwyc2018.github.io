@@ -9,17 +9,17 @@
   
   <title>文件源码泄漏大全 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。  原理链接+工具链接 .DS_Store文件泄漏原理.DS_Store是Mac下Finder用">
+  <meta name="description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件源码泄漏大全">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/yuanma/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。  原理链接+工具链接 .DS_Store文件泄漏原理.DS_Store是Mac下Finder用">
+<meta property="og:description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-12T15:26:39.535Z">
+<meta property="og:updated_time" content="2018-07-06T10:44:24.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件源码泄漏大全">
-<meta name="twitter:description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。  原理链接+工具链接 .DS_Store文件泄漏原理.DS_Store是Mac下Finder用">
+<meta name="twitter:description" content="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。.git源码泄漏原理在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -296,8 +296,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"><a href="#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。" class="headerlink" title="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"></a>2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。</h4><h3 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title=".git源码泄漏"></a>.git源码泄漏</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。</p>
-<p> <a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">原理链接+工具链接</a></p>
+        <h4 id="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"><a href="#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。" class="headerlink" title="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"></a>2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。</h4><h3 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title=".git源码泄漏"></a>.git源码泄漏</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br><a id="more"></a><br> <a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">原理链接+工具链接</a></p>
 <h3 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h3><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。<br>如果开发/设计人员将.DS_Store上传部署到线上环境，可能造成文件目录结构泄漏，特别是备份文件、源代码文件。</p>
 <p><a href="https://github.com/lijiejie/ds_store_exp" target="_blank" rel="noopener">原理链接+工具链接</a></p>
 <h3 id="swp源码泄漏"><a href="#swp源码泄漏" class="headerlink" title=".swp源码泄漏"></a>.swp源码泄漏</h3><h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p>程序员使用vim编辑器编写index.php文件时，会有一个.index.php.swp文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php。</p>
@@ -318,7 +317,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/yuanma/">文件源码泄漏大全</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年03月12日 - 23时26分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/yuanma/" title="文件源码泄漏大全">http://yoursite.com/2018/07/06/yuanma/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/yuanma/　　作者: Mr1.Grim" title=""></span>

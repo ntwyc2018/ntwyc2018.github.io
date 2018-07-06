@@ -9,20 +9,20 @@
   
   <title>XSS注入原理及应用 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。 XSS漏洞原理首先在本地搭个PHP环境,代码如下:1234&amp;lt;?php$input = $_GET[&amp;quot;param&amp;qu">
+  <meta name="description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS注入原理及应用">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/XSS/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。 XSS漏洞原理首先在本地搭个PHP环境,代码如下:1234&amp;lt;?php$input = $_GET[&amp;quot;param&amp;qu">
+<meta property="og:description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/J3R6J6VRAM2PND6%29W%7BYF%60PB.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/X42ZFS%60KH@XIQCL%5DJI%608ORK.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%299IH$CB9%25%25%7DK2%5D3SGE%295C%5DR.png">
-<meta property="og:updated_time" content="2018-03-26T10:57:59.052Z">
+<meta property="og:updated_time" content="2018-07-06T10:44:08.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS注入原理及应用">
-<meta name="twitter:description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。 XSS漏洞原理首先在本地搭个PHP环境,代码如下:1234&amp;lt;?php$input = $_GET[&amp;quot;param&amp;qu">
+<meta name="twitter:description" content="XSS简介参考书籍:《白帽子讲web安全》XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/J3R6J6VRAM2PND6%29W%7BYF%60PB.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -300,7 +300,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="XSS简介"><a href="#XSS简介" class="headerlink" title="XSS简介"></a>XSS简介</h2><h3 id="参考书籍-《白帽子讲web安全》"><a href="#参考书籍-《白帽子讲web安全》" class="headerlink" title="参考书籍:《白帽子讲web安全》"></a>参考书籍:《白帽子讲web安全》</h3><p>XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。</p>
+        <h2 id="XSS简介"><a href="#XSS简介" class="headerlink" title="XSS简介"></a>XSS简介</h2><h3 id="参考书籍-《白帽子讲web安全》"><a href="#参考书籍-《白帽子讲web安全》" class="headerlink" title="参考书籍:《白帽子讲web安全》"></a>参考书籍:《白帽子讲web安全》</h3><p>XSS 跨站脚本攻击(Cross Site Script)，它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删除数据的目的，而在xss攻击中，通过(插入恶意脚本，实现对用户游览器的控制。<br><a id="more"></a></p>
 <h3 id="XSS漏洞原理"><a href="#XSS漏洞原理" class="headerlink" title="XSS漏洞原理"></a>XSS漏洞原理</h3><p>首先在本地搭个PHP环境,代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$input = $_GET[&quot;param&quot;];</span><br><span class="line">echo &quot;&lt;div&gt;&quot;.$input.&quot;&lt;/div&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/ch01/xss.php?param=hello</span><br></pre></td></tr></table></figure>
 <p>可以看到页面输出hello,那么尝试提交一段HTML代码会怎么样呢<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/ch01/xss.php?param=&lt;script&gt;alert(&apos;xss&apos;)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
@@ -337,7 +337,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/XSS/">XSS注入原理及应用</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年03月26日 - 18时57分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/XSS/" title="XSS注入原理及应用">http://yoursite.com/2018/07/06/XSS/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/XSS/　　作者: Mr1.Grim" title=""></span>

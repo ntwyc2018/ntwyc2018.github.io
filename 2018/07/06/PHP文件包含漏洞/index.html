@@ -9,19 +9,19 @@
   
   <title>文件包含漏洞 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:12345include()：执行到incl">
+  <meta name="description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件包含漏洞">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/PHP文件包含漏洞/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:12345include()：执行到incl">
+<meta property="og:description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/DGYZK%60Y1%252H%5BW_UQ%60M0R87H.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/R3IQE%6090WIU$%7DWI4Y4JA6W0.png">
-<meta property="og:updated_time" content="2018-04-12T01:02:43.437Z">
+<meta property="og:updated_time" content="2018-07-06T10:42:16.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件包含漏洞">
-<meta name="twitter:description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:12345include()：执行到incl">
+<meta name="twitter:description" content="参考:《白帽子讲web安全》实战平台:DVWA平台(DVWA平台安装具体自己百度) 文件包含漏洞文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。在PHP中主要有四个函数:">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/DGYZK%60Y1%252H%5BW_UQ%60M0R87H.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -300,7 +300,7 @@
       
           
         <p>参考:《白帽子讲web安全》<br><br>实战平台:DVWA平台(DVWA平台安装具体自己百度)</p>
-<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。<br><br>在PHP中主要有四个函数:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行</span><br><span class="line"></span><br><span class="line">require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本</span><br><span class="line"></span><br><span class="line">include_once()和require_once()：若文件中代码已被包含则不会再次包含</span><br></pre></td></tr></table></figure></p>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。<br><br>在PHP中主要有四个函数:<br><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行</span><br><span class="line"></span><br><span class="line">require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本</span><br><span class="line"></span><br><span class="line">include_once()和require_once()：若文件中代码已被包含则不会再次包含</span><br></pre></td></tr></table></figure></p>
 <h3 id="本地文件包含漏洞"><a href="#本地文件包含漏洞" class="headerlink" title="本地文件包含漏洞"></a>本地文件包含漏洞</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">能够打开并包含本地文件的漏洞，被称为本地文件包含漏洞(Local File Inclusion,简称LFI)</span><br></pre></td></tr></table></figure>
 <h4 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h4><p>首先打开DVWA登陆,选择File Inclusion进行文件包含漏洞测试，记得在DVWA Security上选择等级low<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/DGYZK%60Y1%252H%5BW_UQ%60M0R87H.png" alt="image"></p>
 <ul>
@@ -364,7 +364,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年04月12日 - 09时02分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时42分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/PHP文件包含漏洞/" title="文件包含漏洞">http://yoursite.com/2018/07/06/PHP文件包含漏洞/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/PHP文件包含漏洞/　　作者: Mr1.Grim" title=""></span>

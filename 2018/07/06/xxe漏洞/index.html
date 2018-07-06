@@ -9,17 +9,17 @@
   
   <title>在JSON中玩转XXE攻击 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识 和html的区别为:12XML 被设计为传输和存储数据，其焦点是数据的内容。HTML 被设计用来显示数据，其焦点是数据的外观。 这样就好理解多了，xml还有一些关键知识如dtd实体要了解，有点长，自行百度理解htt">
+  <meta name="description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在JSON中玩转XXE攻击">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/xxe漏洞/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识 和html的区别为:12XML 被设计为传输和存储数据，其焦点是数据的内容。HTML 被设计用来显示数据，其焦点是数据的外观。 这样就好理解多了，xml还有一些关键知识如dtd实体要了解，有点长，自行百度理解htt">
+<meta property="og:description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-12T12:35:45.125Z">
+<meta property="og:updated_time" content="2018-07-06T10:44:14.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在JSON中玩转XXE攻击">
-<meta name="twitter:description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识 和html的区别为:12XML 被设计为传输和存储数据，其焦点是数据的内容。HTML 被设计用来显示数据，其焦点是数据的外观。 这样就好理解多了，xml还有一些关键知识如dtd实体要了解，有点长，自行百度理解htt">
+<meta name="twitter:description" content="参考链接:在JSON中玩转XXE攻击  前言在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识 xml基础要了解xxe漏洞前先了解xml文档的基础，这是基本知识">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -298,8 +298,7 @@
           
         <p>参考链接:<a href="http://bobao.360.cn/learning/detail/360.html" target="_blank" rel="noopener">在JSON中玩转XXE攻击 </a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识</p>
-<h2 id="xml基础"><a href="#xml基础" class="headerlink" title="xml基础"></a>xml基础</h2><p>要了解xxe漏洞前先了解xml文档的基础，这是基本知识</p>
-<p>和html的区别为:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XML 被设计为传输和存储数据，其焦点是数据的内容。</span><br><span class="line">HTML 被设计用来显示数据，其焦点是数据的外观。</span><br></pre></td></tr></table></figure></p>
+<h2 id="xml基础"><a href="#xml基础" class="headerlink" title="xml基础"></a>xml基础</h2><p>要了解xxe漏洞前先了解xml文档的基础，这是基本知识<br><a id="more"></a><br>和html的区别为:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XML 被设计为传输和存储数据，其焦点是数据的内容。</span><br><span class="line">HTML 被设计用来显示数据，其焦点是数据的外观。</span><br></pre></td></tr></table></figure></p>
 <p>这样就好理解多了，xml还有一些关键知识如dtd实体要了解，有点长，自行百度理解<br><a href="https://www.cnblogs.com/r00tuser/p/7255939.html" target="_blank" rel="noopener">https://www.cnblogs.com/r00tuser/p/7255939.html</a></p>
 <h2 id="Content-Type-在JSON中进行XXE攻击"><a href="#Content-Type-在JSON中进行XXE攻击" class="headerlink" title="Content-Type 在JSON中进行XXE攻击"></a>Content-Type 在JSON中进行XXE攻击</h2><p>XXE是一种针对XML终端实施的攻击，黑客想要实施这种攻击，需要在XML的payload包含外部实体声明，且服务器本身允许实体扩展。这样的话，黑客或许能读取WEB服务器的文件系统，通过UNC路径访问远程文件系统，或者通过HTTP/HTTPS连接到任意主机。在下面的例子中，我们将一个外部实体指向了WEB服务器上的/etc/passwd，该实体就是包含在XML的payload里的。</p>
 <p>一个简洁有效的xxe攻击如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE netspi [&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;]&gt;</span><br><span class="line">[some xml content..]</span><br><span class="line">&lt;element&gt;&amp;xxe;&lt;/element&gt;</span><br><span class="line">[some xml content..]</span><br></pre></td></tr></table></figure></p>
@@ -329,7 +328,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年06月12日 - 20时35分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/xxe漏洞/" title="在JSON中玩转XXE攻击">http://yoursite.com/2018/07/06/xxe漏洞/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/xxe漏洞/　　作者: Mr1.Grim" title=""></span>

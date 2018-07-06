@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%28X5A%25L5JMQQ5@HX4K%5D%7DBP0M.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/7F6003B4ACBF683F4BE602542DAD0CF6.png">
-<meta property="og:updated_time" content="2018-06-13T11:59:35.444Z">
+<meta property="og:updated_time" content="2018-07-06T10:44:20.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xxe漏洞的复现解析">
 <meta name="twitter:description" content="参考链接:https://www.jianshu.com/p/163879fc1018 漏洞原理当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则">
@@ -300,7 +300,7 @@
       
           
         <p>参考链接:<a href="https://www.jianshu.com/p/163879fc1018" target="_blank" rel="noopener">https://www.jianshu.com/p/163879fc1018</a></p>
-<h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。</p>
+<h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。<br><a id="more"></a></p>
 <h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>这里用phpstudy以及自己的服务器进行搭建环境</p>
 <p>首先本地根目录下写两个文件</p>
 <p>test.php</p>
@@ -334,7 +334,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年06月13日 - 19时59分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/xxe漏洞复现/" title="xxe漏洞的复现解析">http://yoursite.com/2018/07/06/xxe漏洞复现/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/xxe漏洞复现/　　作者: Mr1.Grim" title=""></span>
