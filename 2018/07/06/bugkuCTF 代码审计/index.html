@@ -9,17 +9,17 @@
   
   <title>Bugku 代码审计 | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x01 extract变量覆盖题目给出如下源码:12345678910111213141516&amp;lt;?php$flag=&amp;apos;xxx&amp;apos;;extract($_GET);if(isset($shiyan))&amp;#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&amp;#123;echo&amp;apos;flag&amp;#">
+  <meta name="description" content="0x01 extract变量覆盖">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bugku 代码审计">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/bugkuCTF 代码审计/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="0x01 extract变量覆盖题目给出如下源码:12345678910111213141516&amp;lt;?php$flag=&amp;apos;xxx&amp;apos;;extract($_GET);if(isset($shiyan))&amp;#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&amp;#123;echo&amp;apos;flag&amp;#">
+<meta property="og:description" content="0x01 extract变量覆盖">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-22T06:31:47.252Z">
+<meta property="og:updated_time" content="2018-07-06T10:37:00.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bugku 代码审计">
-<meta name="twitter:description" content="0x01 extract变量覆盖题目给出如下源码:12345678910111213141516&amp;lt;?php$flag=&amp;apos;xxx&amp;apos;;extract($_GET);if(isset($shiyan))&amp;#123;$content=trim(file_get_contents($flag));if($shiyan==$content)&amp;#123;echo&amp;apos;flag&amp;#">
+<meta name="twitter:description" content="0x01 extract变量覆盖">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -210,7 +210,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                    <div id="js-aboutme">人生有梦，各自精彩</div>
                 </section>
                 
             </div>
@@ -296,7 +296,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="0x01-extract变量覆盖"><a href="#0x01-extract变量覆盖" class="headerlink" title="0x01 extract变量覆盖"></a>0x01 extract变量覆盖</h2><p>题目给出如下源码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$flag=&apos;xxx&apos;;</span><br><span class="line">extract($_GET);</span><br><span class="line">if(isset($shiyan))</span><br><span class="line">&#123;</span><br><span class="line">$content=trim(file_get_contents($flag));</span><br><span class="line">if($shiyan==$content)</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;flag&#123;xxx&#125;&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;Oh.no&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="0x01-extract变量覆盖"><a href="#0x01-extract变量覆盖" class="headerlink" title="0x01 extract变量覆盖"></a>0x01 extract变量覆盖</h2><a id="more"></a>
+<p>题目给出如下源码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$flag=&apos;xxx&apos;;</span><br><span class="line">extract($_GET);</span><br><span class="line">if(isset($shiyan))</span><br><span class="line">&#123;</span><br><span class="line">$content=trim(file_get_contents($flag));</span><br><span class="line">if($shiyan==$content)</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;flag&#123;xxx&#125;&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">echo&apos;Oh.no&apos;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>这里主要用到了extract()变量覆盖函数,百度的解释是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extract()函数能将变量从数组导入当前的符号表</span><br><span class="line">extract(array,extract_rules,prefix)</span><br><span class="line">extract_rules:EXTR_OVERWRITE - 默认。如果有冲突，则覆盖已有的变量。</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当extract()函数从用户可以控制的数组中导出变量时,可能发生变量覆盖，在这个例子中，extract()从$_GET中导出变量，从而可以导致任意变量被覆盖.</span><br></pre></td></tr></table></figure>
 <p>构造payload如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:9009/1.php?shiyan=&amp;flag=</span><br></pre></td></tr></table></figure></p>
@@ -343,7 +344,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/06/bugkuCTF 代码审计/">Bugku 代码审计</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年04月22日 - 14时31分</p>
+        <p><span>最后更新:</span>2018年07月06日 - 18时37分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/06/bugkuCTF 代码审计/" title="Bugku 代码审计">http://yoursite.com/2018/07/06/bugkuCTF 代码审计/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/bugkuCTF 代码审计/　　作者: Mr1.Grim" title=""></span>

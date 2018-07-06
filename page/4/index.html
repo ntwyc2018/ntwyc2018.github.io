@@ -209,7 +209,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                    <div id="js-aboutme">人生有梦，各自精彩</div>
                 </section>
                 
             </div>
@@ -916,37 +916,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>参考链接:<a href="http://www.freebuf.com/articles/web/116714.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/116714.html</a></p>
-<h2 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h2><p>Command Injection(命令注入),指通过提交恶意构造的参数破坏命令语句结构，从而达到执行恶意命令的目的。PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一。</p>
-<h2 id="LOW级别"><a href="#LOW级别" class="headerlink" title="LOW级别"></a>LOW级别</h2><p>服务器核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>php_uname(mode)<br>这个函数会返回运行php的操作系统的相关描述，参数mode可取值”a” （此为默认，包含序列”s n r v m”里的所有模式），”s ”（返回操作系统名称），”n”（返回主机名），” r”（返回版本名称），”v”（返回版本信息）， ”m”（返回机器类型）。</li>
-<li>stristr(string,search,before_search),具体自己百度<h3 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h3>window和linux系统都可以用&amp;&amp;来执行多条命令<br>输入内容可以为</li>
-<li>127.0.0.1&amp;&amp;ls</li>
-<li>127.0.0.1&amp;&amp;whoami</li>
-<li>127.0.0.1&amp;&amp;net user</li>
-</ul>
-<p>下面图以第二个为例<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/JXA0WV3FP@ZQWREER%257CQER.png" alt="image"></p>
-<p>可以看到最下面爆出了当前使用用户</p>
-<h2 id="Medium级别"><a href="#Medium级别" class="headerlink" title="Medium级别"></a>Medium级别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    // Set blacklist </span><br><span class="line"></span><br><span class="line">    $substitutions = array( </span><br><span class="line"></span><br><span class="line">        &apos;&amp;&amp;&apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">    ); </span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist). </span><br><span class="line"></span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target ); </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看到增加了str_replace()函数，将&amp;&amp;和;这两个字符过滤成空字符了，但还是有些字符可以用，如&amp;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;ls</span><br></pre></td></tr></table></figure>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/1%5B@QK~JWJPI88GN%5BS4I_SL2.png" alt="image"></p>
-<p>这里注意&amp;与&amp;&amp;的区别:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1&amp;&amp;Command 2</span><br><span class="line"> </span><br><span class="line">(先执行Command 1，执行成功后执行Command 2，否则不执行Command 2)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1&amp;Command 2</span><br><span class="line"></span><br><span class="line">先执行Command 1，不管是否成功，都会执行Command 2</span><br></pre></td></tr></table></figure>
-<p>也可以用如下绕过(过滤成一个空白字符)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;;&amp;ipconfig</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0CHXF8%7DD%25OAI6SWH%5B9Q%5DHZU.png" alt="image"></p>
-<p>这是因为”127.0.0.1&amp;;&amp;ipconfig”中的” ;”会被替换为空字符，这样一来就变成了”127.0.0.1&amp;&amp; ipconfig” ，会成功执行。</p>
-<h2 id="High级别"><a href="#High级别" class="headerlink" title="High级别"></a>High级别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = trim($_REQUEST[ &apos;ip&apos; ]); </span><br><span class="line"></span><br><span class="line">    // Set blacklist </span><br><span class="line"></span><br><span class="line">    $substitutions = array( </span><br><span class="line"></span><br><span class="line">        &apos;&amp;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;;&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;|  &apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;-&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;$&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;(&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;)&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;`&apos;  =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">        &apos;||&apos; =&gt; &apos;&apos;, </span><br><span class="line"></span><br><span class="line">    ); </span><br><span class="line"></span><br><span class="line">    // Remove any of the charactars in the array (blacklist). </span><br><span class="line"></span><br><span class="line">    $target = str_replace( array_keys( $substitutions ), $substitutions, $target ); </span><br><span class="line"></span><br><span class="line">    // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">    if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // Windows </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // *nix </span><br><span class="line"></span><br><span class="line">        $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    // Feedback for the end user </span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看出，相比Medium级别的代码，High级别的代码进一步完善了黑名单，但由于黑名单机制的局限性，我们依然可以绕过。</p>
-<h2 id="实战-1"><a href="#实战-1" class="headerlink" title="实战"></a>实战</h2><p>黑名单看似过滤了所有的非法字符，但仔细观察到是把”| ”（注意这里|后有一个空格）替换为空字符，于是 ”|”成了“漏网之鱼”。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Command 1 | Command 2</span><br><span class="line"></span><br><span class="line">“|”是管道符，表示将Command 1的输出作为Command 2的输入，并且只打印Command 2执行的结果。</span><br></pre></td></tr></table></figure>
-<p>参考链接:<a href="http://blog.sina.com.cn/s/blog_70bea87d010129dv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_70bea87d010129dv.html</a></p>
-<p>输入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1|net user</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/4%5B$%6045X6%289GQR8U%5B%7BD7DU%5DP.png" alt="image"></p>
-<h2 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a>impossible</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;Submit&apos; ]  ) ) &#123; </span><br><span class="line"></span><br><span class="line">    // Check Anti-CSRF token </span><br><span class="line"></span><br><span class="line">    checkToken( $_REQUEST[ &apos;user_token&apos; ], $_SESSION[ &apos;session_token&apos; ], &apos;index.php&apos; ); </span><br><span class="line"></span><br><span class="line">    // Get input </span><br><span class="line"></span><br><span class="line">    $target = $_REQUEST[ &apos;ip&apos; ]; </span><br><span class="line"></span><br><span class="line">    $target = stripslashes( $target ); </span><br><span class="line"></span><br><span class="line">    // Split the IP into 4 octects </span><br><span class="line"></span><br><span class="line">    $octet = explode( &quot;.&quot;, $target ); </span><br><span class="line"></span><br><span class="line">    // Check IF each octet is an integer </span><br><span class="line"></span><br><span class="line">    if( ( is_numeric( $octet[0] ) ) &amp;&amp; ( is_numeric( $octet[1] ) ) &amp;&amp; ( is_numeric( $octet[2] ) ) &amp;&amp; ( is_numeric( $octet[3] ) ) &amp;&amp; ( sizeof( $octet ) == 4 ) ) &#123; </span><br><span class="line"></span><br><span class="line">        // If all 4 octets are int&apos;s put the IP back together. </span><br><span class="line"></span><br><span class="line">        $target = $octet[0] . &apos;.&apos; . $octet[1] . &apos;.&apos; . $octet[2] . &apos;.&apos; . $octet[3]; </span><br><span class="line"></span><br><span class="line">        // Determine OS and execute the ping command. </span><br><span class="line"></span><br><span class="line">        if( stristr( php_uname( &apos;s&apos; ), &apos;Windows NT&apos; ) ) &#123; </span><br><span class="line"></span><br><span class="line">            // Windows </span><br><span class="line"></span><br><span class="line">            $cmd = shell_exec( &apos;ping  &apos; . $target ); </span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        else &#123; </span><br><span class="line"></span><br><span class="line">            // *nix </span><br><span class="line"></span><br><span class="line">            $cmd = shell_exec( &apos;ping  -c 4 &apos; . $target ); </span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        // Feedback for the end user </span><br><span class="line"></span><br><span class="line">        echo &quot;&lt;pre&gt;&#123;$cmd&#125;&lt;/pre&gt;&quot;; </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    else &#123; </span><br><span class="line"></span><br><span class="line">        // Ops. Let the user name theres a mistake </span><br><span class="line"></span><br><span class="line">        echo &apos;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&apos;; </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">// Generate Anti-CSRF token </span><br><span class="line"></span><br><span class="line">generateSessionToken(); </span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>首先使用 stripslashes 转义反斜线后的字符串，然后恐怖的来了，将输入的字符串依据’.’号分隔开，然后依次判断每段是否为整数，如果是则执行命令，如果不是则直接报错退出。</p>
-
+              <p>参考链接:<a href="http://www.freebuf.com/articles/web/116714.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/116714.html</a><br>
+          
       
     </div>
     
@@ -959,6 +930,10 @@
 
 
       
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/DVWA之Commad injection/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1084,23 +1059,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>docker下载方法及使用教程<br><a href="https://yeasy.gitbooks.io/docker_practice/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/</a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2018 SUCTF放出了docker镜像，这里我用的macbook装的docker</p>
-<h2 id="快捷步骤"><a href="#快捷步骤" class="headerlink" title="快捷步骤"></a>快捷步骤</h2><p>这里是镜像名<br></p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/%60ZPULBIC%28CM%28U%7B7WM0GO%7BMX.png" alt="image"></p>
-<h3 id="0x01-获取镜像"><a href="#0x01-获取镜像" class="headerlink" title="0x01 获取镜像"></a>0x01 获取镜像</h3><p>Github Hub上有大量的高质量的镜像可以用，这里讲获取镜像命令方法</p>
-<p>从Docker镜像仓库获取镜像的命令格式为(这里任取一个镜像suctf/2018-web-homework为例子)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull suctf/2018-web-homework</span><br></pre></td></tr></table></figure>
-<p>这里命令没有给出Docker镜像仓库地址，会默认从Docker Hub获取镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
-<p>该命令可以查看当前已存在的镜像</p>
-<h3 id="0x02-启动容器"><a href="#0x02-启动容器" class="headerlink" title="0x02 启动容器"></a>0x02 启动容器</h3><p>这里的启动容器是基于镜像新建一个容器启动,主要命令为docker run</p>
-<p>这里以刚才镜像为例子,启动容器并端口映射（这里直接讲外部访问容器命令）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 2018:80 suctf/2018-web-homework</span><br></pre></td></tr></table></figure>
-<p>-d 屏蔽执行命令的输出结果<br>-p 做端口映射，这里端口映射到本机2018端口,即127.0.0.1:2018</p>
-<h3 id="0x03-访问网址"><a href="#0x03-访问网址" class="headerlink" title="0x03 访问网址"></a>0x03 访问网址</h3><p>访问127.0.0.1如下<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/A63%28$7%7DQO$CTS8KGZ3CG4UQ.png" alt="image"></p>
-<p>可见复现成功了，在同一个局域网下，访问该docker主机电脑ip+端口也是可以的</p>
-
+              <p>docker下载方法及使用教程<br><a href="https://yeasy.gitbooks.io/docker_practice/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/</a><br>
+          
       
     </div>
     
@@ -1109,6 +1069,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/docker/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1157,33 +1121,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="东华杯布尔盲注"><a href="#东华杯布尔盲注" class="headerlink" title="东华杯布尔盲注"></a>东华杯布尔盲注</h1><h2 id="【原理】"><a href="#【原理】" class="headerlink" title="【原理】"></a><strong>【原理】</strong></h2><p>sql布尔盲注原理</p>
-<h2 id="【目的】"><a href="#【目的】" class="headerlink" title="【目的】"></a><strong>【目的】</strong></h2><p>加强个人渗透sql的能力</p>
-<h2 id="【环境】"><a href="#【环境】" class="headerlink" title="【环境】"></a><strong>【环境】</strong></h2><p>python，ubuntu</p>
-<h2 id="【工具】"><a href="#【工具】" class="headerlink" title="【工具】"></a><strong>【工具】</strong></h2><p>python</p>
-<h2 id="【前言】"><a href="#【前言】" class="headerlink" title="【前言】"></a><strong>【前言】</strong></h2><p>之前自己对sql注入一直很不理解，于是上去做了东华杯some words一波，看了writeup花了n个小时才理解（我果然是最菜的。。），不说了，上题目。</p>
-<p>各位大佬可以看看这个资源理解下布尔盲注原理 <a href="http://blog.csdn.net/squeen_/article/details/52767887" target="_blank" rel="noopener">http://blog.csdn.net/squeen_/article/details/52767887</a></p>
-<h2 id="【步骤】"><a href="#【步骤】" class="headerlink" title="【步骤】"></a><strong>【步骤】</strong></h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/7.png" alt="image"><br>首先，这题判断过滤的特征是它回返回回显 stupid hacker233 </p>
-<p>所以试一波各种语句，发现过滤了很多，有单引号 等号 union等等，下面开始我的表演2333</p>
-<p><strong>步骤1：</strong> 爆数据库的长度</p>
-<p>语句如下<br>?id=0 or length(database())&gt;1%23 （网址我这里就暂时不打出来了，随时变化）</p>
-<p>这个语句含义是id=0时，这个库名的长度是否大于1</p>
-<p>如果不大于1的，它给你的回显如下</p>
-<p>试试把1改成2,3,4,5，到5的时候发现回显消失，说明这个库命长度为4<br><img src="http://p1vrkwaxt.bkt.clouddn.com/8.png" alt="image"><br><strong>步骤2：</strong> 爆数据库名称</p>
-<p>语句如下</p>
-<p>?id=0 or ascii(substr(database(),1,1))&gt;119– </p>
-<p>这语句的含义是以ascii的形式返回id=0时第一个字符开始后面的第一个值 然后通过与ascii匹配</p>
-<p>这里的119在ascci表中为w 这里的判断方法和步骤一是一样的<br>然后再把1,1改成，2,1，含义就是求库名的第二个字母, 以此类推得到库名为words</p>
-<p><strong>步骤3：</strong><br>接下来就是求表长度和表名称了，方法都是一样的，下面我给出语句</p>
-<p>爆表长度 id=0 or (select length(table_name) from information_schema.tables where table_schema like database()  limit 0,1)&gt;3 %23</p>
-<p>limit 0,1的含义是求第一个字符 limit 1,1的含义是求第二个字符 具体情况请百度谢谢别问我23333</p>
-<p>爆表名称 ?id=0 or (ascii(substr((select table_name from information_schema.tables where table_schema like database() limit 0,1),1,1))) &gt; 50 –+</p>
-<p>注意这里的substr和limit括号 慢慢体会，反正这个是对的</p>
-<p><strong>步骤3：</strong><br>接下来就是查字段了，可能就麻烦了，所以上神器 Python！<br>给出爆字段的脚本如下<br><img src="http://p1vrkwaxt.bkt.clouddn.com/9.png" alt="image"></p>
-<p>运行得到flag</p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/10.png" alt="image"></p>
-<h2 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a><strong>【总结】</strong></h2><p>感谢some words，让我在sql注入方面能力得到了提升。不废话了0.0，欢迎各位大佬慢慢看</p>
-
+              <h1 id="东华杯布尔盲注"><a href="#东华杯布尔盲注" class="headerlink" title="东华杯布尔盲注"></a>东华杯布尔盲注</h1><h2 id="【原理】"><a href="#【原理】" class="headerlink" title="【原理】"></a><strong>【原理】</strong></h2>
+          
       
     </div>
     
@@ -1192,6 +1131,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/DHB/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
