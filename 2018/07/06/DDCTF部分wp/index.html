@@ -7,13 +7,13 @@
   
   
   
-  <title>DDCTF部分wp | 风筝的博客</title>
+  <title>DDCTF部分wp | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="抱着学习的态度去打DDCTF,在朋友们帮助下收获很多，这里先感谢朋友 Web 数据库的秘密 这一步比较简单，抓包在消息头headers构造:1X-Forwarded-For: 123.232.23.245 第二步如图，这里有几个注意点   第一，这里的time是时间戳，抓包后一段时间后会失效，与sig同步 第二，sig采用了math.js中的sha1算法，每一步骤有不同的校验值(第二关查看源代码)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DDCTF部分wp">
 <meta property="og:url" content="http://yoursite.com/2018/07/06/DDCTF部分wp/index.html">
-<meta property="og:site_name" content="风筝的博客">
+<meta property="og:site_name" content="Grim&#39;s blog">
 <meta property="og:description" content="抱着学习的态度去打DDCTF,在朋友们帮助下收获很多，这里先感谢朋友 Web 数据库的秘密 这一步比较简单，抓包在消息头headers构造:1X-Forwarded-For: 123.232.23.245 第二步如图，这里有几个注意点   第一，这里的time是时间戳，抓包后一段时间后会失效，与sig同步 第二，sig采用了math.js中的sha1算法，每一步骤有不同的校验值(第二关查看源代码)">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/%5D%60Z4%292YP67K$D%7B~LSR_%25LJG.png">
@@ -25,7 +25,7 @@
 <meta name="twitter:description" content="抱着学习的态度去打DDCTF,在朋友们帮助下收获很多，这里先感谢朋友 Web 数据库的秘密 这一步比较简单，抓包在消息头headers构造:1X-Forwarded-For: 123.232.23.245 第二步如图，这里有几个注意点   第一，这里的time是时间戳，抓包后一段时间后会失效，与sig同步 第二，sig采用了math.js中的sha1算法，每一步骤有不同的校验值(第二关查看源代码)">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/%5D%60Z4%292YP67K$D%7B~LSR_%25LJG.png">
   
-    <link rel="alternative" href="/atom.xml" title="风筝的博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg">
