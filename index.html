@@ -278,111 +278,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="0x01-MD5加密原理"><a href="#0x01-MD5加密原理" class="headerlink" title="0x01 MD5加密原理"></a>0x01 MD5加密原理</h2><p>简单介绍下分成下面几步</p>
+              <h2 id="0x01-MD5加密原理"><a href="#0x01-MD5加密原理" class="headerlink" title="0x01 MD5加密原理"></a>0x01 MD5加密原理</h2><p>简单介绍下分成下面几步</p>
 <ul>
-<li><p>分组,先将二进制字符串以512位(64字节)为一组，然后再把每组分为16个子分组(每子分组32位，也就是4字节)</p>
-</li>
-<li><p>填充，分两步填N<em>64+56字节,填充规则是，二进制的话是先填充一个1，后面全填为0，十六进制是先填充一个8，后面全填0,直到长度满足N</em>64+56</p>
-</li>
-<li><p>第二步的填充:再填充8字节，这样最后的数据就是（N+1）*64字节。</p>
-</li>
-<li><p>接下来假设原始为abcd，对一个分组的子分组进行一系列神奇的运算，得出新的abcd，然后这个新的abcd又和下一个分组进行神奇的运算，以此类推，最后就会得出一个128位加密后的值，用16进制来表示也就是我们看到的32位的md5。</p>
-</li>
-</ul>
-<h2 id="0x02-加盐-salt-原理"><a href="#0x02-加盐-salt-原理" class="headerlink" title="0x02 加盐(salt)原理"></a>0x02 加盐(salt)原理</h2><p>管理员把用户密码的md5值存储在数据库，但攻击者常常把一些常用字符串生成md5字典，通过比较网站数据库密码的md5值得到真正的密码。为了加强安全，管理员又通过加盐（salt）的方式来存储密码数据，具体措施是自定义一个字符串，这个字符串谁都看不到。当用户进行注册的时候，把md5（salt+密码）的值进行存储，以后用户每次登陆都在后台把用户输入的密码加盐再md5加密与数据库进行比较。这样攻击者不知道盐是什么，很难通过爆破的方式来获取密码。</p>
-<h2 id="0x02-MD5长度扩展攻击原理"><a href="#0x02-MD5长度扩展攻击原理" class="headerlink" title="0x02 MD5长度扩展攻击原理"></a>0x02 MD5长度扩展攻击原理</h2><p>哈希长度扩展攻击<br>hash的MD5对数据进行加密的时候，是分组进行加密。</p>
-<p>MD5加密的时候会有四个初始向量IV，对第一组数据加密的时候利用的就是四个初始向量，不同的是，在对第二组数据进行加密的时候，使用的并不是四个初始向量，而是将前一组加密后的密文作为下一组的初始向量。</p>
-<p>哈希长度扩展攻击便是利用这个特性来实现的。</p>
-<h3 id="扩展攻击实现的条件"><a href="#扩展攻击实现的条件" class="headerlink" title="扩展攻击实现的条件"></a>扩展攻击实现的条件</h3><ul>
-<li>知道Salt的长度</li>
-<li>要知道一个由salt加密后的md5值</li>
-<li>知道$data的值(未加盐的明文)</li>
-</ul>
-<h2 id="0x03-简单的md5长度扩展攻击题"><a href="#0x03-简单的md5长度扩展攻击题" class="headerlink" title="0x03 简单的md5长度扩展攻击题"></a>0x03 简单的md5长度扩展攻击题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;secret.php&quot;;</span><br><span class="line">@$username=(string)$_POST[&apos;username&apos;];</span><br><span class="line">function enc($text)&#123;</span><br><span class="line">    global $key;</span><br><span class="line">    return md5($key.$text);</span><br><span class="line">&#125;</span><br><span class="line">if(enc($username) === $_COOKIE[&apos;verify&apos;])&#123;</span><br><span class="line">    if(is_numeric(strpos($username, &quot;admin&quot;)))&#123;</span><br><span class="line">        die($flag);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;you are not admin&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    setcookie(&quot;verify&quot;, enc(&quot;guest&quot;), time()+60*60*24*7);</span><br><span class="line">    setcookie(&quot;len&quot;, strlen($key), time()+60*60*24*7);</span><br><span class="line">&#125;</span><br><span class="line">show_source(__FILE__);</span><br></pre></td></tr></table></figure>
-<p>从源码可以得到以下内容:<br></p>
-<ul>
-<li>enc(“guest”)的值为78cfc57d983b4a17e55828c001a3e781</li>
-<li>$key的长度为46</li>
-</ul>
-<p>题目的关键代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(enc($username) === $_COOKIE[&apos;verify&apos;])&#123;</span><br><span class="line">    if(is_numeric(strpos($username, &quot;admin&quot;)))&#123;</span><br><span class="line">        die($flag);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>这段代码要求我们输入的username在经过enc函数加密之后，与$_COOKIE[‘verify’]的值相等，并且username中必须含有admin。</p>
-<p>看到这里，我们就可以想到来利用哈希长度扩展来帮我们解决这个问题。</p>
-<p>而且题目给予我们的信息，刚好满足哈希长度扩展攻击的要求。</p>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>这里我们使用HashPump这个工具</p>
-<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/bwall/HashPump</span><br><span class="line">apt-get install g++ libssl-dev</span><br><span class="line">cd HashPump</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
-<p>使用说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input Signature: 已知的hash值，这里是$_COOKIE[&apos;verify&apos;]的值</span><br><span class="line">Input Data: 上面的hash值解密后的字符串，这里是guest。</span><br><span class="line">Input Key Length: $key的长度</span><br><span class="line">Input Data to Add: 想要添加的数据，由于题目要求要含有admin，所以这里是admin。</span><br></pre></td></tr></table></figure></p>
-<p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  HashPump hashpump</span><br><span class="line">Input Signature: 78cfc57d983b4a17e55828c001a3e781</span><br><span class="line">Input Data: guest</span><br><span class="line">Input Key Length: 46</span><br><span class="line">Input Data to Add: admin</span><br><span class="line">5f585093a7fe86971766c3d25c43d0eb</span><br><span class="line">guest\x80\x00\x00\x00\x00\x98\x01\x00\x00\x00\x00\x00\x00admin</span><br></pre></td></tr></table></figure></p>
-<p>然后我们将得到的hash值去替换数据包中$_COOKIE[‘verify’]的值，然后post提交username=guest%80%00%00%00%00%98%01%00%00%00%00%00%00admin即可。</p>
-<h2 id="0x04-序列化md5长度扩展攻击题"><a href="#0x04-序列化md5长度扩展攻击题" class="headerlink" title="0x04 序列化md5长度扩展攻击题"></a>0x04 序列化md5长度扩展攻击题</h2><p>此题来自jarvis oj flag在管理员手中吗?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Web 350&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        body &#123;</span><br><span class="line">                background:gray;</span><br><span class="line">                text-align:center;</span><br><span class="line">        &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">        &lt;?php</span><br><span class="line">                $auth = false;</span><br><span class="line">                $role = &quot;guest&quot;;</span><br><span class="line">                $salt =</span><br><span class="line">                if (isset($_COOKIE[&quot;role&quot;])) &#123;</span><br><span class="line">                        $role = unserialize($_COOKIE[&quot;role&quot;]);//要先将cookie里的role序列化</span><br><span class="line">                        $hsh = $_COOKIE[&quot;hsh&quot;];</span><br><span class="line">                        if ($role===&quot;admin&quot; &amp;&amp; $hsh === md5($salt.strrev($_COOKIE[&quot;role&quot;]))) &#123; //需要先提前把cookie里的role取反</span><br><span class="line">                                $auth = true;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">                                $auth = false;</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                        $s = serialize($role);</span><br><span class="line">                        setcookie(&apos;role&apos;,$s);</span><br><span class="line">                        $hsh = md5($salt.strrev($s));</span><br><span class="line">                        setcookie(&apos;hsh&apos;,$hsh);</span><br><span class="line">                &#125;</span><br><span class="line">                if ($auth) &#123;</span><br><span class="line">                        echo &quot;&lt;h3&gt;Welcome Admin. Your flag is </span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                        echo &quot;&lt;h3&gt;Only Admin can see the flag!!&lt;/h3&gt;&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">        ?&gt;</span><br><span class="line">        </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>这个比上一题复杂了多，有两个难点:</p>
-<ul>
-<li>不知道salt的长度</li>
-<li>序列化问题</li>
-</ul>
-<p>序列化问题自己搭环境写,比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	$s = &apos;guest&apos;;</span><br><span class="line">	$b= serialize($s);</span><br><span class="line">	print(strrev($b)); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>salt的长度一个个蒙，不过写脚本比较简便，前提是你有代码能力</p>
-<p>网上看到的有脚本的wp链接，<a href="https://cloud.tencent.com/developer/article/1038017" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1038017</a></p>
-<p>然后上HashPump工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input Signature: 3a4727d57463f122833d9e732f94e4e0</span><br><span class="line">Input Data: ;&quot;tseug&quot;:5:s</span><br><span class="line">Input Key Length: 12</span><br><span class="line">Input Data to Add: ;&quot;nimda&quot;:5:s</span><br><span class="line">fcdc3840332555511c4e4323f6decb07</span><br><span class="line">;&quot;tseug&quot;:5:s\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc0\x00\x00\x00\x00\x00\x00\x00;&quot;nimda&quot;:5:s</span><br></pre></td></tr></table></figure></p>
-<p>替换cookie即可得到flags<br><img src="http://p1vrkwaxt.bkt.clouddn.com/ZAJS1EBONWTLIS74RJE2W7M.png" alt="image"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-常见文件头" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/常见文件头/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.632Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>在winhex下会经常看到许多十六进制码,这里深刻了解下.<br>
+<li>分组,先将二进制字符串以512位(64字节)为一组，然后再把每组分为16个子分组(每子分组32位，也就是4字节)
           
       
     </div>
@@ -394,7 +292,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/常见文件头/#more">查看更多 >></a>
+          <a   href="/2018/07/10/md5哈希扩展攻击/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -541,6 +439,68 @@
 
 
   
+    <article id="post-常见文件头" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/常见文件头/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.632Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在winhex下会经常看到许多十六进制码,这里深刻了解下.<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/常见文件头/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-截断问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -603,68 +563,6 @@
 
 
   
-    <article id="post-关于SSR配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/关于SSR配置/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="https://www.jianshu.com/p/4c0553dbc970" target="_blank" rel="noopener">https://www.jianshu.com/p/4c0553dbc970</a><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/关于SSR配置/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-XSS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -707,6 +605,70 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/XSS/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-xxe漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/xxe漏洞/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="http://bobao.360.cn/learning/detail/360.html" target="_blank" rel="noopener">在JSON中玩转XXE攻击 </a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识</p>
+<h2 id="xml基础"><a href="#xml基础" class="headerlink" title="xml基础"></a>xml基础</h2><p>要了解xxe漏洞前先了解xml文档的基础，这是基本知识<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/xxe漏洞/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -790,10 +752,10 @@
 
 
   
-    <article id="post-xxe漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-关于SSR配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/xxe漏洞/" class="article-date">
+      <a  href="/2018/07/06/关于SSR配置/" class="article-date">
       <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -808,7 +770,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a>
+      <a  class="article-title" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a>
     </h1>
   
 
@@ -819,9 +781,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>参考链接:<a href="http://bobao.360.cn/learning/detail/360.html" target="_blank" rel="noopener">在JSON中玩转XXE攻击 </a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识</p>
-<h2 id="xml基础"><a href="#xml基础" class="headerlink" title="xml基础"></a>xml基础</h2><p>要了解xxe漏洞前先了解xml文档的基础，这是基本知识<br>
+              <p>参考链接:<a href="https://www.jianshu.com/p/4c0553dbc970" target="_blank" rel="noopener">https://www.jianshu.com/p/4c0553dbc970</a><br>
           
       
     </div>
@@ -833,7 +793,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/xxe漏洞/#more">查看更多 >></a>
+          <a   href="/2018/07/06/关于SSR配置/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
