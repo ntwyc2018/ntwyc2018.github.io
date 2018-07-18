@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-18T07:39:13.255Z</updated>
+  <updated>2018-07-18T07:40:04.192Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/07/18/test/"/>
     <id>http://yoursite.com/2018/07/18/test/</id>
     <published>2018-07-18T07:32:01.101Z</published>
-    <updated>2018-07-18T07:39:13.255Z</updated>
+    <updated>2018-07-18T07:40:04.192Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x03-模板注入-进阶"><a href="#0x03-模板注入-进阶" class="headerlink" title="0x03 模板注入(进阶)"></a>0x03 模板注入(进阶)</h2><p>如果开发者使用字符串格式化，来将用户输入动态地加入到模板字符串中，而不是通过render_template_string函数将URL传递进入模板内容当中,那么xss就失效了，只能用</p>]]></content>
     
