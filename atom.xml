@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-18T07:43:40.626Z</updated>
+  <updated>2018-07-18T07:45:05.718Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,18 +21,16 @@
     <link href="http://yoursite.com/2018/07/18/test/"/>
     <id>http://yoursite.com/2018/07/18/test/</id>
     <published>2018-07-18T07:32:01.101Z</published>
-    <updated>2018-07-18T07:43:40.626Z</updated>
+    <updated>2018-07-18T07:45:05.718Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><code></code>作为payload注入到SSTI漏洞点当中，</li></ul><p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p><p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　　</p>]]></content>
+    <content type="html"><![CDATA[<p>将<code></code>注入到SSTI漏洞点当中</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&lt;/code&gt;作为payload注入到SSTI漏洞点当中，&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;使用索引1来选择object类。现在我们到达了object类，我们使用&lt;strong&gt;subclasses&lt;/strong&gt;属性来dump应用程序中使用的所有类（
+        &lt;p&gt;将&lt;code&gt;&lt;/code&gt;注入到SSTI漏洞点当中&lt;/p&gt;
+
       
     
     </summary>
