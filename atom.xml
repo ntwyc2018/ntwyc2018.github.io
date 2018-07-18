@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-18T07:42:29.111Z</updated>
+  <updated>2018-07-18T07:43:40.626Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,15 +21,18 @@
     <link href="http://yoursite.com/2018/07/18/test/"/>
     <id>http://yoursite.com/2018/07/18/test/</id>
     <published>2018-07-18T07:32:01.101Z</published>
-    <updated>2018-07-18T07:42:29.111Z</updated>
+    <updated>2018-07-18T07:43:40.626Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="0x03-模板注入-进阶"><a href="#0x03-模板注入-进阶" class="headerlink" title="0x03 模板注入(进阶)"></a>0x03 模板注入(进阶)</h2><p>如果开发者使用字符串格式化，来将用户输入动态地加入到模板字符串中，而不是通过render_template_string函数将URL传递进入模板内容当中,那么xss就失效了，只能用</p><h3 id="注入姿势"><a href="#注入姿势" class="headerlink" title="注入姿势"></a>注入姿势</h3><ul><li><p>内省request对象。request对象是一个Flask模板全局变量，代表“当前请求对象（flask.request）”。当你在视图中访问request对象时，它包含了你预期想看到的所有信息。</p></li><li><p>内省config对象，config对象是一个Flask模板全局变量，代表“当前配置对象（flask.config）”。</p></li><li><p>使用非常重要的内省组件： <strong>mro</strong>和<strong>subclasses</strong>属性。使用<strong>mro</strong>属性来访问对象的父类，使用<strong>subclasses</strong>属性来访问对象的子类。</p></li><li><p><code></code>作为payload注入到SSTI漏洞点当中，</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><code></code>作为payload注入到SSTI漏洞点当中，</li></ul><p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p><p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　　</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;0x03-模板注入-进阶&quot;&gt;&lt;a href=&quot;#0x03-模板注入-进阶&quot; class=&quot;headerlink&quot; title=&quot;0x03 模板注入(进阶)&quot;&gt;&lt;/a&gt;0x03 模板注入(进阶)&lt;/h2&gt;&lt;p&gt;如果开发者使用字符串格式化，来将用户输入动态地加入到模板
+        &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&lt;/code&gt;作为payload注入到SSTI漏洞点当中，&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用索引1来选择object类。现在我们到达了object类，我们使用&lt;strong&gt;subclasses&lt;/strong&gt;属性来dump应用程序中使用的所有类（
       
     
     </summary>
