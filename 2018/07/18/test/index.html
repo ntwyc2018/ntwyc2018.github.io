@@ -16,10 +16,14 @@
 <meta property="og:site_name" content="Grim&#39;s blog">
 <meta property="og:description" content="title: 服务端模板注入(SSTI)复现 date: 2018-7-18参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T07:34:40.199Z">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png">
+<meta property="og:updated_time" content="2018-07-18T07:35:26.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grim&#39;s blog">
 <meta name="twitter:description" content="title: 服务端模板注入(SSTI)复现 date: 2018-7-18参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
+<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -271,6 +275,14 @@
 <p>具体执行命令里面有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 拉取项目</span><br><span class="line">git clone https://github.com/vulhub/vulhub.git</span><br><span class="line">cd vulhub</span><br><span class="line"></span><br><span class="line"># 进入某一个漏洞/环境的目录</span><br><span class="line">cd flask/ssti</span><br><span class="line"></span><br><span class="line"># 自动化编译环境</span><br><span class="line">docker-compose build</span><br><span class="line"></span><br><span class="line"># 启动整个环境</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p>
 <h2 id="0x02-原理介绍"><a href="#0x02-原理介绍" class="headerlink" title="0x02 原理介绍"></a>0x02 原理介绍</h2><p>SSTI (Server side template injection) 服务端模板注入</p>
 <p>先来看一下主要代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, request</span><br><span class="line">from jinja2 import Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;)</span><br><span class="line">def index():</span><br><span class="line">    name = request.args.get(&apos;name&apos;, &apos;guest&apos;)</span><br><span class="line"></span><br><span class="line">    t = Template(&quot;Hello &quot; + name)</span><br><span class="line">    return t.render()</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br></pre></td></tr></table></figure></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>name是可输入变量,template()相当于waf，对模板的过滤转义等等,所以一般xss注入是行不通的，(这里代码没太多过滤，xss是可行的，这里讲模板注入)</p>
+<p>下面在本地进行测试几个例子<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=1*3</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;1*3&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;&apos;abc&apos;.upper()&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png" alt="image"></p>
+<p>由此可以分析到里面代码会执行，任意命令执行的方法就出来了,这就是原理.</p>
 
       
     </div>
@@ -282,7 +294,7 @@
         <p><span>本文标题:</span><a  href="/2018/07/18/test/"></a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
         <p><span>发布时间:</span>2018年07月18日 - 15时32分</p>
-        <p><span>最后更新:</span>2018年07月18日 - 15时34分</p>
+        <p><span>最后更新:</span>2018年07月18日 - 15时35分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/18/test/" title="">http://yoursite.com/2018/07/18/test/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/18/test/　　作者: Mr1.Grim" title=""></span>
@@ -310,7 +322,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#date-2018-7-18"><span class="toc-number">1.</span> <span class="toc-text">date: 2018-7-18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-环境准备"><span class="toc-number">2.</span> <span class="toc-text">0x01 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-原理介绍"><span class="toc-number">3.</span> <span class="toc-text">0x02 原理介绍</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#date-2018-7-18"><span class="toc-number">1.</span> <span class="toc-text">date: 2018-7-18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-环境准备"><span class="toc-number">2.</span> <span class="toc-text">0x01 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-原理介绍"><span class="toc-number">3.</span> <span class="toc-text">0x02 原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">3.1.</span> <span class="toc-text">源码分析</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
