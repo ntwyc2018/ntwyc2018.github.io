@@ -249,11 +249,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-SSTI" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/18/test/" class="article-date">
-      <time datetime="2018-07-18T07:32:01.101Z" itemprop="datePublished">2018-07-18</time>
+      <a  href="/2018/07/18/SSTI/" class="article-date">
+      <time datetime="2018-07-18T07:18:33.194Z" itemprop="datePublished">2018-07-18</time>
 </a>
 
     </div>
@@ -266,11 +266,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__ &#125;&#125; 作为payload注入到SSTI漏洞点当中，</span><br></pre></td></tr></table></figure>
-<p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__[1].\__subclasses__() &#125;&#125; 注入到SSTI漏洞点当中</span><br></pre></td></tr></table></figure>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　</p>
-
+              <hr>
+<p>title: 服务端模板注入(SSTI)复现</p>
+<h2 id="date-2018-7-18"><a href="#date-2018-7-18" class="headerlink" title="date: 2018-7-18"></a>date: 2018-7-18</h2><p>参考链接:<br><br><a href="https://www.cnblogs.com/tyomcat/p/5440488.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyomcat/p/5440488.html</a><br><br><a href="https://www.jianshu.com/p/367ea79c5482" target="_blank" rel="noopener">https://www.jianshu.com/p/367ea79c5482</a><br>
+          
       
     </div>
     
@@ -279,6 +278,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/18/SSTI/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
