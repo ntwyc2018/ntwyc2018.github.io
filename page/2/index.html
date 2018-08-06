@@ -23,7 +23,7 @@
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/img/mouse.jpg">
+    <link rel="icon" href="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg">
   
   
   <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
@@ -65,7 +65,7 @@
 
         <a href="/" class="profilepic">
             
-            <img lazy-src="/img/mouse.jpg" class="js-avatar">
+            <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
             
         </a>
         <hgroup>
@@ -214,7 +214,7 @@
         <header id="header" class="inner">
             <a href="/" class="profilepic">
                 
-                    <img lazy-src="/img/mouse.jpg" class="js-avatar">
+                    <img lazy-src="http://p1vrkwaxt.bkt.clouddn.com/mouse.jpg" class="js-avatar">
                 
             </a>
             <hgroup>
@@ -630,84 +630,6 @@
 
 
   
-    <article id="post-SQL约束攻击" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/SQL约束攻击/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="基于约束的SQL攻击"><a href="#基于约束的SQL攻击" class="headerlink" title="基于约束的SQL攻击"></a>基于约束的SQL攻击</h1><p>转载自:<a href="http://www.freebuf.com/articles/web/124537.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/124537.html</a></p>
-<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>最近，我遇到了一个有趣的代码片段，开发者尝试各种方法来确保数据库的安全访问。当新用户尝试注册时，将运行以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">// Checking whether a user with the same username exists</span><br><span class="line">$username = mysql_real_escape_string($_GET[&apos;username&apos;]);</span><br><span class="line">$password = mysql_real_escape_string($_GET[&apos;password&apos;]);</span><br><span class="line">$query = &quot;SELECT *</span><br><span class="line">          FROM users</span><br><span class="line">          WHERE username=&apos;$username&apos;&quot;;</span><br><span class="line">$res = mysql_query($query, $database);</span><br><span class="line">if($res) &#123;</span><br><span class="line">  if(mysql_num_rows($res) &gt; 0) &#123;</span><br><span class="line">    // User exists, exit gracefully</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    // If not, only then insert a new entry</span><br><span class="line">    $query = &quot;INSERT INTO users(username, password)</span><br><span class="line">              VALUES (&apos;$username&apos;,&apos;$password&apos;)&quot;;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用以下代码验证登录信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$username = mysql_real_escape_string($_GET[&apos;username&apos;]);</span><br><span class="line">$password = mysql_real_escape_string($_GET[&apos;password&apos;]);</span><br><span class="line">$query = &quot;SELECT username FROM users</span><br><span class="line">          WHERE username=&apos;$username&apos;</span><br><span class="line">              AND password=&apos;$password&apos; &quot;;</span><br><span class="line">$res = mysql_query($query, $database);</span><br><span class="line">if($res) &#123;</span><br><span class="line">  if(mysql_num_rows($res) &gt; 0)&#123;</span><br><span class="line">      $row = mysql_fetch_assoc($res);</span><br><span class="line">      return $row[&apos;username&apos;];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">return Null;</span><br></pre></td></tr></table></figure></p>
-<p>安全考虑:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">过滤用户输入参数了吗？ — 完成检查</span><br><span class="line">使用单引号（’）来增加安全性了吗？ — 完成检查</span><br></pre></td></tr></table></figure></p>
-<p>按理说应该不会出错了啊？</p>
-<p>然而，攻击者依然能够以任意用户身份进行登录！</p>
-<h2 id="攻击技巧"><a href="#攻击技巧" class="headerlink" title="攻击技巧"></a>攻击技巧</h2><p>在谈论这种攻击手法之前，首先我们需要了解几个关键知识点。</p>
-<p>在SQL中执行字符串处理时，字符串末尾的空格符将会被删除。换句话说“vampire”等同于“vampire ”，对于绝大多数情况来说都是成立的（诸如WHERE子句中的字符串或INSERT语句中的字符串）例如以下语句的查询结果，与使用用户名“vampire”进行查询时的结果是一样的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE username=&apos;vampire     &apos;;</span><br></pre></td></tr></table></figure>
-<p>但也存在异常情况，最好的例子就是LIKE子句了。注意，对尾部空白符的这种修剪操作，主要是在“字符串比较”期间进行的。这是因为，SQL会在内部使用空格来填充字符串，以便在比较之前使其它们的长度保持一致。</p>
-<p>在所有的INSERT查询中，SQL都会根据varchar(n)来限制字符串的最大长度。也就是说，如果字符串的长度大于“n”个字符的话，那么仅使用字符串的前“n”个字符。比如特定列的长度约束为“5”个字符，那么在插入字符串“vampire”时，实际上只能插入字符串的前5个字符，即“vampi”。</p>
-<p>现在，让我们建立一个测试数据库来演示具体攻击过程。<br>(在本地自己的mysql上测试)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE testing;</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line">mysql&gt; USE testing;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure></p>
-<p>接着创建一个数据表users，其包含username和password列，并且字段的最大长度限制为25个字符。然后，我将向username字段插入“vampire”，向password字段插入“my_password”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE users (</span><br><span class="line">    -&gt;   username varchar(25),</span><br><span class="line">    -&gt;   password varchar(25)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br><span class="line">mysql&gt; INSERT INTO users</span><br><span class="line">    -&gt; VALUES(&apos;vampire&apos;, &apos;my_password&apos;);</span><br><span class="line">Query OK, 1 row affected (0.11 sec)</span><br><span class="line">mysql&gt; SELECT * FROM users;</span><br><span class="line">+----------+-------------+</span><br><span class="line">| username | password    |</span><br><span class="line">+----------+-------------+</span><br><span class="line">| vampire  | my_password |</span><br><span class="line">+----------+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>为了展示尾部空白字符的修剪情况，我们可以键入下列命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire       &apos;;</span><br><span class="line">+----------+-------------+</span><br><span class="line">| username | password    |</span><br><span class="line">+----------+-------------+</span><br><span class="line">| vampire  | my_password |</span><br><span class="line">+----------+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>现在我们假设一个存在漏洞的网站使用了前面提到的PHP代码来处理用户的注册及登录过程。为了侵入任意用户的帐户（在本例中为“vampire”），只需要使用用户名“vampire[许多空白符]1”和一个随机密码进行注册即可。对于选择的用户名，前25个字符应该只包含vampire和空白字符，这样做将有助于绕过检查特定用户名是否已存在的查询。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire                   1&apos;;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>这里的空格符至少要十八个<br><br>需要注意的是，在执行SELECT查询语句时，SQL是不会将字符串缩短为25个字符的。因此，这里将使用完整的字符串进行搜索，所以不会找到匹配的结果。接下来，当执行INSERT查询语句时，它只会插入前25个字符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;   INSERT INTO users(username, password)</span><br><span class="line">    -&gt; VALUES (&apos;vampire                   1&apos;, &apos;random_pass&apos;);</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.05 sec)</span><br><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire&apos;;</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">| username                  | password    |</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">| vampire                   | my_password |</span><br><span class="line">| vampire                   | random_pass |</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>很好，现在我们检索“vampire”的，将返回两个独立用户。注意，第二个用户名实际上是“vampire”加上尾部的18个空格。现在，如果使用用户名“vampire”和密码“random_pass”登录的话，则所有搜索该用户名的SELECT查询都将返回第一个数据记录，也就是原始的数据记录。这样的话，攻击者就能够以原始用户身份登录。这个攻击已经在MySQL和SQLite上成功通过测试。我相信在其他情况下依旧适用。</p>
-<h2 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h2><p>毫无疑问，在进行软件开发时，需要对此类安全漏洞引起注意。我们可采取以下几项措施进行防御：</p>
-<p>将要求或者预期具有唯一性的那些列加上UNIQUE约束。实际上这是一个涉及软件开发的重要规则，即使你的代码有维持其完整性的功能，也应该恰当的定义数据。由于’username’列具有UNIQUE约束，所以不能插入另一条记录。将会检测到两个相同的字符串，并且INSERT查询将失败。</p>
-<p>最好使用’id’作为数据库表的主键。并且数据应该通过程序中的id进行跟踪</p>
-<p>为了更加安全，还可以用手动调整输入参数的限制长度（依照数据库设置）</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-sql报错注入" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -877,6 +799,84 @@
         <p class="article-more-link">
           <a   href="/2018/07/06/sqlmap/#more">查看更多 >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-SQL约束攻击" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/SQL约束攻击/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="基于约束的SQL攻击"><a href="#基于约束的SQL攻击" class="headerlink" title="基于约束的SQL攻击"></a>基于约束的SQL攻击</h1><p>转载自:<a href="http://www.freebuf.com/articles/web/124537.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/124537.html</a></p>
+<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>最近，我遇到了一个有趣的代码片段，开发者尝试各种方法来确保数据库的安全访问。当新用户尝试注册时，将运行以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">// Checking whether a user with the same username exists</span><br><span class="line">$username = mysql_real_escape_string($_GET[&apos;username&apos;]);</span><br><span class="line">$password = mysql_real_escape_string($_GET[&apos;password&apos;]);</span><br><span class="line">$query = &quot;SELECT *</span><br><span class="line">          FROM users</span><br><span class="line">          WHERE username=&apos;$username&apos;&quot;;</span><br><span class="line">$res = mysql_query($query, $database);</span><br><span class="line">if($res) &#123;</span><br><span class="line">  if(mysql_num_rows($res) &gt; 0) &#123;</span><br><span class="line">    // User exists, exit gracefully</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    // If not, only then insert a new entry</span><br><span class="line">    $query = &quot;INSERT INTO users(username, password)</span><br><span class="line">              VALUES (&apos;$username&apos;,&apos;$password&apos;)&quot;;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用以下代码验证登录信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$username = mysql_real_escape_string($_GET[&apos;username&apos;]);</span><br><span class="line">$password = mysql_real_escape_string($_GET[&apos;password&apos;]);</span><br><span class="line">$query = &quot;SELECT username FROM users</span><br><span class="line">          WHERE username=&apos;$username&apos;</span><br><span class="line">              AND password=&apos;$password&apos; &quot;;</span><br><span class="line">$res = mysql_query($query, $database);</span><br><span class="line">if($res) &#123;</span><br><span class="line">  if(mysql_num_rows($res) &gt; 0)&#123;</span><br><span class="line">      $row = mysql_fetch_assoc($res);</span><br><span class="line">      return $row[&apos;username&apos;];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">return Null;</span><br></pre></td></tr></table></figure></p>
+<p>安全考虑:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">过滤用户输入参数了吗？ — 完成检查</span><br><span class="line">使用单引号（’）来增加安全性了吗？ — 完成检查</span><br></pre></td></tr></table></figure></p>
+<p>按理说应该不会出错了啊？</p>
+<p>然而，攻击者依然能够以任意用户身份进行登录！</p>
+<h2 id="攻击技巧"><a href="#攻击技巧" class="headerlink" title="攻击技巧"></a>攻击技巧</h2><p>在谈论这种攻击手法之前，首先我们需要了解几个关键知识点。</p>
+<p>在SQL中执行字符串处理时，字符串末尾的空格符将会被删除。换句话说“vampire”等同于“vampire ”，对于绝大多数情况来说都是成立的（诸如WHERE子句中的字符串或INSERT语句中的字符串）例如以下语句的查询结果，与使用用户名“vampire”进行查询时的结果是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE username=&apos;vampire     &apos;;</span><br></pre></td></tr></table></figure>
+<p>但也存在异常情况，最好的例子就是LIKE子句了。注意，对尾部空白符的这种修剪操作，主要是在“字符串比较”期间进行的。这是因为，SQL会在内部使用空格来填充字符串，以便在比较之前使其它们的长度保持一致。</p>
+<p>在所有的INSERT查询中，SQL都会根据varchar(n)来限制字符串的最大长度。也就是说，如果字符串的长度大于“n”个字符的话，那么仅使用字符串的前“n”个字符。比如特定列的长度约束为“5”个字符，那么在插入字符串“vampire”时，实际上只能插入字符串的前5个字符，即“vampi”。</p>
+<p>现在，让我们建立一个测试数据库来演示具体攻击过程。<br>(在本地自己的mysql上测试)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE testing;</span><br><span class="line">Query OK, 1 row affected (0.03 sec)</span><br><span class="line">mysql&gt; USE testing;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure></p>
+<p>接着创建一个数据表users，其包含username和password列，并且字段的最大长度限制为25个字符。然后，我将向username字段插入“vampire”，向password字段插入“my_password”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE users (</span><br><span class="line">    -&gt;   username varchar(25),</span><br><span class="line">    -&gt;   password varchar(25)</span><br><span class="line">    -&gt; );</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br><span class="line">mysql&gt; INSERT INTO users</span><br><span class="line">    -&gt; VALUES(&apos;vampire&apos;, &apos;my_password&apos;);</span><br><span class="line">Query OK, 1 row affected (0.11 sec)</span><br><span class="line">mysql&gt; SELECT * FROM users;</span><br><span class="line">+----------+-------------+</span><br><span class="line">| username | password    |</span><br><span class="line">+----------+-------------+</span><br><span class="line">| vampire  | my_password |</span><br><span class="line">+----------+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>为了展示尾部空白字符的修剪情况，我们可以键入下列命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire       &apos;;</span><br><span class="line">+----------+-------------+</span><br><span class="line">| username | password    |</span><br><span class="line">+----------+-------------+</span><br><span class="line">| vampire  | my_password |</span><br><span class="line">+----------+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>现在我们假设一个存在漏洞的网站使用了前面提到的PHP代码来处理用户的注册及登录过程。为了侵入任意用户的帐户（在本例中为“vampire”），只需要使用用户名“vampire[许多空白符]1”和一个随机密码进行注册即可。对于选择的用户名，前25个字符应该只包含vampire和空白字符，这样做将有助于绕过检查特定用户名是否已存在的查询。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire                   1&apos;;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>这里的空格符至少要十八个<br><br>需要注意的是，在执行SELECT查询语句时，SQL是不会将字符串缩短为25个字符的。因此，这里将使用完整的字符串进行搜索，所以不会找到匹配的结果。接下来，当执行INSERT查询语句时，它只会插入前25个字符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;   INSERT INTO users(username, password)</span><br><span class="line">    -&gt; VALUES (&apos;vampire                   1&apos;, &apos;random_pass&apos;);</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.05 sec)</span><br><span class="line">mysql&gt; SELECT * FROM users</span><br><span class="line">    -&gt; WHERE username=&apos;vampire&apos;;</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">| username                  | password    |</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">| vampire                   | my_password |</span><br><span class="line">| vampire                   | random_pass |</span><br><span class="line">+---------------------------+-------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>很好，现在我们检索“vampire”的，将返回两个独立用户。注意，第二个用户名实际上是“vampire”加上尾部的18个空格。现在，如果使用用户名“vampire”和密码“random_pass”登录的话，则所有搜索该用户名的SELECT查询都将返回第一个数据记录，也就是原始的数据记录。这样的话，攻击者就能够以原始用户身份登录。这个攻击已经在MySQL和SQLite上成功通过测试。我相信在其他情况下依旧适用。</p>
+<h2 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h2><p>毫无疑问，在进行软件开发时，需要对此类安全漏洞引起注意。我们可采取以下几项措施进行防御：</p>
+<p>将要求或者预期具有唯一性的那些列加上UNIQUE约束。实际上这是一个涉及软件开发的重要规则，即使你的代码有维持其完整性的功能，也应该恰当的定义数据。由于’username’列具有UNIQUE约束，所以不能插入另一条记录。将会检测到两个相同的字符串，并且INSERT查询将失败。</p>
+<p>最好使用’id’作为数据库表的主键。并且数据应该通过程序中的id进行跟踪</p>
+<p>为了更加安全，还可以用手动调整输入参数的限制长度（依照数据库设置）</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
       
       <div class="clearfix"></div>
     </div>
