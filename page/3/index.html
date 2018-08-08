@@ -249,68 +249,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-sqlkuanzijie" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/sqlkuanzijie/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="sql宽字节注入原理"><a href="#sql宽字节注入原理" class="headerlink" title="sql宽字节注入原理"></a>sql宽字节注入原理</h3><p>在magic_quotes_gpc=On的情况下，提交的参数中如果带有单引号’，就会被自动转义\’，使很多注入攻击无效.<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/sqlkuanzijie/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-sqlmap" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -354,6 +292,68 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/sqlmap/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-sqlkuanzijie" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/sqlkuanzijie/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="sql宽字节注入原理"><a href="#sql宽字节注入原理" class="headerlink" title="sql宽字节注入原理"></a>sql宽字节注入原理</h3><p>在magic_quotes_gpc=On的情况下，提交的参数中如果带有单引号’，就会被自动转义\’，使很多注入攻击无效.<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/sqlkuanzijie/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -500,10 +500,10 @@
 
 
   
-    <article id="post-saibo" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP魔术方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/saibo/" class="article-date">
+      <a  href="/2018/07/06/PHP魔术方法/" class="article-date">
       <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -518,7 +518,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a>
+      <a  class="article-title" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a>
     </h1>
   
 
@@ -529,7 +529,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h2 id="大量设备报表不见了（签道题）"><a href="#大量设备报表不见了（签道题）" class="headerlink" title="大量设备报表不见了（签道题）"></a>大量设备报表不见了（签道题）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。<br><br><a href="http://120.27.14.73:20006/" target="_blank" rel="noopener">http://120.27.14.73:20006/</a><br>
+              <p>_construct()， <strong>destruct()， </strong>call()， <strong>callStatic()， </strong>get()， <strong>set()， </strong>isset()， <strong>unset()，
+</strong>sleep()， <strong>wakeup()， </strong>toString()， <strong>invoke()， </strong>set_state()， <strong>clone() 和 </strong>debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。 </p>
           
       
     </div>
@@ -541,7 +542,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/saibo/#more">查看更多 >></a>
+          <a   href="/2018/07/06/PHP魔术方法/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -688,10 +689,10 @@
 
 
   
-    <article id="post-PHP魔术方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-saibo" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/PHP魔术方法/" class="article-date">
+      <a  href="/2018/07/06/saibo/" class="article-date">
       <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -706,7 +707,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a>
+      <a  class="article-title" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a>
     </h1>
   
 
@@ -717,8 +718,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>_construct()， <strong>destruct()， </strong>call()， <strong>callStatic()， </strong>get()， <strong>set()， </strong>isset()， <strong>unset()，
-</strong>sleep()， <strong>wakeup()， </strong>toString()， <strong>invoke()， </strong>set_state()， <strong>clone() 和 </strong>debugInfo() 等方法在 PHP 中被称为”魔术方法”（Magic methods）。在命名自己的类方法时不能使用这些方法名，除非是想使用其魔术功能。 </p>
+              <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h2 id="大量设备报表不见了（签道题）"><a href="#大量设备报表不见了（签道题）" class="headerlink" title="大量设备报表不见了（签道题）"></a>大量设备报表不见了（签道题）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。<br><br><a href="http://120.27.14.73:20006/" target="_blank" rel="noopener">http://120.27.14.73:20006/</a><br>
           
       
     </div>
@@ -730,7 +730,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/PHP魔术方法/#more">查看更多 >></a>
+          <a   href="/2018/07/06/saibo/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -751,10 +751,10 @@
 
 
   
-    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-php伪协议" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
+      <a  href="/2018/07/06/php伪协议/" class="article-date">
       <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -769,7 +769,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
+      <a  class="article-title" href="/2018/07/06/php伪协议/">PHP伪协议</a>
     </h1>
   
 
@@ -780,8 +780,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
-<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()<br>
+              <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br>
           
       
     </div>
@@ -793,7 +792,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/PHP反序列化/#more">查看更多 >></a>
+          <a   href="/2018/07/06/php伪协议/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -814,10 +813,10 @@
 
 
   
-    <article id="post-phpruoleixing" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/phpruoleixing/" class="article-date">
+      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
       <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -832,7 +831,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a>
+      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
     </h1>
   
 
@@ -843,8 +842,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CTF经常出现PHP弱类型的题目，总结一下</p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $b ;</span><br><span class="line">$a===$b ;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+              <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
           
       
     </div>
@@ -856,7 +855,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/phpruoleixing/#more">查看更多 >></a>
+          <a   href="/2018/07/06/PHP中SESSION反序列化机制/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

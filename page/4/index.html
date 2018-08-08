@@ -315,10 +315,10 @@
 
 
   
-    <article id="post-php伪协议" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-phpruoleixing" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/php伪协议/" class="article-date">
+      <a  href="/2018/07/06/phpruoleixing/" class="article-date">
       <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -333,7 +333,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/php伪协议/">PHP伪协议</a>
+      <a  class="article-title" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a>
     </h1>
   
 
@@ -344,7 +344,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CTF经常出现PHP弱类型的题目，总结一下</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $b ;</span><br><span class="line">$a===$b ;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
           
       
     </div>
@@ -356,7 +357,70 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/php伪协议/#more">查看更多 >></a>
+          <a   href="/2018/07/06/phpruoleixing/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/PHP反序列化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -420,319 +484,6 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/PHP文件包含漏洞/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
-<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/PHP中SESSION反序列化机制/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-DVWA之File Upload" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/DVWA之File Upload/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/DVWA之File Upload/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Jarivs oj" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/Jarivs oj/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个挺不错的ctf平台:<a href="https://www.jarvisoj.com/" target="_blank" rel="noopener">https://www.jarvisoj.com/</a></p>
-<h2 id="Jarivs-Oj-Web"><a href="#Jarivs-Oj-Web" class="headerlink" title="Jarivs Oj Web"></a>Jarivs Oj Web</h2><h2 id="0X01-PORT51"><a href="#0X01-PORT51" class="headerlink" title="0X01 PORT51"></a>0X01 PORT51</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/Jarivs oj/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-DVWA之SQL Injection" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/DVWA之SQL Injection/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="http://www.freebuf.com/articles/web/120747.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/120747.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里首先你最好懂一些mysql查询语句，便于理解</span><br></pre></td></tr></table></figure></p>
-<h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/DVWA之SQL Injection/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-n1ctf" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/n1ctf/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/n1ctf/">N1CTF WEB</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="web签到题一-77777-1"><a href="#web签到题一-77777-1" class="headerlink" title="web签到题一 77777 1"></a>web签到题一 77777 1</h2><p>由于题目已经关闭了，这里用其他大佬的图片.<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/n1ctf/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -817,6 +568,68 @@
 
 
   
+    <article id="post-n1ctf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/n1ctf/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/n1ctf/">N1CTF WEB</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="web签到题一-77777-1"><a href="#web签到题一-77777-1" class="headerlink" title="web签到题一 77777 1"></a>web签到题一 77777 1</h2><p>由于题目已经关闭了，这里用其他大佬的图片.<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/n1ctf/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -859,6 +672,194 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/hexo/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之File Upload" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之File Upload/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/DVWA之File Upload/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-DVWA之SQL Injection" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/DVWA之SQL Injection/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="http://www.freebuf.com/articles/web/120747.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/120747.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里首先你最好懂一些mysql查询语句，便于理解</span><br></pre></td></tr></table></figure></p>
+<h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/DVWA之SQL Injection/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Jarivs oj" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/Jarivs oj/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.554Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个挺不错的ctf平台:<a href="https://www.jarvisoj.com/" target="_blank" rel="noopener">https://www.jarvisoj.com/</a></p>
+<h2 id="Jarivs-Oj-Web"><a href="#Jarivs-Oj-Web" class="headerlink" title="Jarivs Oj Web"></a>Jarivs Oj Web</h2><h2 id="0X01-PORT51"><a href="#0X01-PORT51" class="headerlink" title="0X01 PORT51"></a>0X01 PORT51</h2>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/Jarivs oj/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
