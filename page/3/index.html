@@ -311,11 +311,11 @@
 
 
   
-    <article id="post-requests" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-sqlmap" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/requests/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+      <a  href="/2018/07/06/sqlmap/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
     </div>
@@ -329,7 +329,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/requests/">Python爬虫requests的使用</a>
+      <a  class="article-title" href="/2018/07/06/sqlmap/">sqlmap基础用法</a>
     </h1>
   
 
@@ -340,7 +340,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="一些请求方式"><a href="#一些请求方式" class="headerlink" title="一些请求方式"></a>一些请求方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">requests.post(&quot;http://httpbin.org/post&quot;)</span><br><span class="line">requests.put(&quot;http://httpbin.org/put&quot;)</span><br><span class="line">requests.delete(&quot;http://httpbin.org/delete&quot;)</span><br><span class="line">requests.head(&quot;http://httpbin.org/get&quot;)</span><br><span class="line">requests.options(&quot;http://httpbin.org/get&quot;)</span><br></pre></td></tr></table></figure>
+              <p>参考链接:<a href="https://blog.csdn.net/qq_38412357/article/details/79559039" target="_blank" rel="noopener">https://blog.csdn.net/qq_38412357/article/details/79559039</a></p>
+<h2 id="sqlmap入门-post"><a href="#sqlmap入门-post" class="headerlink" title="sqlmap入门(post)"></a>sqlmap入门(post)</h2><p>不知道什么原因，这个平台测试不了，卡在一半，于是在本地的DVWA测试成功了，下面就以DVWA为例子（low级别的sql injection）<br>
           
       
     </div>
@@ -352,71 +353,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/requests/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/sql/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/sql/">sql</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="0x01-sql基础语句"><a href="#0x01-sql基础语句" class="headerlink" title="0x01 sql基础语句"></a>0x01 sql基础语句</h2><h3 id="爆字段长度"><a href="#爆字段长度" class="headerlink" title="爆字段长度"></a>爆字段长度</h3><p>Order by num </p>
-<h3 id="匹配字段-爆字段位置"><a href="#匹配字段-爆字段位置" class="headerlink" title="匹配字段/爆字段位置"></a>匹配字段/爆字段位置</h3><p>and 1=1 union select 1,2,3,4,5……</p>
-<h3 id="爆所有数据名"><a href="#爆所有数据名" class="headerlink" title="爆所有数据名"></a>爆所有数据名</h3>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/sql/#more">查看更多 >></a>
+          <a   href="/2018/07/06/sqlmap/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -563,6 +500,194 @@
 
 
   
+    <article id="post-saibo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/saibo/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h2 id="大量设备报表不见了（签道题）"><a href="#大量设备报表不见了（签道题）" class="headerlink" title="大量设备报表不见了（签道题）"></a>大量设备报表不见了（签道题）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。<br><br><a href="http://120.27.14.73:20006/" target="_blank" rel="noopener">http://120.27.14.73:20006/</a><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/saibo/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-requests" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/requests/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/requests/">Python爬虫requests的使用</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="一些请求方式"><a href="#一些请求方式" class="headerlink" title="一些请求方式"></a>一些请求方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">requests.post(&quot;http://httpbin.org/post&quot;)</span><br><span class="line">requests.put(&quot;http://httpbin.org/put&quot;)</span><br><span class="line">requests.delete(&quot;http://httpbin.org/delete&quot;)</span><br><span class="line">requests.head(&quot;http://httpbin.org/get&quot;)</span><br><span class="line">requests.options(&quot;http://httpbin.org/get&quot;)</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/requests/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-sql" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/sql/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/sql/">sql</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="0x01-sql基础语句"><a href="#0x01-sql基础语句" class="headerlink" title="0x01 sql基础语句"></a>0x01 sql基础语句</h2><h3 id="爆字段长度"><a href="#爆字段长度" class="headerlink" title="爆字段长度"></a>爆字段长度</h3><p>Order by num </p>
+<h3 id="匹配字段-爆字段位置"><a href="#匹配字段-爆字段位置" class="headerlink" title="匹配字段/爆字段位置"></a>匹配字段/爆字段位置</h3><p>and 1=1 union select 1,2,3,4,5……</p>
+<h3 id="爆所有数据名"><a href="#爆所有数据名" class="headerlink" title="爆所有数据名"></a>爆所有数据名</h3>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/sql/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PHP魔术方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -626,11 +751,11 @@
 
 
   
-    <article id="post-saibo" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP反序列化" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/saibo/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.586Z" itemprop="datePublished">2018-07-06</time>
+      <a  href="/2018/07/06/PHP反序列化/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
     </div>
@@ -644,7 +769,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a>
+      <a  class="article-title" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a>
     </h1>
   
 
@@ -655,7 +780,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h2 id="大量设备报表不见了（签道题）"><a href="#大量设备报表不见了（签道题）" class="headerlink" title="大量设备报表不见了（签道题）"></a>大量设备报表不见了（签道题）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>云平台报表中心收集了设备管理基础服务的数据，但是数据被删除了，只有一处留下了入侵者的痕迹。<br><br><a href="http://120.27.14.73:20006/" target="_blank" rel="noopener">http://120.27.14.73:20006/</a><br>
+              <p>一个挺不错的链接:<a href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" target="_blank" rel="noopener">https://www.cnblogs.com/Mrsm1th/p/6835592.html</a></p>
+<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><h3 id="序列化与反序列化简介"><a href="#序列化与反序列化简介" class="headerlink" title="序列化与反序列化简介"></a>序列化与反序列化简介</h3><p>序列化:把复杂的数据类型压缩到一个字符串中 数据类型可以是数组，字符串，对象等  函数 : serialize()<br>
           
       
     </div>
@@ -667,7 +793,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/saibo/#more">查看更多 >></a>
+          <a   href="/2018/07/06/PHP反序列化/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -688,10 +814,10 @@
 
 
   
-    <article id="post-php伪协议" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-phpruoleixing" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/php伪协议/" class="article-date">
+      <a  href="/2018/07/06/phpruoleixing/" class="article-date">
       <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -706,7 +832,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/php伪协议/">PHP伪协议</a>
+      <a  class="article-title" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a>
     </h1>
   
 
@@ -717,7 +843,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>打CTF的时候多次遇到PHP伪协议题,这里做个深究.<br><br>php伪协议，事实上是其支持的协议与封装协议<br><br>支持的伪协议有下面这么多<br><br>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CTF经常出现PHP弱类型的题目，总结一下</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $b ;</span><br><span class="line">$a===$b ;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
           
       
     </div>
@@ -729,136 +856,7 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/php伪协议/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-PHP中SESSION反序列化机制" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/PHP中SESSION反序列化机制/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="https://blog.spoock.com/2016/10/16/php-serialize-problem/" target="_blank" rel="noopener">https://blog.spoock.com/2016/10/16/php-serialize-problem/</a></p>
-<h2 id="0x01-原理"><a href="#0x01-原理" class="headerlink" title="0x01 原理"></a>0x01 原理</h2><p>php.ini中有个配置项如下:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.serialize_handler   string --定义用来序列化/反序列化的处理器名字。默认使用php</span><br></pre></td></tr></table></figure></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/PHP中SESSION反序列化机制/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-php" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/php/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.570Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/php/">PHP基础知识</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="0x01-Http-Header里的Content-Type"><a href="#0x01-Http-Header里的Content-Type" class="headerlink" title="0x01 Http Header里的Content-Type"></a>0x01 Http Header里的Content-Type</h3><p>Http Header里的Content-Type一般有这三种:<br></p>
-<ul>
-<li>application/x-www-form-urlencoded：数据被编码为名称/值对。这是标准的编码格式。</li>
-<li>multipart/form-data： 数据被编码为一条消息，页上的每个控件对应消息中的一个部分。</li>
-<li>text/plain： 数据以纯文本形式(text/json/xml/html)
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/php/#more">查看更多 >></a>
+          <a   href="/2018/07/06/phpruoleixing/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

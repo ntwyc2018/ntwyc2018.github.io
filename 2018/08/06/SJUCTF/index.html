@@ -7,24 +7,32 @@
   
   
   
-  <title>网络安全实验室-注入关 | Grim&#39;s blog</title>
+  <title>2018暑假校内赛SJUCTF | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.最简单的SQL注入Tips题目里有简单提示">
+  <meta name="description" content="WEBWarm upjs解密-&amp;gt;md5解密  babyweb根据hint提醒user/user登陆，发现只有visitor才能得falg 抓包修改session的user为visitor得到flag  exec回车符%0a绕过(抓包内修改) redisredis getshell 首先找到web根目录  telnet过去写shell telnet 192.168.19.211 6379">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络安全实验室-注入关">
-<meta property="og:url" content="http://yoursite.com/2018/07/06/wangluo3/index.html">
+<meta property="og:title" content="2018暑假校内赛SJUCTF">
+<meta property="og:url" content="http://yoursite.com/2018/08/06/SJUCTF/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="1.最简单的SQL注入Tips题目里有简单提示">
+<meta property="og:description" content="WEBWarm upjs解密-&amp;gt;md5解密  babyweb根据hint提醒user/user登陆，发现只有visitor才能得falg 抓包修改session的user为visitor得到flag  exec回车符%0a绕过(抓包内修改) redisredis getshell 首先找到web根目录  telnet过去写shell telnet 192.168.19.211 6379">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/1YHOVS8SDQR8GPHE$0%5DPNFV.png">
-<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/A%28_A%28%25%5B850EMEWN0435IOL7.png">
-<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/YEUJ%28OGKT@X%60%7DAWA8L~G9%7BU.png">
-<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/JCJ3N%25L%60%5B%5DKNIH%28$%2801T0YW.png">
-<meta property="og:updated_time" content="2018-07-06T10:43:59.752Z">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/11111.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/22222.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/redis1.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/redis2.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/redis3.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/md5%281%29.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/sha1%281%29.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/mp3.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/mp3%281%29.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/mang1.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/Q2%60I4XARE8%28KG8N60VQ%7DZ_V.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/http1.png">
+<meta property="og:updated_time" content="2018-08-08T02:26:10.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络安全实验室-注入关">
-<meta name="twitter:description" content="1.最简单的SQL注入Tips题目里有简单提示">
-<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/1YHOVS8SDQR8GPHE$0%5DPNFV.png">
+<meta name="twitter:title" content="2018暑假校内赛SJUCTF">
+<meta name="twitter:description" content="WEBWarm upjs解密-&amp;gt;md5解密  babyweb根据hint提醒user/user登陆，发现只有visitor才能得falg 抓包修改session的user为visitor得到flag  exec回车符%0a绕过(抓包内修改) redisredis getshell 首先找到web根目录  telnet过去写shell telnet 192.168.19.211 6379">
+<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/11111.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -250,11 +258,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-wangluo3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SJUCTF" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/wangluo3/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
+      <a  href="/2018/08/06/SJUCTF/" class="article-date">
+      <time datetime="2018-08-05T16:00:00.000Z" itemprop="datePublished">2018-08-06</time>
 </a>
 
     </div>
@@ -268,7 +276,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      网络安全实验室-注入关
+      2018暑假校内赛SJUCTF
     </h1>
   
 
@@ -286,16 +294,45 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="1-最简单的SQL注入"><a href="#1-最简单的SQL注入" class="headerlink" title="1.最简单的SQL注入"></a>1.最简单的SQL注入</h3><h3 id="Tips题目里有简单提示"><a href="#Tips题目里有简单提示" class="headerlink" title="Tips题目里有简单提示"></a>Tips题目里有简单提示</h3><a id="more"></a>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/1YHOVS8SDQR8GPHE$0%5DPNFV.png" alt="image"></p>
-<p><img src="http://p1vrkwaxt.bkt.clouddn.com/A%28_A%28%25%5B850EMEWN0435IOL7.png" alt="image"></p>
-<h3 id="2-最简单的SQL注入-熟悉注入环境-最简单的SQL注入"><a href="#2-最简单的SQL注入-熟悉注入环境-最简单的SQL注入" class="headerlink" title="2.最简单的SQL注入(熟悉注入环境)最简单的SQL注入"></a>2.最简单的SQL注入(熟悉注入环境)<br>最简单的SQL注入</h3><ul>
-<li>查看源代码得到注入点id</li>
-<li>构造url id=1,id=1’发现存在注入点</li>
-<li>id=1 or 1 =1得到flag</li>
-</ul>
-<h3 id="3-防注入小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入"><a href="#3-防注入小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入" class="headerlink" title="3.防注入小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入!"></a>3.防注入<br>小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入!</h3><h4 id="原理-sql宽字节注入"><a href="#原理-sql宽字节注入" class="headerlink" title="原理:sql宽字节注入"></a>原理:sql宽字节注入</h4><p><img src="http://p1vrkwaxt.bkt.clouddn.com/YEUJ%28OGKT@X%60%7DAWA8L~G9%7BU.png" alt="image"><br><br>报错说明sql存在宽字节注入<br><br><img src="http://p1vrkwaxt.bkt.clouddn.com/JCJ3N%25L%60%5B%5DKNIH%28$%2801T0YW.png" alt="image"><br><br>查询第3行的数据得到flag</p>
-<h3 id="4-到底能不能回显小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？"><a href="#4-到底能不能回显小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？" class="headerlink" title="4.到底能不能回显小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？"></a>4.到底能不能回显<br>小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？</h3>
+        <a id="more"></a>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="Warm-up"><a href="#Warm-up" class="headerlink" title="Warm up"></a>Warm up</h2><p>js解密-&gt;md5解密</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/11111.png" alt="image"></p>
+<h2 id="babyweb"><a href="#babyweb" class="headerlink" title="babyweb"></a>babyweb</h2><p>根据hint提醒user/user登陆，发现只有visitor才能得falg</p>
+<p>抓包修改session的user为visitor得到flag</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/22222.png" alt="image"></p>
+<h2 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h2><p>回车符%0a绕过(抓包内修改)</p>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>redis getshell</p>
+<p>首先找到web根目录</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/redis1.png" alt="image"></p>
+<p>telnet过去写shell</p>
+<p>telnet 192.168.19.211 6379</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/redis2.png" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/redis3.png" alt="image"></p>
+<h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h2 id="MD5-is-dead"><a href="#MD5-is-dead" class="headerlink" title="MD5 is dead"></a>MD5 is dead</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/md5%281%29.png" alt="image"></p>
+<p>题目要求md5相同sha1不同的两个文件,同时要求大小在2017kib~2018kib范围</p>
+<p>首先生成一个符合大小的文件(python)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#with open(&apos;test&apos;,&apos;w+&apos;) as f:</span><br><span class="line"># 	f.write(&apos;1&apos;*2017*1024)</span><br></pre></td></tr></table></figure>
+<p>然后用fastcoll工具碰撞md5生成两个文件上传得到flag</p>
+<h2 id="SHA-1-is-dead-too"><a href="#SHA-1-is-dead-too" class="headerlink" title="SHA-1 is dead too"></a>SHA-1 is dead too</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/sha1%281%29.png" alt="image"></p>
+<p>题目要求sha1相同但sha256不同的两个文件,同时要求大小在2018kib~2019kib范围</p>
+<p><a href="https://ctf-wiki.github.io/ctf-wiki/crypto/hash/sha1/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/crypto/hash/sha1/</a></p>
+<p>在谷歌之前公布文档下载好两个pdf，修改一下题目要求大小的脚本,运行后得到两个文件上传得flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from hashlib import sha1</span><br><span class="line">from hashlib import sha256</span><br><span class="line"></span><br><span class="line">pdf1 = open(&apos;./shattered-1.pdf&apos;).read(320)</span><br><span class="line">pdf2 = open(&apos;./shattered-2.pdf&apos;).read(320)</span><br><span class="line">pdf1 = pdf1.ljust(2019 * 1024 + 1 - 320, &quot;\00&quot;)  #padding pdf to 2017Kib + 1</span><br><span class="line">pdf2 = pdf2.ljust(2019 * 1024 + 1 - 320, &quot;\00&quot;)</span><br><span class="line">open(&quot;upload1&quot;, &quot;w&quot;).write(pdf1)</span><br><span class="line">open(&quot;upload2&quot;, &quot;w&quot;).write(pdf2)</span><br><span class="line"></span><br><span class="line">print sha1(pdf1).hexdigest()</span><br><span class="line">print sha1(pdf2).hexdigest()</span><br><span class="line">print sha256(pdf1).hexdigest()</span><br><span class="line">print sha256(pdf2).hexdigest()</span><br></pre></td></tr></table></figure>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="CLANNAD"><a href="#CLANNAD" class="headerlink" title="CLANNAD"></a>CLANNAD</h2><p>下载后是wav音频文件 (MP3 Stego工具)</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/mp3.png" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/mp3%281%29.png" alt="image"></p>
+<h2 id="隐写"><a href="#隐写" class="headerlink" title="隐写"></a>隐写</h2><p>用BlindWaterMark工具盲水印</p>
+<p><a href="https://github.com/chishaxie/BlindWaterMark" target="_blank" rel="noopener">https://github.com/chishaxie/BlindWaterMark</a></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/mang1.png" alt="image"></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/Q2%60I4XARE8%28KG8N60VQ%7DZ_V.png" alt="image"></p>
+<h2 id="ZipCRC32"><a href="#ZipCRC32" class="headerlink" title="ZipCRC32"></a>ZipCRC32</h2><p>CRC32攻击脚本:得到一串base64码，解码Pk可知是zip文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line"></span><br><span class="line">import zipfile</span><br><span class="line"></span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">import binascii</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">def CrackCrc(crc):</span><br><span class="line"></span><br><span class="line">    for i in dic:</span><br><span class="line"></span><br><span class="line">        for j in dic:</span><br><span class="line"></span><br><span class="line">            for p in dic:</span><br><span class="line"></span><br><span class="line">                for q in dic:</span><br><span class="line"></span><br><span class="line">                    s = i + j + p + q</span><br><span class="line"></span><br><span class="line">                    if crc == (binascii.crc32(s) &amp; 0xffffffff):</span><br><span class="line"></span><br><span class="line">                        print s</span><br><span class="line"></span><br><span class="line">                        f.write(s)</span><br><span class="line"></span><br><span class="line">                        return</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">def CrackZip():</span><br><span class="line"></span><br><span class="line">    for I in range(54):</span><br><span class="line"></span><br><span class="line">        file = &apos;chunk&apos; + str(I) + &apos;.zip&apos;</span><br><span class="line"></span><br><span class="line">        f = zipfile.ZipFile(file, &apos;r&apos;)</span><br><span class="line"></span><br><span class="line">        GetCrc = f.getinfo(&apos;data.txt&apos;)</span><br><span class="line"></span><br><span class="line">        crc = GetCrc.CRC</span><br><span class="line"></span><br><span class="line">        #以上3行为获取压缩包CRC32值的步骤</span><br><span class="line"></span><br><span class="line">        print hex(crc)</span><br><span class="line"></span><br><span class="line">        CrackCrc(crc)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters + string.digits + &apos;+/=&apos;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">f = open(&apos;data.txt&apos;, &apos;w&apos;)</span><br><span class="line"></span><br><span class="line">CrackZip()</span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>上脚本，将字符串转为zip文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line"></span><br><span class="line">fin=open(&quot;1.txt&quot;,&quot;r&quot;)</span><br><span class="line">fout=open(&apos;2.zip&apos;,&quot;wb&quot;)</span><br><span class="line">base64.decode(fin,fout)</span><br><span class="line">fin.close()</span><br><span class="line">fout.close()</span><br></pre></td></tr></table></figure></p>
+<p>上工具Ziperello爆破密码得到flag</p>
+<h2 id="Easy-Forensics"><a href="#Easy-Forensics" class="headerlink" title="Easy Forensics"></a>Easy Forensics</h2><p>过滤http流 导出HTTP upload文件 save</p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/http1.png" alt="image"></p>
+<p>保存为zip文件,图片一半flag，属性另一半</p>
+
       
     </div>
     
@@ -303,13 +340,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/07/06/wangluo3/">网络安全实验室-注入关</a></p>
+        <p><span>本文标题:</span><a  href="/2018/08/06/SJUCTF/">2018暑假校内赛SJUCTF</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
-        <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年07月06日 - 18时43分</p>
+        <p><span>发布时间:</span>2018年08月06日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年08月08日 - 10时26分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/06/wangluo3/" title="网络安全实验室-注入关">http://yoursite.com/2018/07/06/wangluo3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/wangluo3/　　作者: Mr1.Grim" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/06/SJUCTF/" title="2018暑假校内赛SJUCTF">http://yoursite.com/2018/08/06/SJUCTF/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/08/06/SJUCTF/　　作者: Mr1.Grim" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -320,18 +357,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/07/06/xxe漏洞/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          在JSON中玩转XXE攻击
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2018/07/06/wangluo2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网络安全实验室-脚本关</div>
+    <a  href="/2018/07/18/SSTI/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -343,7 +371,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-最简单的SQL注入"><span class="toc-number">1.</span> <span class="toc-text">1.最简单的SQL注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips题目里有简单提示"><span class="toc-number">2.</span> <span class="toc-text">Tips题目里有简单提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-最简单的SQL注入-熟悉注入环境-最简单的SQL注入"><span class="toc-number">3.</span> <span class="toc-text">2.最简单的SQL注入(熟悉注入环境)最简单的SQL注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-防注入小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入"><span class="toc-number">4.</span> <span class="toc-text">3.防注入小明终于知道，原来黑客如此的吊，还有sql注入这种高端技术，因此他开始学习防注入!</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理-sql宽字节注入"><span class="toc-number">4.1.</span> <span class="toc-text">原理:sql宽字节注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-到底能不能回显小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？"><span class="toc-number">5.</span> <span class="toc-text">4.到底能不能回显小明经过学习，终于对SQL注入有了理解，她知道原来sql注入的发生根本原因还是数据和语句不能正确分离的原因，导致数据作为sql语句执行；但是是不是只要能够控制sql语句的一部分就能够来利用获取数据呢？小明经过思考知道，where条件可控的情况下，实在是太容易了，但是如果是在limit条件呢？</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">1.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Warm-up"><span class="toc-number">1.1.</span> <span class="toc-text">Warm up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyweb"><span class="toc-number">1.2.</span> <span class="toc-text">babyweb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exec"><span class="toc-number">1.3.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis"><span class="toc-number">1.4.</span> <span class="toc-text">redis</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRYPTO"><span class="toc-number">2.</span> <span class="toc-text">CRYPTO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MD5-is-dead"><span class="toc-number">2.1.</span> <span class="toc-text">MD5 is dead</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHA-1-is-dead-too"><span class="toc-number">2.2.</span> <span class="toc-text">SHA-1 is dead too</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MISC"><span class="toc-number">3.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLANNAD"><span class="toc-number">3.1.</span> <span class="toc-text">CLANNAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐写"><span class="toc-number">3.2.</span> <span class="toc-text">隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZipCRC32"><span class="toc-number">3.3.</span> <span class="toc-text">ZipCRC32</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Easy-Forensics"><span class="toc-number">3.4.</span> <span class="toc-text">Easy Forensics</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -416,13 +444,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/07/06/xxe漏洞/" title="上一篇: 在JSON中玩转XXE攻击">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/07/06/wangluo2/" title="下一篇: 网络安全实验室-脚本关">
+            <a  href="/2018/07/18/SSTI/" title="下一篇: ">
                 <i class="fa fa-angle-right"></i>
             </a>
         
