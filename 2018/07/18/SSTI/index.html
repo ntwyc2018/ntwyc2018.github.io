@@ -7,23 +7,23 @@
   
   
   
-  <title>Grim&#39;s blog</title>
+  <title>服务端模板注入SSTI | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 服务端模板注入(SSTI)复现 date: 2018-7-18参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
+  <meta name="description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Grim&#39;s blog">
+<meta property="og:title" content="服务端模板注入SSTI">
 <meta property="og:url" content="http://yoursite.com/2018/07/18/SSTI/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="title: 服务端模板注入(SSTI)复现 date: 2018-7-18参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
+<meta property="og:description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png">
 <meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png">
-<meta property="og:updated_time" content="2018-08-08T02:43:45.253Z">
+<meta property="og:updated_time" content="2018-09-07T07:36:54.094Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grim&#39;s blog">
-<meta name="twitter:description" content="title: 服务端模板注入(SSTI)复现 date: 2018-7-18参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
+<meta name="twitter:title" content="服务端模板注入SSTI">
+<meta name="twitter:description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
@@ -254,7 +254,7 @@
   
     <div class="article-meta">
       <a  href="/2018/07/18/SSTI/" class="article-date">
-      <time datetime="2018-07-18T07:18:33.194Z" itemprop="datePublished">2018-07-18</time>
+      <time datetime="2018-07-17T16:00:00.000Z" itemprop="datePublished">2018-07-18</time>
 </a>
 
     </div>
@@ -264,12 +264,29 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      服务端模板注入SSTI
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<p>title: 服务端模板注入(SSTI)复现</p>
-<h2 id="date-2018-7-18"><a href="#date-2018-7-18" class="headerlink" title="date: 2018-7-18"></a>date: 2018-7-18</h2><p>参考链接:<br><br><a href="https://www.cnblogs.com/tyomcat/p/5440488.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyomcat/p/5440488.html</a><br><br><a href="https://www.jianshu.com/p/367ea79c5482" target="_blank" rel="noopener">https://www.jianshu.com/p/367ea79c5482</a><br><a id="more"></a></p>
+        <p>参考链接:<br><br><a href="https://www.cnblogs.com/tyomcat/p/5440488.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyomcat/p/5440488.html</a><br><br><a href="https://www.jianshu.com/p/367ea79c5482" target="_blank" rel="noopener">https://www.jianshu.com/p/367ea79c5482</a><br><a id="more"></a></p>
 <h2 id="0x01-环境准备"><a href="#0x01-环境准备" class="headerlink" title="0x01 环境准备"></a>0x01 环境准备</h2><p>该环境是基于python Flask框架搭建起来的</p>
 <p>github上下载一个docker </p>
 <p><a href="https://github.com/vulhub/vulhub/tree/master/flask/ssti" target="_blank" rel="noopener">https://github.com/vulhub/vulhub/tree/master/flask/ssti</a></p>
@@ -319,12 +336,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/07/18/SSTI/"></a></p>
+        <p><span>本文标题:</span><a  href="/2018/07/18/SSTI/">服务端模板注入SSTI</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
-        <p><span>发布时间:</span>2018年07月18日 - 15时18分</p>
-        <p><span>最后更新:</span>2018年08月08日 - 10时43分</p>
+        <p><span>发布时间:</span>2018年07月18日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年09月07日 - 15时36分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/18/SSTI/" title="">http://yoursite.com/2018/07/18/SSTI/</a>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/18/SSTI/" title="服务端模板注入SSTI">http://yoursite.com/2018/07/18/SSTI/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/18/SSTI/　　作者: Mr1.Grim" title=""></span>
         </p>
         <p>
@@ -359,7 +376,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#date-2018-7-18"><span class="toc-number">1.</span> <span class="toc-text">date: 2018-7-18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-环境准备"><span class="toc-number">2.</span> <span class="toc-text">0x01 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-原理介绍"><span class="toc-number">3.</span> <span class="toc-text">0x02 原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">3.1.</span> <span class="toc-text">源码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-模板注入-进阶"><span class="toc-number">4.</span> <span class="toc-text">0x03 模板注入(进阶)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注入姿势"><span class="toc-number">4.1.</span> <span class="toc-text">注入姿势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-赛题分析"><span class="toc-number">5.</span> <span class="toc-text">0x04 赛题分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-总结"><span class="toc-number">6.</span> <span class="toc-text">0x05 总结</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-环境准备"><span class="toc-number">1.</span> <span class="toc-text">0x01 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-原理介绍"><span class="toc-number">2.</span> <span class="toc-text">0x02 原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">2.1.</span> <span class="toc-text">源码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-模板注入-进阶"><span class="toc-number">3.</span> <span class="toc-text">0x03 模板注入(进阶)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注入姿势"><span class="toc-number">3.1.</span> <span class="toc-text">注入姿势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-赛题分析"><span class="toc-number">4.</span> <span class="toc-text">0x04 赛题分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-总结"><span class="toc-number">5.</span> <span class="toc-text">0x05 总结</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -443,7 +460,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/order by 盲注/">SQL注入之order by盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/SJUCTF/">2018暑假校内赛SJUCTF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/SSTI/">SSTI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/2018XMAN夏令营/">QCTF2018-XMan选拔赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/md5哈希扩展攻击/">MD5哈希(hash)长度扩展攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/基于布尔盲注的SQL/">基于布尔盲注的学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/变量覆盖漏洞/">代码审计|变量覆盖漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/截断问题/">PHP %00截断原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/yuanma/">文件源码泄漏大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo3/">网络安全实验室-注入关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo2/">网络安全实验室-脚本关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/XSS/">XSS注入原理及应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo1/">网络安全实验室-基础关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql报错注入/">SQL 报错注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmohu/">MySql模糊查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmap/">sqlmap基础用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql/">sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/requests/">Python爬虫requests的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP正则表达式/">PHP正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php/">PHP基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php伪协议/">PHP伪协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/hexo/">hexo的相关配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/n1ctf/">N1CTF WEB</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DHB/">东华杯布尔盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Inclusion/">DVWA之File Inclusion</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之Commad injection/">DVWA之 Command Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DDCTF部分wp/">DDCTF部分wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/docker/">Docker复现CTF Web题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CBC字节翻转攻击/">CBC字节翻转攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/2018 iscc web/">2018 ISCC web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF misc/">bugkuCTF Misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF 代码审计/">Bugku 代码审计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF web/">bugkuCTF Web</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/order by 盲注/">SQL注入之order by盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/SJUCTF/">2018暑假校内赛SJUCTF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/SSTI/">服务端模板注入SSTI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/2018XMAN夏令营/">QCTF2018-XMan选拔赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/10/md5哈希扩展攻击/">MD5哈希(hash)长度扩展攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/截断问题/">PHP %00截断原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/常见文件头/">CTF常见文件头标志</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/基于布尔盲注的SQL/">基于布尔盲注的学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/变量覆盖漏洞/">代码审计|变量覆盖漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo2/">网络安全实验室-脚本关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/XSS/">XSS注入原理及应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/yuanma/">文件源码泄漏大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo1/">网络安全实验室-基础关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/wangluo3/">网络安全实验室-注入关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/SQL约束攻击/">基于约束的SQL攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmap/">sqlmap基础用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sqlmohu/">MySql模糊查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql报错注入/">SQL 报错注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP魔术方法/">PHP之魔术方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP漏洞总结/">PHP函数漏洞总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP正则表达式/">PHP正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/requests/">Python爬虫requests的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/saibo/">赛博地球杯工业互联网安全大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/sql/">sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP中SESSION反序列化机制/">PHP之SESSION反序列化机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php/">PHP基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/phpruoleixing/">PHP弱类型总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP反序列化/">PHP反序列化漏洞绕过</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/PHP文件包含漏洞/">文件包含漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/php伪协议/">PHP伪协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/n1ctf/">N1CTF WEB</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/hexo/">hexo的相关配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/md5之sql注入/">MD5加密下的SQL注入</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Upload/">DVWA之File Upload</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之SQL Injection/">DVWA之SQL Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Jarivs oj/">Jarivs Oj Web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之CSRF漏洞/">DVWA之CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DHB/">东华杯布尔盲注</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/docker/">Docker复现CTF Web题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之File Inclusion/">DVWA之File Inclusion</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DVWA之Commad injection/">DVWA之 Command Injection</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/DDCTF部分wp/">DDCTF部分wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CBC字节翻转攻击/">CBC字节翻转攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF 代码审计/">Bugku 代码审计</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF misc/">bugkuCTF Misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/CTFawd/">AWD 校内练习赛</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/2018 iscc web/">2018 ISCC web</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/bugkuCTF web/">bugkuCTF Web</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
