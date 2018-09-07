@@ -249,6 +249,133 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-xxe漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/xxe漏洞/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/xxe漏洞/">在JSON中玩转XXE攻击</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="http://bobao.360.cn/learning/detail/360.html" target="_blank" rel="noopener">在JSON中玩转XXE攻击 </a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在刷题的过程中遇到了一个没见过的新姿势，这里记录一下加深对xxe漏洞的认识</p>
+<h2 id="xml基础"><a href="#xml基础" class="headerlink" title="xml基础"></a>xml基础</h2><p>要了解xxe漏洞前先了解xml文档的基础，这是基本知识<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/xxe漏洞/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-xxe漏洞复现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/xxe漏洞复现/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="https://www.jianshu.com/p/163879fc1018" target="_blank" rel="noopener">https://www.jianshu.com/p/163879fc1018</a></p>
+<h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/xxe漏洞复现/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-XSS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -311,68 +438,6 @@
 
 
   
-    <article id="post-yuanma" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/yuanma/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/yuanma/">文件源码泄漏大全</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h4 id="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"><a href="#2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。" class="headerlink" title="2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。"></a>2018年从一个朋友学到了很多，决定总结一下内容，以下内容纯属借鉴，请勿抄袭。</h4><h3 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title=".git源码泄漏"></a>.git源码泄漏</h3><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候，把.git这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/yuanma/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-wangluo3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -415,6 +480,68 @@
       
         <p class="article-more-link">
           <a   href="/2018/07/06/wangluo3/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-关于SSR配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/关于SSR配置/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/关于SSR配置/">chrome 代理设置ss(ssr)</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>参考链接:<a href="https://www.jianshu.com/p/4c0553dbc970" target="_blank" rel="noopener">https://www.jianshu.com/p/4c0553dbc970</a><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/关于SSR配置/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -566,194 +693,6 @@
 
 
   
-    <article id="post-xxe漏洞复现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/xxe漏洞复现/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.617Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/xxe漏洞复现/">xxe漏洞的复现解析</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="https://www.jianshu.com/p/163879fc1018" target="_blank" rel="noopener">https://www.jianshu.com/p/163879fc1018</a></p>
-<h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>当XML文件中出现关键字”SYSTEM”定义的“实体”（DOCTYPE头部标签中会呈现），便可通过XML文件中定义的’实体’ , 访问本地或者远程的内容。这时候，XML解析器在SYSTEM的作用下从URI中读取内容，并允许它在XML文档中被替换，从而造成外部实体攻击。此时，Web应用如果产生数据回显，则会将URL中的数据呈现在应用界面上。<br>而如果Web端注意到这一点，没有设置回显，那么攻击者可以将数据通过外数据通道发送到攻击者服务器，从而达到攻击效果。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/xxe漏洞复现/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-vmheipeing" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/vmheipeing/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h4 id="vm黑屏解决方案"><a href="#vm黑屏解决方案" class="headerlink" title="vm黑屏解决方案"></a>vm黑屏解决方案</h4><p>本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题<br>后来百度一下找到解决方案<br><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/vmheipeing/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-sql报错注入" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2018/07/06/sql报错注入/" class="article-date">
-      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/sql报错注入/">SQL 报错注入</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>参考链接:<a href="http://www.bugku.com/forum.php?mod=viewthread&amp;tid=93&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D26" target="_blank" rel="noopener">SQL报错注入十二个函数</a></p>
-<h2 id="SQL报错注入的十二个函数"><a href="#SQL报错注入的十二个函数" class="headerlink" title="SQL报错注入的十二个函数"></a>SQL报错注入的十二个函数</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a   href="/2018/07/06/sql报错注入/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-SQL约束攻击" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -832,10 +771,10 @@
 
 
   
-    <article id="post-sqlmohu" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-sqlkuanzijie" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/07/06/sqlmohu/" class="article-date">
+      <a  href="/2018/07/06/sqlkuanzijie/" class="article-date">
       <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
 </a>
 
@@ -850,7 +789,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2018/07/06/sqlmohu/">MySql模糊查询</a>
+      <a  class="article-title" href="/2018/07/06/sqlkuanzijie/">sql宽字节注入原理</a>
     </h1>
   
 
@@ -861,7 +800,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="MySql模糊查询的五种用法"><a href="#MySql模糊查询的五种用法" class="headerlink" title="MySql模糊查询的五种用法"></a>MySql模糊查询的五种用法</h2><h3 id="Mysql模糊查询用法之一-‘-’"><a href="#Mysql模糊查询用法之一-‘-’" class="headerlink" title="Mysql模糊查询用法之一    ‘%’"></a>Mysql模糊查询用法之一    ‘%’</h3><p>%：表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示(如果只有%表示不匹配,仍正确);<br>
+              <h3 id="sql宽字节注入原理"><a href="#sql宽字节注入原理" class="headerlink" title="sql宽字节注入原理"></a>sql宽字节注入原理</h3><p>在magic_quotes_gpc=On的情况下，提交的参数中如果带有单引号’，就会被自动转义\’，使很多注入攻击无效.<br>
           
       
     </div>
@@ -873,7 +812,69 @@
       
       
         <p class="article-more-link">
-          <a   href="/2018/07/06/sqlmohu/#more">查看更多 >></a>
+          <a   href="/2018/07/06/sqlkuanzijie/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-vmheipeing" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/07/06/vmheipeing/" class="article-date">
+      <time datetime="2018-07-06T05:24:35.601Z" itemprop="datePublished">2018-07-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2018/07/06/vmheipeing/">VM一直多次黑屏问题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="vm黑屏解决方案"><a href="#vm黑屏解决方案" class="headerlink" title="vm黑屏解决方案"></a>vm黑屏解决方案</h4><p>本人是游戏本，打开vmware经常报错套接次数问题，重启服务后以后还是会出现问题<br>后来百度一下找到解决方案<br><br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a   href="/2018/07/06/vmheipeing/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
